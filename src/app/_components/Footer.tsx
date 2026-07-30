@@ -50,7 +50,7 @@ export default function Footer() {
             </a>
             <a
               // LinkdIn Public profile is not available
-              href="https://www.facebook.com/MindsplashAcademy"
+              href="mindsplash-academy-7107a441b"
               target="_blank"
               rel="noopener noreferrer"
             >
