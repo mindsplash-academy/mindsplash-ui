@@ -101,14 +101,8 @@ export default function Footer() {
               className="text-secondary mb-2 block text-left font-normal text-[18px] leading-[23px] tracking-[0px]"
             >
               Our Programs
-            </a>
-            <Link
-              href="/blog"
-              className="text-secondary mb-2 block text-left font-normal text-[18px] leading-[23px] tracking-[0px]"
-            >
-              Blog
-            </Link>
-            <a
+            </a
+              <a
               href="/contact"
               className="text-secondary mb-2 block text-left font-normal text-[18px] leading-[23px] tracking-[0px]"
             >
