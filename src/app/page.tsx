@@ -10,7 +10,7 @@ import ContactUsModal from "./_components/ContactUsModal";
 
 // SEO and Content Constants
 const SEO_CONSTANTS = {
-  HERO_TITLE: "Exploring the real Joy of Learning",
+  HERO_TITLE: "Explore the real Joy of Learning",
   HERO_SUBTITLE: "State-of-art Learning Ambience",
   HERO_DESCRIPTION:
     "Small size gives your child the ultimate edge<br class='hidden lg:block xl:hidden' /> they deserve!",
