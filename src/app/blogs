@@ -1,0 +1,225 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import {
+  ChevronDownIcon,
+  ChevronRight,
+  Menu,
+} from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+import MobileNavbar from "./MobileNavbar";
+
+export default function CustomNavBar() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex items-center gap-2">
+        {/* Home */}
+        <Button type="button" variant="nav">
+          <Link href="/" className="flex items-center">
+            Home
+          </Link>
+        </Button>
+
+        {/* About Us Dropdown */}
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger
+            onClick={() => setOpen(!open)}
+            className="flex rounded-md items-center px-4 bg-transparent text-foreground hover:text-accent-foreground cursor-pointer text-base text-left leading-[19px] tracking-[0px] font-normal"
+          >
+            About Us
+
+            <ChevronDownIcon
+              className={`relative top-[1px] ml-1 size-4 transition-transform duration-300 ${
+                open ? "rotate-0" : "rotate-180"
+              }`}
+              aria-hidden="true"
+            />
+          </PopoverTrigger>
+
+          <PopoverContent className="w-[320px] p-2">
+            {/* Leadership Team */}
+            <Link href="/about#leadership-team">
+              <Button
+                type="button"
+                variant="navItem"
+                size="xl"
+                className="group flex justify-start pl-5 gap-0 items-center relative w-full"
+              >
+                <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
+                  <Image
+                    src="/leader.svg"
+                    alt="Leadership Team"
+                    width={20}
+                    height={20}
+                  />
+                </div>
+
+                Leadership Team
+
+                <div className="opacity-0 group-hover:opacity-100 invisible group-hover:visible absolute right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
+                  <ChevronRight className="text-foreground" />
+                </div>
+              </Button>
+            </Link>
+
+            {/* Our Teachers */}
+            <Link href="/about#our-teachers">
+              <Button
+                type="button"
+                variant="navItem"
+                size="xl"
+                className="group flex justify-start pl-5 gap-0 items-center relative w-full"
+              >
+                <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
+                  <Image
+                    src="/teachers.svg"
+                    alt="Our Teachers"
+                    width={20}
+                    height={20}
+                  />
+                </div>
+
+                Our Teachers
+
+                <div className="opacity-0 group-hover:opacity-100 invisible group-hover:visible absolute right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
+                  <ChevronRight className="text-foreground" />
+                </div>
+              </Button>
+            </Link>
+
+            {/* Our Methodology */}
+            <Link href="/about#methodology">
+              <Button
+                type="button"
+                variant="navItem"
+                size="xl"
+                className="group flex justify-start pl-5 gap-0 items-center relative w-full"
+              >
+                <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
+                  <Image
+                    src="/methodology.svg"
+                    alt="Our Methodology"
+                    width={20}
+                    height={20}
+                  />
+                </div>
+
+                Our Methodology
+
+                <div className="opacity-0 group-hover:opacity-100 invisible group-hover:visible absolute right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
+                  <ChevronRight className="text-foreground" />
+                </div>
+              </Button>
+            </Link>
+
+            {/* Results */}
+            <Link href="/about#results">
+              <Button
+                type="button"
+                variant="navItem"
+                size="xl"
+                className="group flex justify-start pl-5 gap-0 items-center relative w-full"
+              >
+                <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
+                  <Image
+                    src="/results.svg"
+                    alt="Results"
+                    width={20}
+                    height={20}
+                  />
+                </div>
+
+                Results
+
+                <div className="opacity-0 group-hover:opacity-100 invisible group-hover:visible absolute right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
+                  <ChevronRight className="text-foreground" />
+                </div>
+              </Button>
+            </Link>
+
+            {/* Our Curriculum */}
+            <Link href="/about#curriculum">
+              <Button
+                type="button"
+                variant="navItem"
+                size="xl"
+                className="group flex justify-start pl-5 gap-0 items-center relative w-full"
+              >
+                <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
+                  <Image
+                    src="/curriculum.svg"
+                    alt="Our Curriculum"
+                    width={20}
+                    height={20}
+                  />
+                </div>
+
+                Our Curriculum
+
+                <div className="opacity-0 group-hover:opacity-100 invisible group-hover:visible absolute right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
+                  <ChevronRight className="text-foreground" />
+                </div>
+              </Button>
+            </Link>
+          </PopoverContent>
+        </Popover>
+
+        {/* Our Programs */}
+        <Button type="button" variant="nav">
+          <Link href="/programs" className="flex items-center">
+            Our Programs
+          </Link>
+        </Button>
+
+        {/* Blog - Added */}
+        <Button type="button" variant="nav">
+          <Link href="/blog" className="flex items-center">
+            Blog
+          </Link>
+        </Button>
+
+        {/* Contact Us */}
+        <Button type="button" variant="nav">
+          <Link href="/contact" className="flex items-center">
+            Contact Us
+          </Link>
+        </Button>
+
+        {/* WhatsApp */}
+        <Link href="https://wa.me/917075340810">
+          <Button type="button" variant="navIcon">
+            <Image
+              src="/WhatsApp.svg"
+              alt="WhatsApp"
+              width={20}
+              height={20}
+            />
+            WhatsApp
+          </Button>
+        </Link>
+      </div>
+
+      {/* Mobile Navigation */}
+      <div className="md: hidden">
+        <MobileNavbar />
+      </div>
+    </>
+  );
+}
