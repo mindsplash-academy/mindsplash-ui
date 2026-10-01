@@ -15,28 +15,28 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { Control, FieldPath, FieldValues, UseFormReturn } from "react-hook-form";
 
-interface SelectFieldProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: any;
-  name: string;
+interface SelectFieldProps<TFieldValues extends FieldValues> {
+  control: Control<TFieldValues> | UseFormReturn<TFieldValues>;
+  name: FieldPath<TFieldValues>;
   label: string;
   placeholder?: string;
   options: { label: string; value: string }[];
   description?: React.ReactNode;
 }
 
-export function SelectField({
+export function SelectField<TFieldValues extends FieldValues>({
   control,
   name,
   label,
   placeholder,
   options,
   description,
-}: SelectFieldProps) {
+}: SelectFieldProps<TFieldValues>) {
   return (
     <FormField
-      control={control}
+      control={"control" in control ? control.control : control}
       name={name}
       render={({ field }) => (
         <FormItem>

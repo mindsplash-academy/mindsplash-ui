@@ -10,6 +10,7 @@ import { ChevronRight } from "lucide-react";
 import { SelectField } from "@/components/SelectField";
 import { locationOptions } from "../contact/_components/SpeakUsForm";
 import { toast } from "sonner";
+import { submitUser } from "@/lib/api";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "Min 2 chars").max(50, "Max 50 chars"),
@@ -48,45 +49,22 @@ export default function ContactForm({ isDialogForm = false, onCancel = () => { }
       consent: true,
     }
 
-    // Fetch API here with the form values.
     try {
-      const res = await fetch(
-        "https://mindsplash-be-849133147929.us-central1.run.app/api/v1/users",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),  // or values
-        }
-      );
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        // Handle error response with message from API
-        const errorMessage = data?.message || "Failed to submit form";
-        toast.error(errorMessage);
-        form.reset(defaultValues);
-        return;
-      }
-
-      // Show success message from API response
-      const successMessage = data?.message || "Form submitted successfully!";
-      if (data?.status === "success") {
-        toast.success("Success", {
-          description: successMessage,
-        });
-      } else {
-        toast.success("Success", {
-          description: successMessage,
-        });
-      }
+      const data = await submitUser(payload);
+      toast.success("Success", { description: data.message || "Form submitted successfully!" });
       form.reset(defaultValues);
+      
+      // Lead tracking event for Google Tag Manager / Meta Pixel
+      if (typeof window !== "undefined" && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: "generate_lead",
+          form_name: "ContactForm",
+          location: values.location
+        });
+      }
     } catch (error) {
-      console.error("Error:", error);  
-      toast.error("Error", {
-        description: "Failed to submit the form. Please try again.",
-      });
-      form.reset(defaultValues);
+      console.error("Contact form submission failed:", error);
+      toast.error("Error", { description: error instanceof Error ? error.message : "Failed to submit the form. Please try again." });
     }
   }
 
@@ -100,32 +78,32 @@ export default function ContactForm({ isDialogForm = false, onCancel = () => { }
           <FormInput
             control={form.control}
             name="firstName"
-            label="First Name"
-            placeholder="Enter first name"
+            label="First Name *"
+            placeholder="Name"
           />
           <FormInput
             control={form.control}
             name="lastName"
-            label="Last Name"
-            placeholder="Enter last name"
+            label="Last Name *"
+            placeholder="Name"
           />
           <FormInput
             control={form.control}
             name="email"
-            label="Email Address"
+            label="Email Address *"
             placeholder="Enter email ID"
           />
           <FormInput
             control={form.control}
             name="phone"
-            label="Mobile Number"
-            placeholder="Enter mobile number"
+            label="Mobile Number *"
+            placeholder="+91"
           />
           <div className="col-span-1 md:col-span-2">
             <SelectField
               control={form.control}
               name="location"
-              label="Preferred Location"
+              label="Preferred Location *"
               placeholder="Select location"
               options={locationOptions}
             />
@@ -134,7 +112,7 @@ export default function ContactForm({ isDialogForm = false, onCancel = () => { }
         {isDialogForm ?
           (
             <div className="flex justify-end gap-2 flex-wrap">
-              <Button onClick={onCancel} className="rounded-[60px] h-[50px]">Cancel</Button>
+              <Button type="button" onClick={onCancel} className="rounded-[60px] h-[50px]">Cancel</Button>
               <Button type="submit" variant={"secondary"} className={`group`}>
                 Book a Free Demo Class
                 <div className="self-center group-hover:opacity-100 right-4 h-5 w-5 rounded-full bg-foreground group-hover:bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">

@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import SpeakUsForm from "./_components/SpeakUsForm";
 
 export const metadata: Metadata = {
@@ -46,14 +45,6 @@ export default function ContactPage() {
       <section className="mx-7 mt-5 flex justify-center items-center h-[250px] md:h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end">
         <div className="mt-15 md:mt-24 xl:mt-0">
           <h1 className="relative font-bold  text-[24px] md:text-[35px] lg:text-[36px] 2xl:text-[60px] leading-[72px] tracking-[0px]">
-            <Image
-              src={"/new.svg"}
-              alt="MindSplash Academy - Contact us for educational excellence"
-              width={64}
-              height={80}
-              className="absolute -top-6 md:-top-12 -left-14 scale-50 md:scale-none"
-              loading="lazy"
-            />
             {SEO_CONSTANTS.PAGE_TITLE}
           </h1>
         </div>

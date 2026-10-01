@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -8,46 +8,22 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Menu, ChevronDown, ChevronUp, ChevronRight } from "lucide-react";
+import { Menu, ChevronDown, ChevronUp, ChevronRight, BookOpen, GraduationCap, Trophy, ClipboardList, MapPin } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter, usePathname } from "next/navigation";
 
 export default function MobileNavbar() {
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [programsOpen, setProgramsOpen] = useState(false);
+  const [branchesOpen, setBranchesOpen] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
 
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const handleNavClick = (href: string) => {
-    const [path, hash] = href.split("#");
-
+  const closeMenu = () => {
     setSheetOpen(false);
-
-    if (pathname === path && hash) {
-      setTimeout(() => {
-        const el = document.getElementById(hash);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 400);
-    } else {
-      router.push(href, { scroll: false });
-
-      setTimeout(() => {
-        if (hash) {
-          const el = document.getElementById(hash);
-          if (el) {
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }
-      }, 500);
-    }
   };
 
   return (
-    <div className="md:hidden flex items-center">
+    <div className="min-[1100px]:hidden flex items-center">
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
         <SheetTrigger asChild>
           <Button variant="ghost" size="icon">
@@ -56,23 +32,21 @@ export default function MobileNavbar() {
         </SheetTrigger>
 
         <SheetContent
-          side="left"
-          className="w-[300px] sm:w-[400px] bg-gradient-to-r from-gradient-start to-gradient-end text-white"
+          side="right"
+          className="w-[min(300px,calc(100vw-2rem))] sm:w-[400px] bg-gradient-to-r from-gradient-start to-gradient-end text-white"
         >
           <SheetTitle className="sr-only">Main Navigation Menu</SheetTitle>
           <nav className="flex flex-col items-start mt-10 text-base font-medium">
             {/* Home */}
             <Button
-              type="button"
+              asChild
               variant="nav"
               className="pl-5"
-              onClick={() => {
-                setSheetOpen(false);
-              }}
             >
               <Link
                 href="/"
                 className="flex items-center gap-3 hover:underline"
+                onClick={closeMenu}
               >
                 Home
               </Link>
@@ -80,19 +54,27 @@ export default function MobileNavbar() {
 
             {/* About Us */}
             <div className="flex flex-col justify-center">
-              <Button
-                type="button"
-                variant="nav"
-                onClick={() => setAboutOpen((prev) => !prev)}
-                className="flex items-center  justify-start gap-3  focus:outline-none bg-transparent border-transparent "
-              >
-                <div className="flex items-center gap-3 pl-2">About Us</div>
+              <div className="flex items-center">
+                <Button asChild variant="nav">
+                  <Link href="/about" onClick={closeMenu}>
+                    About Us
+                  </Link>
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  aria-label={aboutOpen ? "Collapse About Us links" : "Expand About Us links"}
+                  aria-expanded={aboutOpen}
+                  onClick={() => setAboutOpen((prev) => !prev)}
+                  className="text-white hover:bg-transparent hover:text-white"
+                >
                 {aboutOpen ? (
                   <ChevronUp className="w-4 h-4" />
                 ) : (
                   <ChevronDown className="w-4 h-4" />
                 )}
-              </Button>
+                </Button>
+              </div>
 
               {aboutOpen && (
                 <div className="ml-6 flex flex-col">
@@ -123,12 +105,12 @@ export default function MobileNavbar() {
                       icon: "/curriculum.svg",
                     },
                   ].map((item) => (
-                    <Link href={item.href} key={item.label}>
-                      <Button
-                        key={item.label}
+                    <Button
+                      asChild
+                      key={item.label}
                         className="flex items-center gap-2 bg-transparent border-transparent text-white hover:bg-transparent"
-                        onClick={() => handleNavClick(item.href)}
                       >
+                      <Link href={item.href} onClick={closeMenu}>
                         <Image
                           src={item.icon}
                           alt={item.label}
@@ -138,59 +120,169 @@ export default function MobileNavbar() {
                         />
                         {item.label}
                         <ChevronRight className="w-4 h-4 ml-auto" />
-                      </Button>
-                    </Link>
+                      </Link>
+                    </Button>
                   ))}
                 </div>
               )}
             </div>
 
             {/* Programs */}
+            <div className="flex flex-col justify-center w-full">
+              <div className="flex items-center">
+                <Button asChild variant="nav" className="pl-5">
+                  <Link href="/programs" onClick={closeMenu}>
+                    Our Programs
+                  </Link>
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  aria-label={programsOpen ? "Collapse Programs links" : "Expand Programs links"}
+                  aria-expanded={programsOpen}
+                  onClick={() => setProgramsOpen((prev) => !prev)}
+                  className="text-white hover:bg-transparent hover:text-white"
+                >
+                {programsOpen ? (
+                  <ChevronUp className="w-4 h-4" />
+                ) : (
+                  <ChevronDown className="w-4 h-4" />
+                )}
+                </Button>
+              </div>
+
+              {programsOpen && (
+                <div className="ml-6 flex flex-col">
+                  {[
+                    { label: "All Programs", href: "/programs", icon: BookOpen },
+                    { label: "IGCSE", href: "/programs/igcse", icon: GraduationCap },
+                    { label: "IB MYP", href: "/programs/ib-myp", icon: GraduationCap },
+                    { label: "IB DP", href: "/programs/ib-dp", icon: GraduationCap },
+                    { label: "Olympiads", href: "/programs/olympiads", icon: Trophy },
+                    { label: "Exam Preparation", href: "/programs/exam-preparation", icon: ClipboardList }
+                  ].map((item) => (
+                    <Button
+                      asChild
+                      key={item.label}
+                        className="flex items-center gap-2 bg-transparent border-transparent text-white hover:bg-transparent"
+                      >
+                      <Link href={item.href} onClick={closeMenu}>
+                        <item.icon className="w-5 h-5" />
+                        {item.label}
+                        <ChevronRight className="w-4 h-4 ml-auto" />
+                      </Link>
+                    </Button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Blog */}
             <Button
+              asChild
               className="bg-transparent border-transparent pl-5"
               type="button"
               variant="nav"
-              onClick={() => {
-                setSheetOpen(false);
-              }}
             >
               <Link
-                href="/programs"
+                href="/blog"
                 className="flex items-start gap-3 hover:underline"
+                onClick={closeMenu}
               >
-                Our Programs
+                Blog
               </Link>
             </Button>
 
+            {/* Branches */}
+            <div className="flex flex-col justify-center w-full">
+              <div className="flex items-center">
+                <Button asChild variant="nav" className="pl-5">
+                  <Link href="/branches" onClick={closeMenu}>
+                    Branches
+                  </Link>
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  aria-label={branchesOpen ? "Collapse Branches links" : "Expand Branches links"}
+                  aria-expanded={branchesOpen}
+                  onClick={() => setBranchesOpen((prev) => !prev)}
+                  className="text-white hover:bg-transparent hover:text-white"
+                >
+                {branchesOpen ? (
+                  <ChevronUp className="w-4 h-4" />
+                ) : (
+                  <ChevronDown className="w-4 h-4" />
+                )}
+                </Button>
+              </div>
+
+              {branchesOpen && (
+                <div className="ml-6 flex flex-col gap-2 mt-2">
+                  {[
+                    { 
+                      label: "Khajaguda", 
+                      href: "/locations/khajaguda",
+                      address: "4th Floor, Arka Rochish, Khajaguda" 
+                    },
+                    { 
+                      label: "Kokapet", 
+                      href: "/locations/kokapet",
+                      address: "4th Floor, Raichandani Business Bay" 
+                    },
+                    { 
+                      label: "Financial District", 
+                      href: "/locations/financial-district",
+                      address: "Above ICICI Bank, My Home Vihanga Rd" 
+                    }
+                  ].map((item) => (
+                    <Button
+                      asChild
+                      key={item.label}
+                      className="flex items-start gap-3 bg-transparent border-transparent text-white hover:bg-white/10 h-auto py-2 rounded-lg"
+                    >
+                      <Link href={item.href} onClick={closeMenu}>
+                        <MapPin className="w-5 h-5 shrink-0 mt-0.5" />
+                        <div className="flex flex-col text-left whitespace-normal">
+                          <span className="font-medium text-base">{item.label}</span>
+                          <span className="text-sm text-white/70 mt-0.5">{item.address}</span>
+                        </div>
+                      </Link>
+                    </Button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             {/* Contact */}
             <Button
+              asChild
               type="button"
               variant="nav"
               className="bg-transparent border-transparent pl-5"
-              onClick={() => {
-                setSheetOpen(false);
-              }}
             >
               <Link
                 href="/contact"
                 className="flex gap-3 justify-start hover:underline"
+                onClick={closeMenu}
               >
                 Contact Us
               </Link>
             </Button>
 
             {/* WhatsApp */}
-            <Link
-              href="https://wa.me/917075340810"
-              className="flex items-center gap-3 hover:underline"
+            <Button
+              asChild
+              type="button"
+              variant="nav"
+              className="bg-transparent border-transparent pl-5"
             >
-              <Button
-                type="button"
-                variant="nav"
-                className="bg-transparent border-transparent pl-5"
-                onClick={() => {
-                  setSheetOpen(false);
-                }}
+              <Link
+                href="https://wa.me/917075340810"
+                className="flex items-center gap-3 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
               >
                 <Image
                   src="/WhatsApp.svg"
@@ -199,8 +291,8 @@ export default function MobileNavbar() {
                   height={20}
                 />
                 WhatsApp
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </nav>
         </SheetContent>
       </Sheet>

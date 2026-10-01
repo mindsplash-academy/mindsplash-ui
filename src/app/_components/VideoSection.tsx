@@ -17,12 +17,11 @@ export default function VideoSection() {
   };
 
   return (
-    <section className="relative max-w-[90%] mt-18 md:mt-0 md:max-w-[70%] mx-auto rounded-[34px] overflow-hidden -top-30 border-[24px] border-[#FFFFFF1A]">
+    <section className="relative z-0 mx-auto mb-16 mt-12 w-[88%] max-w-5xl overflow-hidden rounded-[28px] border-8 border-[#FFFFFF1A] sm:mb-20 sm:mt-16 sm:border-12 md:mb-24 md:mt-20">
       {/* Video */}
       <video
         ref={videoRef}
-        className="w-full h-[638px] object-cover"
-        poster="/students-thumbnail.jpg" // fallback poster before play
+        className="h-[280px] w-full object-cover sm:h-[360px] md:h-[420px] lg:h-[460px]"
       >
         <source src="/video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
@@ -33,6 +32,7 @@ export default function VideoSection() {
         <button
           type="button"
           onClick={handlePlay}
+          suppressHydrationWarning
           className="absolute inset-0 flex items-center justify-center"
         >
           <div className="bg-white/70 rounded-full p-5 hover:bg-white transition">
@@ -48,13 +48,13 @@ export default function VideoSection() {
       )}
 
       {/* Gradient Overlay with Text */}
-      <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6">
-        <h3 className="text-4xl font-medium text-left leading-10 tracking-[0px] max-w-[500px]">
+      <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4 sm:p-6">
+        <h3 className="max-w-[420px] text-left text-2xl font-medium leading-8 tracking-[0px] sm:text-3xl sm:leading-9">
           Don’t just take our word for it, hear it from our students.
         </h3>
 
         {/* CTA Row */}
-        <div className="flex items-center gap-5 mt-6 text-sm">
+        <div className="mt-4 flex items-center gap-4 text-sm sm:mt-5">
           <Button
             type="button"
             variant="videoButton"

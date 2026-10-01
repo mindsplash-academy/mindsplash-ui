@@ -13,43 +13,58 @@ import {
 } from "@/components/ui/accordion";
 import ImageCard from "@/components/ImageCard";
 import ImageCarousal from "./_components/ImageCarousal";
+import Marquee from "@/components/Marquee";
 import Link from "next/link";
 import ContactUsModal from "../_components/ContactUsModal";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About MindSplash Academy | Leadership, Methodology & Results",
+  description:
+    "Meet Rahul Chakravarthy (IIT Madras, National Math Olympiad Awardee) and the MindSplash Academy team. Learn about our dynamic-feedback methodology, IB MYP 2024 topper (54/56) and proven results across Hyderabad.",
+  keywords:
+    "MindSplash Academy about, Rahul Chakravarthy IIT Madras, IB MYP results 2024, teaching methodology, MindSplash Hyderabad",
+  openGraph: {
+    title: "About MindSplash Academy | Leadership, Methodology & Results",
+    description: "Meet our IIT-trained leadership, learn our methodology, and see our IB MYP 2024 results (54/56 topper).",
+    type: "website",
+    url: "https://mindsplash.in/about",
+  },
+  alternates: { canonical: "https://mindsplash.in/about" },
+};
 
 // SEO and Content Constants
 const SEO_CONSTANTS = {
-  PAGE_TITLE: "Discover the history of Mindsplash Academy",
+  PAGE_TITLE: "About MindSplash Academy",
   LEADERS_HEADING: "Meet Our Leaders",
-  METHODOLOGY_HEADING: "Methodology",
+  METHODOLOGY_HEADING: "Our Teaching Methodology",
   HIGHLIGHTS_HEADING: "Highlights",
   TEACHERS_HEADING: "Our Teachers",
-  RESULTS_HEADING: "Our Results",
+  RESULTS_HEADING: "Results",
   KNOW_MORE_BUTTON: "Know More",
   LEADER_NAME: "RAHUL CHAKRAVARTHY",
   LEADER_QUALIFICATION: "B.Tech IIT Madras",
   LEADER_ROLE: "Head of Academics",
   LEADER_DESCRIPTION:
-    "National Math Olympiad Awardee, IlTian, Author and teacher by choice!",
-  IB_MYP_TOPPER: "IB MYP 2024 Topper (54/56)",
-  MATH_TOPPERS: "IB MYP 2024 Toppers in Mathematics",
-  ACADEMY_TOPPERS: "Mindsplash Academy IB MYP 2024 Toppers",
+    "National Math Olympiad Awardee, IITian, Author and Teacher by choice!",
+  IB_MYP_TOPPER: "IB MYP 2024 Topper — Nihal (54/56)",
+  MATH_TOPPERS: "IB MYP 2024 Mathematics Toppers (7/7)",
+  ACADEMY_TOPPERS: "MindSplash Academy IB MYP 2024 Top Performers",
 } as const;
 
 export default function AboutPage() {
   return (
     <>
+      <Breadcrumbs items={[
+        { label: "Home", href: "/" },
+        { label: "About Us" },
+      ]} />
+
       {/* Hero Section */}
       <section className="mx-7 mt-5 flex justify-center items-center h-[300px] md:h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end">
         <div className="mt-16 md:mt-24 xl:mt-0">
           <h1 className="relative text-center break-word font-bold text-[22px] sm:text-[24px] md:text-[30px] lg:text-[36px] 2xl:text-[60px] leading-10 md:leading-[72px] tracking-[0px] px-12 md:px-0 lg:max-w-[800px]">
-            <Image
-              src="/new.svg"
-              alt="MindSplash Academy - New innovative learning approach"
-              width={64}
-              height={80}
-              className="absolute left-2 -top-12 md:-top-10 md:-left-12 lg:-left-14 scale-50 lg:scale-none 2xl:left-4 2xl:-top-8"
-              loading="lazy"
-            />
             {SEO_CONSTANTS.PAGE_TITLE}
           </h1>
         </div>
@@ -78,7 +93,7 @@ export default function AboutPage() {
             alt="MindSplash Academy - Innovative teaching methodology"
             width={64}
             height={80}
-            className="absolute -top-12 right-[-12%] md:hidden lg:block lg:-right-14"
+            className="absolute -top-12 right-[-12%] h-auto w-16 md:hidden lg:block lg:-right-14"
             loading="lazy"
           />
           <Image
@@ -262,11 +277,11 @@ export default function AboutPage() {
         </div>
 
         <dl className="w-[65%]">
-          <Description content="Our Teaching Methodology is based on ‘dynamic feedback’ approach. The teaching plan of a lesson is divided into many checkpoints. An average session (or lesson which lasts for around (60 minutes) has around 5 to 6 checkpoints." />
+          <Description content="Our teaching methodology is built on a dynamic-feedback approach. Each 60-minute lesson is divided into 5 ‘dynamic feedback’ approach. The teaching plan of a lesson is divided into many checkpoints. An average session (or lesson which lasts for around (60 minutes) has around 5 to 6 checkpoints." />
           <br />
-          <Description content="At Mindsplash Academy, we strongly believe that our teachers are like gardeners. Every plant is unique with respect to its needs and growth rate - so is every child! We cannot have rigid templates. Our job is to consistently nurture and After every checkpoint, the teacher asks questions (to take feedback) to see how many students understood it the right way." />
+          <Description content="At Mindsplash Academy, we strongly believe that our teachers are like gardeners. Every plant is unique with respect to its needs and growth rate - so is every child! We cannot have rigid templates. After every checkpoint, the teacher asks questions (to take feedback) to see how many students understood it the right way." />
           <br />
-          <Description content=" If there are students who did not understand or misunderstood, the concept is cleared to all the students. Only then, the teacher proceeds further to the next checkpoint. This regular and dynamic feedback approach lays." />
+          <Description content=" If there are students who did not understand or misunderstood, the concept is cleared to all the students. Only then, the teacher proceeds further to the next checkpoint. This regular, dynamic-feedback loop ensures deep conceptual clarity rather than surface-level coverage." />
           <Link href="/contact">
             <PrimaryButton content="Explore More" className="mt-5" />
           </Link>
@@ -292,10 +307,10 @@ export default function AboutPage() {
       {/* Our Teachers Section */}
       <section
         id="our-teachers"
-        className="w-[75%] mx-auto flex justify-between mb-5 flex-col-reverse pt-16 md:pt-0 lg:gap-20 xl:gap-auto lg:flex-row"
+        className="mx-auto mb-5 flex w-[90%] flex-col-reverse justify-between gap-8 pt-12 sm:w-[85%] md:w-[80%] md:pt-8 lg:w-[75%] lg:flex-row lg:items-stretch lg:gap-12 xl:gap-16"
         aria-labelledby="our-teachers-heading"
       >
-        <dl className="w-full lg:max-w-[52%] self-center mt-8 lg:mt-0">
+        <dl className="flex w-full flex-col justify-center lg:max-w-[52%]">
           <dt className="mb-8" id="our-teachers-heading">
             <Heading content={"Our "} />
             <GradientHeading content="Teachers " />
@@ -358,12 +373,13 @@ export default function AboutPage() {
             </AccordionItem>
           </Accordion>
         </dl>
-        <figure className="relative">
+        <figure className="relative flex w-full items-center lg:w-[48%] lg:shrink-0">
           <Image
             src="/new_image.svg"
             alt="mindsplsh-new"
             width={64}
             height={80}
+            style={{ width: "auto", height: "auto" }}
             className="absolute -top-12 -left-14"
             loading="lazy"
           />
@@ -373,6 +389,7 @@ export default function AboutPage() {
             width={540}
             height={576}
             loading="lazy"
+            className="h-auto w-full rounded-[28px] object-cover"
           />
         </figure>
       </section>
@@ -394,14 +411,20 @@ export default function AboutPage() {
         <div className="mb-12 text-center">
           <SubHeading content={SEO_CONSTANTS.IB_MYP_TOPPER} />
         </div>
-        <ImageCard image="/nihal.png" name="Nihal" />
-        <div className="text-center mt-10 mb-12">
-          <SubHeading
-            content={SEO_CONSTANTS.MATH_TOPPERS}
-            className="text-center! md:text-left!"
-          />
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 max-w-4xl">
+          <ImageCard image="/nihal.png" name="Nihal" />
+          <div className="bg-secondary-foreground p-6 rounded-2xl border border-card-border shadow-sm flex-1 text-left">
+            <h3 className="font-bold text-xl text-secondary mb-3">Case Study: Nihal's Journey to 54/56</h3>
+            <p className="text-secondary/80 mb-3 text-sm leading-relaxed">
+              <strong>Curriculum:</strong> IB MYP (2024 Cohort)<br/>
+              <strong>Key Achievement:</strong> Secured 54 out of 56 in the rigorous IB MYP eAssessment, ranking among the top percentile globally.
+            </p>
+            <blockquote className="italic border-l-4 border-gradient-start pl-4 text-secondary/90 my-4">
+              "The dynamic feedback methodology and detailed memory maps at MindSplash helped me break down complex criteria into manageable goals. The mock eAssessments exactly mirrored the real platform, which gave me immense confidence on exam day."
+              <br/><span className="text-sm font-semibold mt-2 block">— Nihal (Permission secured for publication)</span>
+            </blockquote>
+          </div>
         </div>
-        <ImageCarousal cards={mathCards} />
         <div className="text-center mt-16 md:mt-[65px] mb-12">
           <SubHeading
             content={SEO_CONSTANTS.ACADEMY_TOPPERS}
@@ -409,7 +432,7 @@ export default function AboutPage() {
           />
         </div>
 
-        <ImageCarousal maxWidth="max-w-[95%]" cards={toppperCards} />
+        <Marquee cards={toppperCards} />
       </section>
 
       {/* Contact Us Modal */}

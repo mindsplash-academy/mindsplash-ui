@@ -10,6 +10,7 @@ import { ChevronRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
+import { submitUser } from "@/lib/api";
 
 const formSchema = z.object({
   salutation: z.string().min(2, "Required"),
@@ -60,47 +61,23 @@ export default function SpeakUsForm() {
       consent: values.agreement,
     }
 
-    // Fetch API here with the form values.
     try {
-      const res = await fetch(
-        "https://mindsplash-be-849133147929.us-central1.run.app/api/v1/users",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),  // or values
-        }
-      );
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        // Handle error response with message from API
-        const errorMessage = data?.message || "Failed to submit form";
-        toast.error("Error", {
-          description: errorMessage,
-        });
-        form.reset();
-        return;
-      }
-
-      // Show success message from API response
-      const successMessage = data?.message || "Form submitted successfully!";
-      if (data?.status === "success") {
-        toast.success("Success", {
-          description: successMessage,
-        });
-      } else {
-        toast.success("Success", {
-          description: successMessage,
-        });
-      }
+      const data = await submitUser(payload);
+      toast.success("Success", { description: data.message || "Form submitted successfully!" });
       form.reset();
+
+      // Lead tracking event for Google Tag Manager / Meta Pixel
+      if (typeof window !== "undefined" && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: "generate_lead",
+          form_name: "SpeakUsForm",
+          program: values.program,
+          location: values.location
+        });
+      }
     } catch (error) {
-      console.error("Error:", error);  
-      toast.error("Error", {
-        description: "Failed to submit the form. Please try again.",
-      });
-      form.reset();
+      console.error("Contact form submission failed:", error);
+      toast.error("Error", { description: error instanceof Error ? error.message : "Failed to submit the form. Please try again." });
     }
   }
 

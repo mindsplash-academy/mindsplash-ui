@@ -30,13 +30,14 @@ export default function ImageCarousal({
   );
 
   return (
-    <div className="relative mx-auto w-full overflow-x-hidden overflow-y-visible">
-      <div className={`relative mx-auto ${maxWidth}`}>
+    <div className={`relative mx-auto flex w-full items-center gap-2 sm:gap-4 ${maxWidth}`}>
+      <Button onClick={scrollPrev} variant="secondary" size="icon" className="z-20 h-10 w-10 shrink-0 rounded-full shadow sm:h-12 sm:w-12" aria-label="Previous photo"><ChevronLeft className="size-8" /></Button>
+      <div className="relative min-w-0 flex-1">
         {/* viewport that shows multiple cards with partial visibility */}
-        <div className="relative overflow-hidden px-6 sm:px-12" ref={emblaRef}>
+        <div className="relative overflow-hidden px-2 sm:px-3" ref={emblaRef}>
           <div className="flex -mx-3">
             {cards.map((card, i) => (
-              <div key={i} className="flex-[0_0_auto] min-w-0 px-3">
+              <div key={i} className="flex-[0_0_auto] min-w-0 px-2">
                 <div className="transform transition-transform duration-300">
                   <ImageCard image={card.figure} name={card.title} />
                 </div>
@@ -51,34 +52,7 @@ export default function ImageCarousal({
           <div className="absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-black/60 to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
-
-      {/* Navigation arrows */}
-
-      <div
-        className={`flex justify-center gap-5 mt-5 md:mx-auto md:justify-start 
-      ${
-        maxWidth === "max-w-4xl" ? "md:max-w-4xl md:pl-16" : "md:pl-20 lg:pl-30"
-      }`}
-      >
-        <Button
-          onClick={scrollPrev}
-          variant={"secondary"}
-          size="icon"
-          className="h-12 w-12 rounded-[30px] shadow"
-          aria-label="Previous"
-        >
-          <ChevronLeft className="size-8" />
-        </Button>
-        <Button
-          onClick={scrollNext}
-          variant="secondary"
-          size="icon"
-          className="h-12 w-12 rounded-[30px] shadow"
-          aria-label="Next"
-        >
-          <ChevronRight className="size-8" />
-        </Button>
-      </div>
+      <Button onClick={scrollNext} variant="secondary" size="icon" className="z-20 h-10 w-10 shrink-0 rounded-full shadow sm:h-12 sm:w-12" aria-label="Next photo"><ChevronRight className="size-8" /></Button>
     </div>
   );
 }

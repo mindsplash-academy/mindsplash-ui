@@ -10,10 +10,10 @@ import ContactUsModal from "./_components/ContactUsModal";
 
 // SEO and Content Constants
 const SEO_CONSTANTS = {
-  HERO_TITLE: "Explore the real Joy of Learning",
-  HERO_SUBTITLE: "State-of-art Learning Ambience",
+  HERO_TITLE: "IB & IGCSE Coaching in Hyderabad",
+  HERO_SUBTITLE: "State-of-Art Learning Ambience",
   HERO_DESCRIPTION:
-    "Small size gives your child the ultimate edge<br class='hidden lg:block xl:hidden' /> they deserve!",
+    "Small batches across Khajaguda, Kokapet & Financial District<br class='hidden lg:block xl:hidden' /> give your child the ultimate edge they deserve!",
   KNOW_MORE_BUTTON: "Explore More",
   START_VIDEO_BUTTON: "Start the video",
   VIDEO_DURATION: "2 MIN",
@@ -21,11 +21,11 @@ const SEO_CONSTANTS = {
   WORKSHEETS_HEADING:
     "Worksheets so meticulously designed To cater to exact needs of the students!",
   WORKSHEETS_SUBTITLE:
-    "The only IB/GCSE tuition chain to have a proprietary content in India!",
+    "The only IB/IGCSE tuition chain to have proprietary content in India!",
   TEACHERS_HEADING:
     "Teachers who are not just learning Facilitators…. But great Creators of Fun-filled spaces!",
   SPECIALITIES_HEADING: "Our Speciality",
-  OTHER_SPECIALITIES_HEADING: "Other Specialities",
+  OTHER_SPECIALITIES_HEADING: "Our Programmes",
 } as const;
 
 export default function Home() {
@@ -34,14 +34,6 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative mx-7 mt-5 flex justify-center items-center h-[650px] md:h-[783px] m-6 rounded-[50px] shadow-lg pt-5 bg-gradient-to-r from-gradient-start to-gradient-end">
         <div className="w-[70%] relative">
-          <Image
-            src={"/new.svg"}
-            alt="MindSplash - New innovative learning approach"
-            width={64}
-            height={80}
-            className="absolute -top-12 -left-10 md:-left-14 scale-50 lg:scale-none"
-            loading="lazy"
-          />
           <h1 className="font-bold text-[30px] leading-[45px] md:text-[60px] md:leading-[72px] tracking-[0px] max-w-[594px]">
             {SEO_CONSTANTS.HERO_TITLE}
           </h1>
@@ -106,15 +98,15 @@ export default function Home() {
             alt="mindsplsh-new"
             width={64}
             height={80}
+            style={{ width: "auto", height: "auto" }}
             className="absolute -top-12 -left-14"
-            loading="lazy"
           />
           <Image
             src={"/meticulous.jpg"}
             alt="mindsplash-meticulous"
             width={540}
             height={576}
-            loading="lazy"
+            priority={true}
             className="rounded-[28px]"
           />
         </figure>
@@ -130,6 +122,7 @@ export default function Home() {
             alt="mindsplsh-new"
             width={64}
             height={80}
+            style={{ width: "auto", height: "auto" }}
             className="absolute -top-12 -left-14"
             loading="lazy"
           />
@@ -174,7 +167,7 @@ export default function Home() {
           <Heading content={"Our "} />
           <GradientHeading content="Speciality" />
         </h1>
-        <article className="grid md:grid-cols-2 lg:grid-cols-3 gap-[50px] w-[72%]">
+        <article className="grid md:grid-cols-2 lg:grid-cols-3 gap-[50px] w-[88%] max-w-6xl">
           {specialities.map((each, i) => {
             return (
               <dl
@@ -211,32 +204,32 @@ export default function Home() {
           <Heading content={"Other "} />
           <GradientHeading content="Specialities" />
         </h1>
-        <article className="grid grid-cols-1 xl:grid-cols-2 gap-7 w-[72%]">
+        <article className="grid grid-cols-1 xl:grid-cols-2 gap-5 lg:gap-6 w-[88%] max-w-6xl">
           {otherSpecialities.map((each, i) => {
             return (
               <div
                 key={i}
-                className="flex flex-col-reverse md:flex-row xl:flex-col-reverse 2xl:flex-row items-center gap-[30px] p-6 bg-secondary-foreground shadow-[0px_3px_26px_#00000008] border border-card-border rounded-[30px]"
+                className="flex flex-col-reverse md:flex-row xl:flex-col-reverse 2xl:flex-row items-center gap-5 p-4 lg:p-5 bg-secondary-foreground shadow-[0px_3px_26px_#00000008] border border-card-border rounded-[24px]"
               >
                 <dl className="space-y-4">
                   <dt
                     style={{
                       background: `linear-gradient(to right, ${each.from}, ${each.to})`,
                     }}
-                    className="rounded-[4px] px-2 py-0.5 w-fit text-left font-semibold text-[18px] leading-[25px] tracking-[0px] text-foreground"
+                    className="rounded-[4px] px-2 py-0.5 w-fit text-left font-semibold text-base leading-6 tracking-[0px] text-foreground"
                   >
                     {each.title}
                   </dt>
-                  <dd className="text-left font-medium text-[15px] leading-[23px] tracking-[0px] text-secondary">
+                  <dd className="text-left font-medium text-sm leading-[21px] tracking-[0px] text-secondary">
                     {each.description}
                   </dd>
                 </dl>
                 <Image
                   src={each.icon}
                   alt={each.title}
-                  width={244}
-                  height={160}
-                  className="mt-4 xl:w-full"
+                  width={200}
+                  height={132}
+                  className="mt-3 h-auto w-full max-w-[200px] object-contain xl:max-w-[180px]"
                   loading="lazy"
                 />
               </div>
@@ -245,9 +238,7 @@ export default function Home() {
         </article>
       </section>
 
-      {/* Contact Us Modal */}
-      <ContactUsModal />
-      
+
       {/* Structured Data for SEO */}
       <script
         type="application/ld+json"
@@ -334,7 +325,7 @@ const specialities = [
   },
   {
     icon: "/hat.svg",
-    title: "Looking Beyone",
+    title: "Looking Beyond",
     description: "Guidance in selection of Universities",
   },
   {
@@ -351,50 +342,50 @@ const specialities = [
 
 const otherSpecialities = [
   {
-    icon: "/specialities.png",
+    icon: "/primary_kid.jpg",
     title: "PRIMARY",
     description:
-      "The Math Component of the Program aims at mental math along with good grasp of basic concepts like number systems, fractions, decimals, ratio, percentages, variation, date handling etc., The program lays strong foundation",
+      "Building strong foundations in mental maths, number systems, fractions, decimals and percentages for Grade 5 and below. Our science component covers life processes, mechanics and optics through real-world experiments.",
     from: "#F1A53D",
     to: "#EB3423",
   },
   {
-    icon: "/specialities.png",
+    icon: "/igcse_kid.jpg",
     title: "IGCSE",
     description:
-      "The Math Component of the Program aims at mental math along with good grasp of basic concepts like number systems, fractions, decimals, ratio, percentages, variation, date handling etc., The program lays strong foundation",
+      "Cambridge O-Level and A-Level coaching in Maths, Physics, Chemistry, Biology and Computer Science. Our proprietary memory maps enable single-page topic revision for the vast Cambridge syllabus.",
     from: "#8BEF81",
     to: "#53B79D",
   },
   {
-    icon: "/specialities.png",
+    icon: "/mvp_kid.jpg",
     title: "IB MYP",
     description:
-      "The Math Component of the Program aims at mental math along with good grasp of basic concepts like number systems, fractions, decimals, ratio, percentages, variation, date handling etc., The program lays strong foundation",
+      "Years 4 & 5 eAssessment preparation on Assessprep platform — mirroring the real IB exam. Criteria-based worksheets, timed mocks and 6 hours/week of Maths and Science coaching. 2024 topper scored 54/56.",
     from: "#86D4EC",
     to: "#6CAADD",
   },
   {
-    icon: "/specialities.png",
+    icon: "/dp_kid.jpg",
     title: "IB DP",
     description:
-      "The Math Component of the Program aims at mental math along with good grasp of basic concepts like number systems, fractions, decimals, ratio, percentages, variation, date handling etc., The program lays strong foundation",
+      "IB Diploma Programme coaching across Maths AA/AI, Physics, Chemistry, Economics, English Language & Literature and Computer Science. Focused preparation for Higher Level and Standard Level papers.",
     from: "#BC4FA9",
     to: "#B54668",
   },
   {
-    icon: "/specialities.png",
+    icon: "/olympiad_kid.jpg",
     title: "OLYMPIADS",
     description:
-      "The Math Component of the Program aims at mental math along with good grasp of basic concepts like number systems, fractions, decimals, ratio, percentages, variation, date handling etc., The program lays strong foundation",
+      "Led by a National Math Olympiad awardee, we train grades 6-10 for IOQM, AMC 8/10/12 and international maths and science competitions. National-level ranks consistently every year.",
     from: "#6ADAD4",
     to: "#38758B",
   },
   {
-    icon: "/specialities.png",
-    title: "EXAM PREP",
+    icon: "/exam_kid.jpg",
+    title: "SAT / PSAT & EXAM PREP",
     description:
-      "The Math Component of the Program aims at mental math along with good grasp of basic concepts like number systems, fractions, decimals, ratio, percentages, variation, date handling etc., The program lays strong foundation",
+      "Digital SAT and PSAT preparation with adaptive maths strategies, evidence-based reading practice, full-length timed mocks and personalised score analysis for competitive university admissions.",
     from: "#F2F169",
     to: "#F8D560",
   },

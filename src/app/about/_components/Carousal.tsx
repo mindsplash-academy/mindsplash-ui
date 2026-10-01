@@ -62,28 +62,29 @@ export default function Carousal() {
   );
 
   return (
-    <section className="relative mx-auto w-full overflow-hidden">
-      <div className="overflow-hidden px-0 sm:px-6 py-1" ref={emblaRef}>
+    <section className="relative mx-auto flex w-full items-center gap-2 sm:gap-4 lg:w-[90%]">
+      <Button onClick={scrollPrev} variant="secondary" size="icon" className="z-20 h-10 w-10 shrink-0 rounded-full shadow sm:h-12 sm:w-12" aria-label="Previous curriculum item"><ChevronLeft className="size-8" /></Button>
+      <div className="min-w-0 flex-1 overflow-hidden px-1 py-1 sm:px-2" ref={emblaRef}>
         <div className="flex">
           {cards.map((card, i) => (
-            <div key={i} className="min-w-full sm:min-w-[60%] md:min-w-[40%]">
-              <div className="px-[13px]">
-                <dl className="shadow-md rounded-[23px] min-h-[550px] bg-secondary-foreground">
+            <div key={i} className="min-w-full sm:min-w-[76%] md:min-w-[54%]">
+              <div className="px-2 sm:px-3">
+                <dl className="shadow-md rounded-[20px] min-h-[500px] bg-secondary-foreground">
                   <figure className="mb-2">
                     <Image
                       src={card.figure}
                       alt="mindsplash-highlight"
                       width={576}
                       height={220}
-                      className="w-full h-auto"
+                      className="h-auto w-full max-h-60 object-cover sm:max-h-72"
                     />
                   </figure>
 
-                  <dt className="pt-6 pl-[26px] pr-[10px] pb-[20px] flex items-center justify-start">
-                    <p className="bg-[linear-gradient(125deg,_#FE4E13_0%,_#7C5CA7_100%)] flex justify-center items-center text-[20px] leading-[22px] tracking-[0px] text-foreground rounded-full h-10 w-10 mr-[10px]">
+                  <dt className="flex items-center justify-start px-4 pb-4 pt-5 sm:px-5">
+                    <p className="mr-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(125deg,_#FE4E13_0%,_#7C5CA7_100%)] text-[18px] leading-[22px] tracking-[0px] text-foreground">
                       {card.id}
                     </p>
-                    <p className="font-bold text-[26px] leading-[34px] tracking-[0px] text-secondary">
+                    <p className="font-bold text-[21px] leading-7 tracking-[0px] text-secondary sm:text-[23px]">
                       {card.title}
                     </p>
                   </dt>
@@ -92,18 +93,18 @@ export default function Carousal() {
                     <>
                       <Description
                         content={card.description}
-                        className="ml-[26px] mr-8 !leading-[20px] !text-base"
+                        className="mx-4 !leading-[20px] !text-sm sm:mx-5 sm:!text-base"
                       />
                       <br />
                       <Description
                         content="To eliminate this gap, we have worked on our lesson content, worksheet content and examination content and made sure that they are of same level."
-                        className="ml-[26px] mr-8 !leading-[20px] !text-base"
+                        className="mx-4 !leading-[20px] !text-sm sm:mx-5 sm:!text-base"
                       />
                     </>
                   ) : (
                     <Description
                       content={card.description}
-                      className="ml-[26px] mr-8 !leading-[20px] !text-base"
+                      className="mx-4 !leading-[20px] !text-sm sm:mx-5 sm:!text-base"
                     />
                   )}
                 </dl>
@@ -112,28 +113,7 @@ export default function Carousal() {
           ))}
         </div>
       </div>
-
-      {/* Navigation buttons */}
-      <div className="flex justify-center md:justify-start mt-6 gap-5 ml-0 md:ml-[70px]">
-        <Button
-          onClick={scrollPrev}
-          variant={"secondary"}
-          size="icon"
-          className="h-12 w-12 rounded-[30px] shadow"
-          aria-label="Previous"
-        >
-          <ChevronLeft className="size-8" />
-        </Button>
-        <Button
-          onClick={scrollNext}
-          variant="secondary"
-          size="icon"
-          className="h-12 w-12 rounded-[30px] shadow"
-          aria-label="Next"
-        >
-          <ChevronRight className="size-8" />
-        </Button>
-      </div>
+      <Button onClick={scrollNext} variant="secondary" size="icon" className="z-20 h-10 w-10 shrink-0 rounded-full shadow sm:h-12 sm:w-12" aria-label="Next curriculum item"><ChevronRight className="size-8" /></Button>
     </section>
   );
 }

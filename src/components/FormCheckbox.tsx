@@ -1,17 +1,16 @@
 "use client";
 
-import { Control } from "react-hook-form";
+import { Control, FieldPath, FieldValues } from "react-hook-form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { FormField, FormItem, FormControl } from "@/components/ui/form";
 
-interface FormCheckboxProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: Control<any>;
-  name: string;
+interface FormCheckboxProps<TFieldValues extends FieldValues> {
+  control: Control<TFieldValues>;
+  name: FieldPath<TFieldValues>;
   className?: string;
 }
 
-export function FormCheckbox({ control, name, className }: FormCheckboxProps) {
+export function FormCheckbox<TFieldValues extends FieldValues>({ control, name, className }: FormCheckboxProps<TFieldValues>) {
   return (
     <FormField
       control={control}

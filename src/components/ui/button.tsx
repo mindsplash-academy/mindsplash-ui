@@ -20,7 +20,7 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
-        nav: "bg-transparent text-foreground hover:text-accent-foreground cursor-pointer text-base text-left leading-[19px] tracking-[0px] font-normal",
+        nav: "bg-transparent text-white hover:text-white/80 cursor-pointer text-sm xl:text-base text-left leading-[19px] tracking-[0px] font-semibold px-2 xl:px-3",
         navIcon:
           "h-15 w-40 rounded-[50px] self-center bg-opaque-foreground hover:bg-opaque-secondary text-foreground hover:text-accent-foreground cursor-pointer text-base text-left leading-[19px] tracking-[0px] font-normal",
         navItem:
@@ -59,6 +59,7 @@ function Button({
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
+      suppressHydrationWarning
       {...props}
     />
   );
