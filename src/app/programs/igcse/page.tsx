@@ -10,14 +10,24 @@ import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "IGCSE Coaching in Hyderabad | Maths, Science & More",
+  title: "IGCSE Coaching in Hyderabad | MindSplash Academy",
   description:
-    "IGCSE tuition in Hyderabad at MindSplash Academy. Cambridge O-Level & A-Level coaching in Maths, Physics, Chemistry, Biology & CS. Proprietary memory maps, small batches, expert faculty.",
-  keywords:
-    "IGCSE tuition Hyderabad, IGCSE Maths tuition, IGCSE Physics Chemistry Biology, IGCSE Computer Science, Cambridge O-Level Hyderabad, A-Level coaching Hyderabad, MindSplash IGCSE",
+    "Explore IGCSE coaching in Hyderabad with subject-focused academic support, concept learning, practice and exam preparation.",
+  keywords: [
+    "IGCSE coaching Hyderabad",
+    "IGCSE classes Hyderabad",
+    "IGCSE coaching institute Hyderabad",
+    "IGCSE preparation Hyderabad",
+    "IGCSE Maths coaching Hyderabad",
+    "IGCSE Physics coaching Hyderabad",
+    "IGCSE Chemistry coaching Hyderabad",
+    "IGCSE Biology coaching Hyderabad",
+    "IGCSE Computer Science coaching Hyderabad",
+    "IGCSE exam preparation Hyderabad",
+  ],
   openGraph: {
-    title: "IGCSE Coaching in Hyderabad | Maths, Science & More | MindSplash",
-    description: "Cambridge IGCSE O-Level & A-Level coaching in Maths, Physics, Chemistry, Biology & CS. Small batches, expert faculty, memory maps.",
+    title: "IGCSE Coaching in Hyderabad | MindSplash Academy",
+    description: "Explore IGCSE coaching in Hyderabad with subject-focused academic support, concept learning, practice and exam preparation.",
     type: "website", url: "https://mindsplash.in/programs/igcse",
   },
   alternates: { canonical: "https://mindsplash.in/programs/igcse" },

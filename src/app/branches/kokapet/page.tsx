@@ -3,28 +3,51 @@ import Image from "next/image";
 import Link from "next/link";
 import Heading from "@/components/Heading";
 import GradientHeading from "@/components/GradientHeading";
-import SubHeading from "@/components/SubHeading";
-import Description from "@/components/Description";
 import PrimaryButton from "@/components/PrimaryButton";
 import { ChevronRight, MapPin, Phone, Clock, BookOpen, Award, Users } from "lucide-react";
 import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "IB & IGCSE Coaching in Khajaguda, Hyderabad",
+  title: "MindSplash Academy Kokapet | IGCSE, IB & Olympiad Coaching",
   description:
-    "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching at MindSplash Academy Khajaguda, Gachibowli. Small batches, expert IIT faculty, proven results (54/56 IB MYP 2024). Near Nanakramguda Road.",
-  keywords:
-    "IB tuition Khajaguda, IGCSE coaching Khajaguda, IB MYP coaching Gachibowli, IB DP tuition Khajaguda, Olympiad coaching Gachibowli, MindSplash Khajaguda",
+    "Explore MindSplash Academy Kokapet for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs in Hyderabad.",
+  keywords: [
+    "MindSplash Academy Kokapet",
+    "academic coaching Kokapet",
+    "coaching institute Kokapet",
+    "IGCSE coaching Kokapet",
+    "IGCSE classes Kokapet",
+    "IB coaching Kokapet",
+    "IB MYP coaching Kokapet",
+    "IB DP coaching Kokapet",
+    "Olympiad coaching Kokapet",
+    "Olympiad preparation Kokapet",
+    "exam preparation Kokapet",
+    "academic support Kokapet",
+    "MindSplash Kokapet",
+    "best IGCSE coaching in Kokapet",
+    "IGCSE coaching institute in Kokapet",
+    "IB coaching institute in Kokapet",
+    "IB MYP coaching in Kokapet",
+    "IB DP coaching in Kokapet",
+    "Olympiad preparation classes in Kokapet",
+    "exam preparation classes in Kokapet",
+    "academic coaching classes in Kokapet",
+    "MindSplash Academy in Kokapet",
+    "academic coaching near Kokapet",
+    "IGCSE classes near Kokapet",
+    "IB classes near Kokapet"
+  ],
   openGraph: {
-    title: "IB & IGCSE Coaching in Khajaguda, Hyderabad | MindSplash Academy",
+    title: "MindSplash Academy Kokapet | IGCSE, IB & Olympiad Coaching",
     description:
-      "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching at MindSplash Academy Khajaguda. Small batches, expert faculty, proven results.",
+      "Explore MindSplash Academy Kokapet for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs in Hyderabad.",
     type: "website",
-    url: "https://mindsplash.in/locations/khajaguda",
+    url: "https://mindsplash.in/branches/kokapet",
   },
   alternates: {
-    canonical: "https://mindsplash.in/locations/khajaguda",
+    canonical: "https://mindsplash.in/branches/kokapet",
   },
 };
 
@@ -39,55 +62,67 @@ const PROGRAMS = [
 
 const FAQS = [
   {
-    q: "Where exactly is MindSplash Academy Khajaguda located?",
-    a: "Our Khajaguda centre is on the 4th Floor, Arka Rochish, Khajaguda-Nanakramguda Road, Gachibowli, Hyderabad 500089. It is easily accessible from Gachibowli, Nanakramguda, Kondapur and Hitec City.",
+    q: "Where is MindSplash Academy Kokapet located?",
+    a: "Our Kokapet centre is on the 4th Floor, Raichandani Business Bay, opposite Rajapushpa Regalia, Kokapet, Hyderabad 500075. It is easily accessible from Narsingi, Gandipet, Manikonda and Financial District.",
   },
   {
-    q: "What programmes are available at the Khajaguda branch?",
+    q: "What programmes are available at the Kokapet branch?",
     a: "We offer IB MYP (eAssessment preparation), IB DP (Maths AA/AI, Physics, Chemistry, Economics, CS), IGCSE (Cambridge O-Level & A-Level), Olympiad coaching (IOQM, AMC) and SAT/PSAT preparation.",
   },
   {
-    q: "What are the batch sizes at Khajaguda?",
-    a: "We maintain small batches of 8–12 students per class so that our teachers can monitor and mentor each student individually.",
+    q: "How small are the batches at Kokapet?",
+    a: "We maintain small batches of 8–12 students per class so that our teachers can monitor and mentor each student individually — this is a key differentiator across all MindSplash centres.",
   },
   {
-    q: "Can I get a free demo class at Khajaguda?",
-    a: "Yes! Contact us at +91 7075340810 or fill in our contact form to schedule a free demo class at the Khajaguda centre.",
+    q: "Can I schedule a free demo at Kokapet?",
+    a: "Absolutely! Call +91 7075340810 or submit our online form to book a free trial class at our Kokapet centre.",
   },
   {
-    q: "What results have students at Khajaguda achieved?",
-    a: "Our 2024 IB MYP cohort produced the topper with 54/56. Multiple students secured top scores in IGCSE Cambridge examinations and national-level Olympiad ranks.",
+    q: "Which schools near Kokapet do your students attend?",
+    a: "Our Kokapet students come from leading IB and IGCSE schools in the western Hyderabad corridor including those near Financial District, Narsingi, Gandipet and Manikonda.",
   },
 ];
 
 const NEARBY_LANDMARKS = [
-  "Gachibowli", "Nanakramguda", "Kondapur", "Hitec City", "Madhapur", "Raidurgam",
+  "Narsingi", "Gandipet", "Manikonda", "Rajapushpa Regalia", "Financial District", "Puppalguda",
 ];
 
-export default function KhajagudaPage() {
+export default function KokapetPage() {
   return (
     <>
       <Breadcrumbs items={[
         { label: "Home", href: "/" },
         { label: "Locations" },
-        { label: "Khajaguda" },
+        { label: "Kokapet" },
       ]} />
 
       {/* Hero */}
       <section className="mx-7 mt-5 flex flex-col justify-center items-center min-h-[320px] md:min-h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center">
         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-sm font-semibold mb-4">
-          <MapPin className="w-4 h-4" /> Khajaguda, Hyderabad
+          <MapPin className="w-4 h-4" /> Kokapet, Hyderabad
         </div>
         <h1 className="font-bold text-3xl md:text-5xl lg:text-6xl text-foreground leading-tight tracking-tight mb-4 max-w-4xl">
-          IB & IGCSE Coaching in Khajaguda
+          MindSplash Academy Kokapet
         </h1>
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
-          Small batches, expert IIT-trained faculty, and proven results — right in the heart of Gachibowli.
+          Expert-led coaching near Rajapushpa Regalia — small batches, personalised attention, outstanding results.
         </p>
         <div className="mt-8">
-          <Link href="/contact" aria-label="Book a free demo at Khajaguda">
+          <Link href="/contact" aria-label="Book a free demo at Kokapet">
             <PrimaryButton content="Book a Free Demo" />
           </Link>
+        </div>
+      </section>
+
+      {/* Branch Image */}
+      <section className="w-[85%] lg:w-[75%] mx-auto mt-12 flex justify-center">
+        <div className="relative w-full h-[300px] md:h-[450px] lg:h-[550px] rounded-[30px] overflow-hidden shadow-2xl border border-card-border">
+          <Image
+            src="/kokapet.jpg"
+            alt="MindSplash Academy Kokapet"
+            fill
+            className="object-cover hover:scale-105 transition-transform duration-700"
+          />
         </div>
       </section>
 
@@ -99,9 +134,9 @@ export default function KhajagudaPage() {
           </div>
           <h3 className="font-bold text-xl text-gradient-start">Address</h3>
           <p className="text-description text-sm leading-relaxed">
-            4th Floor, Arka Rochish,<br />
-            Khajaguda-Nanakramguda Road,<br />
-            Gachibowli, Hyderabad 500089
+            4th Floor, Raichandani Business Bay,<br />
+            Opp. Rajapushpa Regalia, Kokapet,<br />
+            Hyderabad 500075
           </p>
         </div>
 
@@ -132,7 +167,7 @@ export default function KhajagudaPage() {
       <section className="w-[85%] lg:w-[75%] mx-auto mb-16">
         <div className="mb-8">
           <Heading content="Programmes at " />
-          <GradientHeading content="Khajaguda" />
+          <GradientHeading content="Kokapet" />
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROGRAMS.map((prog) => (
@@ -149,6 +184,36 @@ export default function KhajagudaPage() {
             </Link>
           ))}
         </div>
+      </section>
+
+      {/* SEO Content & Internal Linking */}
+      <section className="w-[85%] lg:w-[75%] mx-auto mb-16 bg-secondary-foreground border border-card-border p-8 rounded-[30px] shadow-sm">
+        <h2 className="text-3xl font-bold text-secondary mb-6">Academic Coaching in Kokapet</h2>
+        <p className="text-description mb-6 leading-relaxed">
+          MindSplash Academy offers world-class educational support to students near Rajapushpa Regalia and Narsingi. 
+          If you are looking for an <Link href="/programs/igcse" className="text-gradient-start hover:underline font-medium">IGCSE coaching program</Link>, 
+          our Kokapet branch provides expert IIT faculty and small batch sizes tailored for Cambridge O-Level and A-Level students.
+        </p>
+
+        <h2 className="text-2xl font-bold text-secondary mt-8 mb-4">IGCSE Coaching in Kokapet</h2>
+        <p className="text-description mb-6 leading-relaxed">
+          Our specialized <Link href="/programs/igcse" className="text-gradient-start hover:underline font-medium">IGCSE coaching program</Link> covers essential subjects including Mathematics, Physics, Chemistry, Biology, and Computer Science.
+        </p>
+
+        <h2 className="text-2xl font-bold text-secondary mt-8 mb-4">IB MYP and IB DP Programs</h2>
+        <p className="text-description mb-6 leading-relaxed">
+          For International Baccalaureate students, we provide comprehensive <Link href="/programs/ib-myp" className="text-gradient-start hover:underline font-medium">IB MYP coaching</Link> for eAssessments and rigorous <Link href="/programs/ib-dp" className="text-gradient-start hover:underline font-medium">IB DP coaching</Link> covering Mathematics AA/AI, Economics, Sciences, and more.
+        </p>
+
+        <h2 className="text-2xl font-bold text-secondary mt-8 mb-4">Olympiad Preparation in Kokapet</h2>
+        <p className="text-description mb-6 leading-relaxed">
+          Unlock your competitive edge with our dedicated <Link href="/programs/olympiads" className="text-gradient-start hover:underline font-medium">Olympiad preparation</Link> for IOQM and AMC.
+        </p>
+        
+        <h2 className="text-2xl font-bold text-secondary mt-8 mb-4">Exam Preparation in Kokapet</h2>
+        <p className="text-description mb-6 leading-relaxed">
+          We also offer focused <Link href="/programs/exam-prep" className="text-gradient-start hover:underline font-medium">exam preparation</Link> strategies for SAT/PSAT test takers aiming for top scores.
+        </p>
       </section>
 
       {/* Local Proof / Results */}
@@ -181,23 +246,24 @@ export default function KhajagudaPage() {
       {/* Nearby Areas */}
       <section className="w-[85%] lg:w-[75%] mx-auto mb-16">
         <div className="mb-6">
-          <Heading content="Serving Students from " />
-          <GradientHeading content="Nearby Areas" />
+          <h2 className="text-3xl font-bold"><Heading content="MindSplash Academy Kokapet " /><GradientHeading content="Location" /></h2>
         </div>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 mb-6">
           {NEARBY_LANDMARKS.map((area) => (
             <span key={area} className="px-4 py-2 bg-secondary-foreground border border-card-border rounded-full text-sm font-medium text-secondary">
               {area}
             </span>
           ))}
         </div>
+        <p className="text-description text-sm">
+          We also welcome students from our sister branches. Explore our <Link href="/branches/khajaguda" className="text-gradient-start hover:underline">Khajaguda</Link> and <Link href="/branches/financialdistrict" className="text-gradient-start hover:underline">Financial District</Link> branches. For any inquiries, please <Link href="/contact" className="text-gradient-start hover:underline font-medium">Contact MindSplash Academy</Link>.
+        </p>
       </section>
 
       {/* FAQs */}
       <section className="w-[85%] lg:w-[75%] mx-auto mb-20">
         <div className="mb-10">
-          <Heading content="Frequently Asked " />
-          <GradientHeading content="Questions" />
+          <h2 className="text-3xl font-bold"><Heading content="Frequently Asked " /><GradientHeading content="Questions" /></h2>
         </div>
         <div className="space-y-4">
           {FAQS.map((faq, i) => (
@@ -215,10 +281,10 @@ export default function KhajagudaPage() {
       {/* CTA */}
       <section className="mx-7 mb-16 flex flex-col items-center justify-center min-h-[280px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-8 py-12 text-center">
         <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">
-          Ready to visit our Khajaguda centre?
+          Ready to visit our Kokapet centre?
         </h2>
         <p className="text-foreground/90 text-lg mb-8 max-w-xl">
-          Schedule a free demo class and experience the MindSplash difference first-hand.
+          Schedule a free demo class and see why families across western Hyderabad choose MindSplash.
         </p>
         <Link href="/contact">
           <PrimaryButton content="Book a Free Demo" />
@@ -234,18 +300,18 @@ export default function KhajagudaPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "MindSplash Academy — Khajaguda",
+            name: "MindSplash Academy — Kokapet",
             description:
-              "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching in Khajaguda, Gachibowli, Hyderabad.",
-            url: "https://mindsplash.in/locations/khajaguda",
+              "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching in Kokapet, Hyderabad.",
+            url: "https://mindsplash.in/branches/kokapet",
             telephone: "+917075340810",
             email: "reachus@mindsplash.com",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "4th Floor, Arka Rochish, Khajaguda-Nanakramguda Road, Gachibowli",
+              streetAddress: "4th Floor, Raichandani Business Bay, Opp. Rajapushpa Regalia, Kokapet",
               addressLocality: "Hyderabad",
               addressRegion: "Telangana",
-              postalCode: "500089",
+              postalCode: "500075",
               addressCountry: "IN",
             },
             image: "https://mindsplash.in/mindsplash-logo.png",
@@ -256,8 +322,6 @@ export default function KhajagudaPage() {
           }),
         }}
       />
-
-      {/* FAQ Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -267,10 +331,7 @@ export default function KhajagudaPage() {
             mainEntity: FAQS.map((faq) => ({
               "@type": "Question",
               name: faq.q,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.a,
-              },
+              acceptedAnswer: { "@type": "Answer", text: faq.a },
             })),
           }),
         }}

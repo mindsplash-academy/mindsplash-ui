@@ -254,17 +254,17 @@ export default function CustomNavBar() {
             {[
               { 
                 label: "Khajaguda", 
-                href: "/locations/khajaguda",
+                href: "/branches/khajaguda",
                 address: "4th Floor, Arka Rochish, Khajaguda" 
               },
               { 
                 label: "Kokapet", 
-                href: "/locations/kokapet",
+                href: "/branches/kokapet",
                 address: "4th Floor, Raichandani Business Bay" 
               },
               { 
                 label: "Financial District", 
-                href: "/locations/financial-district",
+                href: "/branches/financialdistrict",
                 address: "Above ICICI Bank, My Home Vihanga Rd" 
               }
             ].map((item, index) => (

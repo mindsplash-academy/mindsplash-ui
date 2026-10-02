@@ -10,17 +10,24 @@ import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "SAT & PSAT Coaching in Hyderabad | MindSplash Academy",
+  title: "Exam Preparation in Hyderabad | MindSplash Academy",
   description:
-    "Digital SAT and PSAT preparation in Hyderabad at MindSplash Academy. Adaptive math strategies, evidence-based reading, timed full-length mocks. Score 1500+ with expert coaching.",
-  keywords:
-    "SAT coaching Hyderabad, PSAT preparation Hyderabad, Digital SAT prep, SAT Maths coaching, SAT 1500+ strategy, MindSplash SAT, college admission test Hyderabad",
+    "Explore structured exam preparation and academic revision support for students in Hyderabad.",
+  keywords: [
+    "exam preparation Hyderabad",
+    "exam coaching Hyderabad",
+    "school exam preparation Hyderabad",
+    "academic exam preparation Hyderabad",
+    "exam preparation classes Hyderabad",
+    "student exam coaching Hyderabad",
+    "exam revision classes Hyderabad"
+  ],
   openGraph: {
-    title: "SAT & PSAT Coaching in Hyderabad | MindSplash Academy",
-    description: "Digital SAT and PSAT preparation — adaptive maths, evidence-based reading, full-length timed mocks. Target 1500+.",
-    type: "website", url: "https://mindsplash.in/programs/sat-psat",
+    title: "Exam Preparation in Hyderabad | MindSplash Academy",
+    description: "Explore structured exam preparation and academic revision support for students in Hyderabad.",
+    type: "website", url: "https://mindsplash.in/programs/exam-prep",
   },
-  alternates: { canonical: "https://mindsplash.in/programs/sat-psat" },
+  alternates: { canonical: "https://mindsplash.in/programs/exam-prep" },
 };
 
 const MODULES = [
@@ -124,7 +131,7 @@ export default function SATPSATPage() {
         "@context": "https://schema.org", "@type": "Course", name: "SAT & PSAT Coaching Programme",
         description: "Digital SAT and PSAT preparation at MindSplash Academy Hyderabad.",
         provider: { "@type": "EducationalOrganization", name: "MindSplash Academy", url: "https://mindsplash.in" },
-        educationalLevel: "Secondary", url: "https://mindsplash.in/programs/sat-psat",
+        educationalLevel: "Secondary", url: "https://mindsplash.in/programs/exam-prep",
       }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org", "@type": "FAQPage",

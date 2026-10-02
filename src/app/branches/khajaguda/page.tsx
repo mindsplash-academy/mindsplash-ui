@@ -3,26 +3,53 @@ import Image from "next/image";
 import Link from "next/link";
 import Heading from "@/components/Heading";
 import GradientHeading from "@/components/GradientHeading";
+import SubHeading from "@/components/SubHeading";
+import Description from "@/components/Description";
 import PrimaryButton from "@/components/PrimaryButton";
 import { ChevronRight, MapPin, Phone, Clock, BookOpen, Award, Users } from "lucide-react";
 import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "IB & IGCSE Coaching in Financial District, Hyderabad",
+  title: "MindSplash Academy Khajaguda | IGCSE, IB & Olympiad Coaching",
   description:
-    "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching at MindSplash Academy Financial District. Small batches, expert IIT faculty, proven results. Above ICICI Bank, My Home Vihanga Road.",
-  keywords:
-    "IB coaching Financial District, IGCSE tuition Financial District Hyderabad, IB MYP coaching Financial District, IB DP tuition Gachibowli, MindSplash Financial District",
+    "Explore MindSplash Academy Khajaguda for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs in Hyderabad.",
+  keywords: [
+    "MindSplash Academy Khajaguda",
+    "academic coaching Khajaguda",
+    "coaching institute Khajaguda",
+    "IGCSE coaching Khajaguda",
+    "IGCSE classes Khajaguda",
+    "IB coaching Khajaguda",
+    "IB MYP coaching Khajaguda",
+    "IB DP coaching Khajaguda",
+    "Olympiad coaching Khajaguda",
+    "Olympiad preparation Khajaguda",
+    "exam preparation Khajaguda",
+    "academic support Khajaguda",
+    "MindSplash Khajaguda",
+    "best IGCSE coaching in Khajaguda",
+    "IGCSE coaching institute in Khajaguda",
+    "IB coaching institute in Khajaguda",
+    "IB MYP coaching in Khajaguda",
+    "IB DP coaching in Khajaguda",
+    "Olympiad preparation classes in Khajaguda",
+    "exam preparation classes in Khajaguda",
+    "academic coaching classes in Khajaguda",
+    "MindSplash Academy in Khajaguda",
+    "academic coaching near Khajaguda",
+    "IGCSE classes near Khajaguda",
+    "IB classes near Khajaguda"
+  ],
   openGraph: {
-    title: "IB & IGCSE Coaching in Financial District, Hyderabad | MindSplash Academy",
+    title: "MindSplash Academy Khajaguda | IGCSE, IB & Olympiad Coaching",
     description:
-      "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching at MindSplash Academy Financial District. Small batches, expert faculty, proven results.",
+      "Explore MindSplash Academy Khajaguda for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs in Hyderabad.",
     type: "website",
-    url: "https://mindsplash.in/locations/financial-district",
+    url: "https://mindsplash.in/branches/khajaguda",
   },
   alternates: {
-    canonical: "https://mindsplash.in/locations/financial-district",
+    canonical: "https://mindsplash.in/branches/khajaguda",
   },
 };
 
@@ -37,55 +64,67 @@ const PROGRAMS = [
 
 const FAQS = [
   {
-    q: "Where is MindSplash Academy Financial District located?",
-    a: "Our Financial District centre is above ICICI Bank, My Home Vihanga Road, Gachibowli, Hyderabad 500032. It is easily accessible from Nanakramguda, Raidurgam, Gachibowli, Hitec City and Madhapur.",
+    q: "Where exactly is MindSplash Academy Khajaguda located?",
+    a: "Our Khajaguda centre is on the 4th Floor, Arka Rochish, Khajaguda-Nanakramguda Road, Gachibowli, Hyderabad 500089. It is easily accessible from Gachibowli, Nanakramguda, Kondapur and Hitec City.",
   },
   {
-    q: "What programmes does the Financial District centre offer?",
+    q: "What programmes are available at the Khajaguda branch?",
     a: "We offer IB MYP (eAssessment preparation), IB DP (Maths AA/AI, Physics, Chemistry, Economics, CS), IGCSE (Cambridge O-Level & A-Level), Olympiad coaching (IOQM, AMC) and SAT/PSAT preparation.",
   },
   {
-    q: "What makes the Financial District branch convenient for working parents?",
-    a: "Located in the heart of the IT corridor, our Financial District centre is just minutes from major tech parks and residential communities like My Home Vihanga, Aparna Sarovar and Lanco Hills — making drop-off and pick-up seamless.",
+    q: "What are the batch sizes at Khajaguda?",
+    a: "We maintain small batches of 8–12 students per class so that our teachers can monitor and mentor each student individually.",
   },
   {
-    q: "Can I book a free trial class at Financial District?",
-    a: "Yes! Call +91 7075340810 or fill in our online contact form to book a free demo class at the Financial District centre.",
+    q: "Can I get a free demo class at Khajaguda?",
+    a: "Yes! Contact us at +91 7075340810 or fill in our contact form to schedule a free demo class at the Khajaguda centre.",
   },
   {
-    q: "What are the batch sizes?",
-    a: "All batches are limited to 8–12 students to ensure personalised attention, regular feedback, and close monitoring by our expert faculty.",
+    q: "What results have students at Khajaguda achieved?",
+    a: "Our 2024 IB MYP cohort produced the topper with 54/56. Multiple students secured top scores in IGCSE Cambridge examinations and national-level Olympiad ranks.",
   },
 ];
 
 const NEARBY_LANDMARKS = [
-  "Nanakramguda", "Raidurgam", "Gachibowli", "Hitec City", "Madhapur", "Lanco Hills", "My Home Vihanga",
+  "Gachibowli", "Nanakramguda", "Kondapur", "Hitec City", "Madhapur", "Raidurgam",
 ];
 
-export default function FinancialDistrictPage() {
+export default function KhajagudaPage() {
   return (
     <>
       <Breadcrumbs items={[
         { label: "Home", href: "/" },
         { label: "Locations" },
-        { label: "Financial District" },
+        { label: "Khajaguda" },
       ]} />
 
       {/* Hero */}
       <section className="mx-7 mt-5 flex flex-col justify-center items-center min-h-[320px] md:min-h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center">
         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-sm font-semibold mb-4">
-          <MapPin className="w-4 h-4" /> Financial District, Hyderabad
+          <MapPin className="w-4 h-4" /> Khajaguda, Hyderabad
         </div>
         <h1 className="font-bold text-3xl md:text-5xl lg:text-6xl text-foreground leading-tight tracking-tight mb-4 max-w-4xl">
-          IB & IGCSE Coaching in Financial District
+          MindSplash Academy Khajaguda
         </h1>
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
-          Premium coaching in Hyderabad's IT corridor — small batches, expert IIT faculty, and a track record of top scores.
+          Small batches, expert IIT-trained faculty, and proven results — right in the heart of Gachibowli.
         </p>
         <div className="mt-8">
-          <Link href="/contact" aria-label="Book a free demo at Financial District">
+          <Link href="/contact" aria-label="Book a free demo at Khajaguda">
             <PrimaryButton content="Book a Free Demo" />
           </Link>
+        </div>
+      </section>
+
+      {/* Branch Image */}
+      <section className="w-[85%] lg:w-[75%] mx-auto mt-12 flex justify-center">
+        <div className="relative w-full h-[300px] md:h-[450px] lg:h-[550px] rounded-[30px] overflow-hidden shadow-2xl border border-card-border">
+          <Image
+            src="/khajaguda.jpg"
+            alt="MindSplash Academy Khajaguda"
+            fill
+            className="object-cover hover:scale-105 transition-transform duration-700"
+          />
         </div>
       </section>
 
@@ -97,9 +136,9 @@ export default function FinancialDistrictPage() {
           </div>
           <h3 className="font-bold text-xl text-gradient-start">Address</h3>
           <p className="text-description text-sm leading-relaxed">
-            Above ICICI Bank,<br />
-            My Home Vihanga Road,<br />
-            Gachibowli, Hyderabad 500032
+            4th Floor, Arka Rochish,<br />
+            Khajaguda-Nanakramguda Road,<br />
+            Gachibowli, Hyderabad 500089
           </p>
         </div>
 
@@ -130,7 +169,7 @@ export default function FinancialDistrictPage() {
       <section className="w-[85%] lg:w-[75%] mx-auto mb-16">
         <div className="mb-8">
           <Heading content="Programmes at " />
-          <GradientHeading content="Financial District" />
+          <GradientHeading content="Khajaguda" />
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROGRAMS.map((prog) => (
@@ -147,6 +186,31 @@ export default function FinancialDistrictPage() {
             </Link>
           ))}
         </div>
+      </section>
+
+      {/* SEO Content & Internal Linking */}
+      <section className="w-[85%] lg:w-[75%] mx-auto mb-16 bg-secondary-foreground border border-card-border p-8 rounded-[30px] shadow-sm">
+        <h2 className="text-3xl font-bold text-secondary mb-6">Academic Coaching in Khajaguda</h2>
+        <p className="text-description mb-6 leading-relaxed">
+          MindSplash Academy offers world-class educational support to students in the heart of Gachibowli. 
+          If you are looking for an <Link href="/programs/igcse" className="text-gradient-start hover:underline font-medium">IGCSE coaching program</Link>, 
+          our Khajaguda branch provides expert IIT faculty and small batch sizes tailored for Cambridge O-Level and A-Level students.
+        </p>
+
+        <h2 className="text-2xl font-bold text-secondary mt-8 mb-4">IGCSE Coaching in Khajaguda</h2>
+        <p className="text-description mb-6 leading-relaxed">
+          Our specialized <Link href="/programs/igcse" className="text-gradient-start hover:underline font-medium">IGCSE coaching program</Link> covers essential subjects including Mathematics, Physics, Chemistry, Biology, and Computer Science.
+        </p>
+
+        <h2 className="text-2xl font-bold text-secondary mt-8 mb-4">IB MYP and IB DP Programs</h2>
+        <p className="text-description mb-6 leading-relaxed">
+          For International Baccalaureate students, we provide comprehensive <Link href="/programs/ib-myp" className="text-gradient-start hover:underline font-medium">IB MYP coaching</Link> for eAssessments and rigorous <Link href="/programs/ib-dp" className="text-gradient-start hover:underline font-medium">IB DP coaching</Link> covering Mathematics AA/AI, Economics, Sciences, and more.
+        </p>
+
+        <h2 className="text-2xl font-bold text-secondary mt-8 mb-4">Olympiad and Exam Preparation</h2>
+        <p className="text-description mb-6 leading-relaxed">
+          Unlock your competitive edge with our dedicated <Link href="/programs/olympiads" className="text-gradient-start hover:underline font-medium">Olympiad preparation</Link> for IOQM and AMC. We also offer focused <Link href="/programs/exam-prep" className="text-gradient-start hover:underline font-medium">exam preparation</Link> strategies for SAT/PSAT test takers aiming for top scores.
+        </p>
       </section>
 
       {/* Local Proof / Results */}
@@ -179,23 +243,24 @@ export default function FinancialDistrictPage() {
       {/* Nearby Areas */}
       <section className="w-[85%] lg:w-[75%] mx-auto mb-16">
         <div className="mb-6">
-          <Heading content="Serving Students from " />
-          <GradientHeading content="Nearby Areas" />
+          <h2 className="text-3xl font-bold"><Heading content="MindSplash Academy Khajaguda " /><GradientHeading content="Location" /></h2>
         </div>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 mb-6">
           {NEARBY_LANDMARKS.map((area) => (
             <span key={area} className="px-4 py-2 bg-secondary-foreground border border-card-border rounded-full text-sm font-medium text-secondary">
               {area}
             </span>
           ))}
         </div>
+        <p className="text-description text-sm">
+          We also welcome students from our sister branches. Explore our <Link href="/branches/kokapet" className="text-gradient-start hover:underline">Kokapet</Link> and <Link href="/branches/financialdistrict" className="text-gradient-start hover:underline">Financial District</Link> branches. For any inquiries, please <Link href="/contact" className="text-gradient-start hover:underline font-medium">Contact MindSplash Academy</Link>.
+        </p>
       </section>
 
       {/* FAQs */}
       <section className="w-[85%] lg:w-[75%] mx-auto mb-20">
         <div className="mb-10">
-          <Heading content="Frequently Asked " />
-          <GradientHeading content="Questions" />
+          <h2 className="text-3xl font-bold"><Heading content="Frequently Asked " /><GradientHeading content="Questions" /></h2>
         </div>
         <div className="space-y-4">
           {FAQS.map((faq, i) => (
@@ -213,10 +278,10 @@ export default function FinancialDistrictPage() {
       {/* CTA */}
       <section className="mx-7 mb-16 flex flex-col items-center justify-center min-h-[280px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-8 py-12 text-center">
         <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">
-          Ready to visit our Financial District centre?
+          Ready to visit our Khajaguda centre?
         </h2>
         <p className="text-foreground/90 text-lg mb-8 max-w-xl">
-          Schedule a free demo class — conveniently located in the heart of Hyderabad's tech hub.
+          Schedule a free demo class and experience the MindSplash difference first-hand.
         </p>
         <Link href="/contact">
           <PrimaryButton content="Book a Free Demo" />
@@ -232,18 +297,18 @@ export default function FinancialDistrictPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "MindSplash Academy — Financial District",
+            name: "MindSplash Academy — Khajaguda",
             description:
-              "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching in Financial District, Gachibowli, Hyderabad.",
-            url: "https://mindsplash.in/locations/financial-district",
+              "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching in Khajaguda, Gachibowli, Hyderabad.",
+            url: "https://mindsplash.in/branches/khajaguda",
             telephone: "+917075340810",
             email: "reachus@mindsplash.com",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "Above ICICI Bank, My Home Vihanga Road, Gachibowli",
+              streetAddress: "4th Floor, Arka Rochish, Khajaguda-Nanakramguda Road, Gachibowli",
               addressLocality: "Hyderabad",
               addressRegion: "Telangana",
-              postalCode: "500032",
+              postalCode: "500089",
               addressCountry: "IN",
             },
             image: "https://mindsplash.in/mindsplash-logo.png",
@@ -254,6 +319,8 @@ export default function FinancialDistrictPage() {
           }),
         }}
       />
+
+      {/* FAQ Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -263,7 +330,10 @@ export default function FinancialDistrictPage() {
             mainEntity: FAQS.map((faq) => ({
               "@type": "Question",
               name: faq.q,
-              acceptedAnswer: { "@type": "Answer", text: faq.a },
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.a,
+              },
             })),
           }),
         }}

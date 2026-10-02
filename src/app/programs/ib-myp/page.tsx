@@ -11,15 +11,21 @@ import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "IB MYP Coaching in Hyderabad | eAssessment Preparation",
+  title: "IB MYP Coaching in Hyderabad | MindSplash Academy",
   description:
-    "IB MYP tuition in Hyderabad at MindSplash Academy. Years 4 & 5 eAssessment preparation on Assessprep, criteria-based worksheets, 54/56 topper in 2024. Centres in Khajaguda, Kokapet & Financial District.",
-  keywords:
-    "IB MYP tuition Hyderabad, IB MYP coaching, IB MYP eAssessment preparation, IB MYP maths tuition, IB MYP science tuition, MindSplash IB MYP, eAssessment practice Hyderabad",
+    "Explore IB MYP coaching and academic support in Hyderabad for students following the International Baccalaureate Middle Years Programme.",
+  keywords: [
+    "IB MYP coaching Hyderabad",
+    "IB MYP classes Hyderabad",
+    "IB MYP preparation Hyderabad",
+    "IB MYP coaching institute Hyderabad",
+    "IB MYP academic support Hyderabad",
+    "IB MYP exam preparation Hyderabad"
+  ],
   openGraph: {
-    title: "IB MYP Coaching in Hyderabad | eAssessment Preparation | MindSplash",
+    title: "IB MYP Coaching in Hyderabad | MindSplash Academy",
     description:
-      "IB MYP Years 4 & 5 eAssessment coaching in Hyderabad. Criteria-based worksheets, Assessprep practice, 54/56 topper. Small batches at Khajaguda, Kokapet & Financial District.",
+      "Explore IB MYP coaching and academic support in Hyderabad for students following the International Baccalaureate Middle Years Programme.",
     type: "website",
     url: "https://mindsplash.in/programs/ib-myp",
   },
@@ -198,9 +204,9 @@ export default function IBMYPPage() {
         </div>
         <div className="grid sm:grid-cols-3 gap-6">
           {[
-            { name: "Khajaguda", addr: "4th Floor, Arka Rochish, Khajaguda-Nanakramguda Road", href: "/locations/khajaguda" },
-            { name: "Kokapet", addr: "4th Floor, Raichandani Business Bay, Opp. Rajapushpa Regalia", href: "/locations/kokapet" },
-            { name: "Financial District", addr: "Above ICICI Bank, My Home Vihanga Road, Gachibowli", href: "/locations/financial-district" },
+            { name: "Khajaguda", addr: "4th Floor, Arka Rochish, Khajaguda-Nanakramguda Road", href: "/branches/khajaguda" },
+            { name: "Kokapet", addr: "4th Floor, Raichandani Business Bay, Opp. Rajapushpa Regalia", href: "/branches/kokapet" },
+            { name: "Financial District", addr: "Above ICICI Bank, My Home Vihanga Road, Gachibowli", href: "/branches/financialdistrict" },
           ].map((c) => (
             <Link key={c.name} href={c.href}>
               <div className="p-6 bg-secondary-foreground border border-card-border rounded-[24px] shadow-sm hover:shadow-md transition-all group">

@@ -12,10 +12,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/programs/ib-dp',
     '/programs/igcse',
     '/programs/olympiads',
-    '/programs/sat-psat',
-    '/locations/khajaguda',
-    '/locations/kokapet',
-    '/locations/financial-district',
+    '/programs/exam-prep',
+    '/branches/khajaguda',
+    '/branches/kokapet',
+    '/branches/financialdistrict',
     '/blog',
     '/blog/ib-myp-eassessment-guide-hyderabad',
     '/blog/igcse-math-physics-study-plan',
@@ -29,6 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${route}`,
     lastModified,
     changeFrequency: route === '' ? 'daily' : 'weekly',
-    priority: route === '' ? 1.0 : route.startsWith('/programs/') || route.startsWith('/locations/') ? 0.9 : 0.8,
+    priority: route === '' ? 1.0 : route.startsWith('/programs/') || route.startsWith('/branches/') ? 0.9 : 0.8,
   }));
 }

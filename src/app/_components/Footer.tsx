@@ -127,9 +127,9 @@ export default function Footer() {
                 Our Centres
               </h2>
               <div className="flex flex-col gap-4">
-                <Link href="/locations/khajaguda" className="text-secondary hover:text-gradient-start text-left font-normal text-[18px] transition-colors">Khajaguda</Link>
-                <Link href="/locations/kokapet" className="text-secondary hover:text-gradient-start text-left font-normal text-[18px] transition-colors">Kokapet</Link>
-                <Link href="/locations/financial-district" className="text-secondary hover:text-gradient-start text-left font-normal text-[18px] transition-colors">Financial District</Link>
+                <Link href="/branches/khajaguda" className="text-secondary hover:text-gradient-start text-left font-normal text-[18px] transition-colors">Khajaguda</Link>
+                <Link href="/branches/kokapet" className="text-secondary hover:text-gradient-start text-left font-normal text-[18px] transition-colors">Kokapet</Link>
+                <Link href="/branches/financialdistrict" className="text-secondary hover:text-gradient-start text-left font-normal text-[18px] transition-colors">Financial District</Link>
               </div>
             </div>
           </div>

@@ -7,6 +7,23 @@ import Description from "@/components/Description";
 import PrimaryButton from "@/components/PrimaryButton";
 import Link from "next/link";
 import ContactUsModal from "./_components/ContactUsModal";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "MindSplash Academy Hyderabad | IGCSE, IB & Academic Coaching",
+  description: "Explore MindSplash Academy Hyderabad for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs.",
+  keywords: [
+    "MindSplash Academy Hyderabad",
+    "academic coaching Hyderabad",
+    "IGCSE coaching Hyderabad",
+    "IB coaching Hyderabad",
+    "IB MYP coaching Hyderabad",
+    "IB DP coaching Hyderabad",
+    "Olympiad preparation Hyderabad",
+    "exam preparation Hyderabad",
+    "academic support Hyderabad"
+  ],
+};
 
 // SEO and Content Constants
 const SEO_CONSTANTS = {

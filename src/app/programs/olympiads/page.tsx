@@ -10,14 +10,21 @@ import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Olympiad Coaching in Hyderabad | Maths & Science",
+  title: "Olympiad Preparation in Hyderabad | MindSplash Academy",
   description:
-    "Olympiad coaching in Hyderabad at MindSplash Academy. IOQM, AMC 8/10/12, maths and science Olympiad training for grades 6–10. Led by a National Math Olympiad awardee from IIT Madras.",
-  keywords:
-    "Olympiad coaching Hyderabad, IOQM coaching, AMC 8 AMC 10 AMC 12, maths Olympiad Hyderabad, science Olympiad coaching, competitive maths, MindSplash Olympiads",
+    "Explore Olympiad preparation in Hyderabad with focused academic learning, problem-solving practice and subject preparation.",
+  keywords: [
+    "Olympiad preparation Hyderabad",
+    "Olympiad coaching Hyderabad",
+    "Olympiad classes Hyderabad",
+    "Olympiad coaching institute Hyderabad",
+    "Math Olympiad preparation Hyderabad",
+    "Science Olympiad preparation Hyderabad",
+    "Olympiad problem solving Hyderabad"
+  ],
   openGraph: {
-    title: "Olympiad Coaching in Hyderabad | Maths & Science | MindSplash Academy",
-    description: "IOQM, AMC 8/10/12, maths and science Olympiad training for grades 6–10. Led by National Math Olympiad awardee.",
+    title: "Olympiad Preparation in Hyderabad | MindSplash Academy",
+    description: "Explore Olympiad preparation in Hyderabad with focused academic learning, problem-solving practice and subject preparation.",
     type: "website", url: "https://mindsplash.in/programs/olympiads",
   },
   alternates: { canonical: "https://mindsplash.in/programs/olympiads" },

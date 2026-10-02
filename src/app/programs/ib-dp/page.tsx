@@ -10,14 +10,21 @@ import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "IB DP Coaching in Hyderabad | IB Diploma Programme",
+  title: "IB DP Coaching in Hyderabad | MindSplash Academy",
   description:
-    "IB DP tuition in Hyderabad at MindSplash Academy. Maths AA & AI, Physics, Chemistry, Economics, English & CS coaching. Expert IIT faculty, small batches across Khajaguda, Kokapet & Financial District.",
-  keywords:
-    "IB DP tuition Hyderabad, IB Diploma coaching, IB DP Maths AA AI, IB DP Physics Chemistry, IB DP Economics, MindSplash IB DP",
+    "Explore IB DP coaching and academic support in Hyderabad for students preparing for the IB Diploma Programme.",
+  keywords: [
+    "IB DP coaching Hyderabad",
+    "IB DP classes Hyderabad",
+    "IB Diploma coaching Hyderabad",
+    "IB Diploma Programme Hyderabad",
+    "IB DP preparation Hyderabad",
+    "IB DP exam preparation Hyderabad",
+    "IB DP academic support Hyderabad"
+  ],
   openGraph: {
-    title: "IB DP Coaching in Hyderabad | IB Diploma Programme | MindSplash",
-    description: "IB DP coaching for Maths AA/AI, Physics, Chemistry, Economics, English & CS. Expert faculty, small batches in Hyderabad.",
+    title: "IB DP Coaching in Hyderabad | MindSplash Academy",
+    description: "Explore IB DP coaching and academic support in Hyderabad for students preparing for the IB Diploma Programme.",
     type: "website",
     url: "https://mindsplash.in/programs/ib-dp",
   },
@@ -103,9 +110,9 @@ export default function IBDPPage() {
         <div className="mb-8"><Heading content="Available at All " /><GradientHeading content="3 Centres" /></div>
         <div className="grid sm:grid-cols-3 gap-6">
           {[
-            { name: "Khajaguda", href: "/locations/khajaguda" },
-            { name: "Kokapet", href: "/locations/kokapet" },
-            { name: "Financial District", href: "/locations/financial-district" },
+            { name: "Khajaguda", href: "/branches/khajaguda" },
+            { name: "Kokapet", href: "/branches/kokapet" },
+            { name: "Financial District", href: "/branches/financialdistrict" },
           ].map((c) => (
             <Link key={c.name} href={c.href}>
               <div className="p-6 bg-secondary-foreground border border-card-border rounded-[24px] shadow-sm hover:shadow-md transition-all group">
