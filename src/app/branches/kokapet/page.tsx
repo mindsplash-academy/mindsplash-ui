@@ -1,165 +1,366 @@
-
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import ContactUsModal from "../../_components/ContactUsModal";
 
-export const metadata = {
-  title: "MindSplash Kokapet | Learning Centre",
+const faqs = [
+  {
+    question: "Where is the MindSplash Academy Kokapet branch?",
+    answer:
+      "MindSplash Academy's Kokapet location is at 4th Floor, Raichandani Business Bay, opposite Rajapushpa Regalia, Kokapet, Hyderabad - 500075.",
+  },
+  {
+    question: "What programs are available at MindSplash Academy Kokapet?",
+    answer:
+      "MindSplash Academy provides academic programs including IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation.",
+  },
+  {
+    question: "Does MindSplash offer IGCSE coaching in Kokapet?",
+    answer:
+      "IGCSE is one of the academic programs listed by MindSplash Academy. Contact the academy to confirm current subjects, batches and schedules.",
+  },
+  {
+    question: "Does MindSplash offer IB coaching in Kokapet?",
+    answer:
+      "MindSplash Academy provides information for IB MYP and IB DP programs. Contact the academy to confirm current availability.",
+  },
+  {
+    question: "Does MindSplash Academy provide Olympiad preparation?",
+    answer:
+      "Olympiad preparation is one of the academic programs listed by MindSplash Academy.",
+  },
+];
+
+export const metadata: Metadata = {
+  title: "MindSplash Academy Kokapet | IGCSE, IB & Olympiad Coaching",
   description:
-    "Explore MindSplash Kokapet and discover a structured learning environment focused on concept clarity, personalised attention and academic growth.",
+    "Explore MindSplash Academy Kokapet for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs in Hyderabad.",
+  keywords: [
+    "MindSplash Academy Kokapet",
+    "academic coaching Kokapet",
+    "IGCSE coaching Kokapet",
+    "IB coaching Kokapet",
+    "IB MYP coaching Kokapet",
+    "IB DP coaching Kokapet",
+    "Olympiad coaching Kokapet",
+    "exam preparation Kokapet",
+  ],
+  alternates: {
+    canonical: "https://mindsplash.in/branches/kokapet",
+  },
+  openGraph: {
+    title: "MindSplash Academy Kokapet | IGCSE, IB & Olympiad Coaching",
+    description:
+      "Explore IGCSE, IB MYP, IB DP, Olympiad and exam preparation programs at MindSplash Academy Kokapet.",
+    url: "https://mindsplash.in/branches/kokapet",
+    siteName: "MindSplash Academy",
+    type: "website",
+    images: [
+      {
+        url: "https://mindsplash.in/kokapet.jpg",
+        width: 1200,
+        height: 800,
+        alt: "MindSplash Academy Kokapet",
+      },
+    ],
+  },
 };
 
 export default function KokapetPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://mindsplash.in/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Branches",
+        item: "https://mindsplash.in/branches",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Kokapet",
+        item: "https://mindsplash.in/branches/kokapet",
+      },
+    ],
+  };
+
+  const branchSchema = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    name: "MindSplash Academy - Kokapet",
+    url: "https://mindsplash.in/branches/kokapet",
+    parentOrganization: {
+      "@type": "EducationalOrganization",
+      name: "MindSplash Academy",
+      url: "https://mindsplash.in/",
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress:
+        "4th Floor, Raichandani Business Bay, opposite Rajapushpa Regalia",
+      addressLocality: "Kokapet",
+      addressRegion: "Telangana",
+      postalCode: "500075",
+      addressCountry: "IN",
+    },
+    areaServed: {
+      "@type": "Place",
+      name: "Kokapet, Hyderabad, Telangana, India",
+    },
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
-    <main>
-      {/* ================= HERO SECTION ================= */}
-      <section className="relative overflow-hidden bg-secondary-foreground py-16 md:py-24">
-        <div className="mx-auto grid w-[90%] max-w-7xl items-center gap-12 lg:grid-cols-2">
-          
-          {/* Content */}
+    <>
+      <section className="mx-5 mt-5 overflow-hidden rounded-[40px] bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg md:mx-7 md:rounded-[50px]">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-16 md:grid-cols-2 md:px-10 md:py-24">
           <div>
-            <p className="mb-3 font-semibold text-primary">
-              MindSplash Learning Centre
+            <p className="font-semibold text-white">
+              MindSplash Academy
             </p>
 
-            <h1 className="text-4xl font-bold leading-tight md:text-6xl">
-              MindSplash
-              <br />
-              <span className="text-primary">Kokapet</span>
+            <h1 className="mt-4 text-4xl font-bold leading-tight text-white md:text-6xl">
+              MindSplash Academy Kokapet
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-8 text-secondary">
-              Discover a learning environment designed to help
-              students understand concepts, develop problem-solving
-              skills and build confidence in their academic journey.
+            <p className="mt-5 text-2xl font-semibold text-white md:text-3xl">
+              Academic Coaching in Kokapet, Hyderabad
+            </p>
+
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/90">
+              Explore IGCSE, IB MYP, IB DP, Olympiad preparation and exam
+              preparation programs at MindSplash Academy Kokapet.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/contact"
-                className="rounded-full bg-primary px-7 py-4 font-semibold text-white transition hover:opacity-90"
+                className="rounded-xl bg-white px-7 py-4 font-semibold text-gray-900 hover:bg-gray-100"
               >
-                Book a Free Demo Class
+                Enquire Now
               </Link>
 
               <Link
-                href="/about"
-                className="rounded-full border border-primary px-7 py-4 font-semibold text-primary transition hover:bg-primary hover:text-white"
+                href="/programs"
+                className="rounded-xl border border-white/70 px-7 py-4 font-semibold text-white hover:bg-white/10"
               >
-                Explore MindSplash
+                Explore Programs
               </Link>
             </div>
           </div>
 
-          {/* Image */}
-          <div className="relative h-[350px] overflow-hidden rounded-[30px] md:h-[500px]">
+          <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-3xl">
             <Image
-              src="/branches/kokapet.jpg"
-              alt="MindSplash Kokapet learning centre"
-              fill
+              src="/kokapet.jpg"
+              alt="MindSplash Academy Kokapet"
+              width={1200}
+              height={800}
               priority
-              className="object-cover"
+              className="h-auto w-full object-cover"
             />
           </div>
         </div>
       </section>
 
-      {/* ================= ABOUT SECTION ================= */}
-      <section className="mx-auto w-[90%] max-w-6xl py-16 md:py-24">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold md:text-5xl">
-            Learning at Kokapet
-          </h2>
+      <main className="bg-white text-gray-900">
+        <article className="mx-auto max-w-6xl px-6 py-16">
+          <section>
+            <h2 className="text-3xl font-bold md:text-4xl">
+              Academic Coaching in Kokapet
+            </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-secondary">
-            MindSplash Kokapet offers students a structured learning
-            experience focused on understanding concepts and developing
-            confidence through continuous practice and feedback.
-          </p>
-        </div>
-
-        {/* Features */}
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          
-          <div className="rounded-[25px] bg-secondary-foreground p-7">
-            <h3 className="text-xl font-bold">
-              Strong Foundations
-            </h3>
-
-            <p className="mt-3 leading-7 text-secondary">
-              Build a strong foundation in important academic
-              concepts and skills.
+            <p className="mt-6 text-lg leading-8 text-gray-700">
+              MindSplash Academy lists Kokapet as one of its Hyderabad
+              locations. Students and parents can explore academic programs
+              designed around different learning pathways and preparation
+              requirements.
             </p>
-          </div>
 
-          <div className="rounded-[25px] bg-secondary-foreground p-7">
-            <h3 className="text-xl font-bold">
-              Expert Guidance
-            </h3>
-
-            <p className="mt-3 leading-7 text-secondary">
-              Teachers guide students through concepts, practice
-              and continuous learning.
+            <p className="mt-5 text-lg leading-8 text-gray-700">
+              Programs include IGCSE, IB MYP, IB DP, Olympiad preparation and
+              exam preparation.
             </p>
-          </div>
+          </section>
 
-          <div className="rounded-[25px] bg-secondary-foreground p-7">
-            <h3 className="text-xl font-bold">
-              Regular Feedback
-            </h3>
+          <section className="mt-14">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              IGCSE Coaching in Kokapet
+            </h2>
 
-            <p className="mt-3 leading-7 text-secondary">
-              Continuous feedback helps identify strengths and areas
-              where students can improve.
+            <p className="mt-6 text-lg leading-8 text-gray-700">
+              IGCSE is one of the academic programs listed by MindSplash
+              Academy. The program information includes Mathematics, Physics,
+              Chemistry, Biology and Computer Science.
             </p>
-          </div>
-        </div>
-      </section>
 
-      {/* ================= PROGRAMS SECTION ================= */}
-      <section className="bg-secondary-foreground py-16 md:py-20">
-        <div className="mx-auto w-[90%] max-w-6xl text-center">
-          
-          <h2 className="text-3xl font-bold md:text-5xl">
-            Programs at MindSplash
-          </h2>
+            <Link
+              href="/programs/igcse"
+              className="mt-6 inline-block font-semibold underline hover:text-orange-600"
+            >
+              Explore IGCSE Coaching →
+            </Link>
+          </section>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              "Primary",
-              "IGCSE",
-              "IB MYP",
-              "Exam Preparation",
-            ].map((program) => (
-              <div
-                key={program}
-                className="rounded-[22px] bg-white p-7 shadow-sm"
+          <section className="mt-14">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              IB MYP and IB DP Programs
+            </h2>
+
+            <p className="mt-6 text-lg leading-8 text-gray-700">
+              Students following an IB pathway can explore the dedicated IB
+              MYP and IB DP program pages.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-4">
+              <Link
+                href="/programs/ib-myp"
+                className="rounded-xl border px-5 py-3 font-semibold hover:border-orange-400"
               >
-                <h3 className="font-bold">{program}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+                Explore IB MYP
+              </Link>
 
-      {/* ================= CTA SECTION ================= */}
-      <section className="py-16 text-center md:py-24">
-        <h2 className="text-3xl font-bold md:text-5xl">
-          Start the Learning Journey
-        </h2>
+              <Link
+                href="/programs/ib-dp"
+                className="rounded-xl border px-5 py-3 font-semibold hover:border-orange-400"
+              >
+                Explore IB DP
+              </Link>
+            </div>
+          </section>
 
-        <p className="mx-auto mt-5 max-w-2xl text-secondary">
-          Help your child build stronger concepts and develop
-          confidence through engaging learning.
-        </p>
+          <section className="mt-14">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              Olympiad Preparation in Kokapet
+            </h2>
 
-        <Link
-          href="/contact"
-          className="mt-8 inline-block rounded-full bg-primary px-8 py-4 font-semibold text-white transition hover:opacity-90"
-        >
-          Book a Free Demo Class
-        </Link>
-      </section>
-    </main>
+            <p className="mt-6 text-lg leading-8 text-gray-700">
+              Students can explore Olympiad preparation to work on subject
+              fundamentals, problem-solving practice and examination-oriented
+              preparation.
+            </p>
+
+            <Link
+              href="/programs/olympiads"
+              className="mt-6 inline-block font-semibold underline hover:text-orange-600"
+            >
+              Explore Olympiad Preparation →
+            </Link>
+          </section>
+
+          <section className="mt-14">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              Exam Preparation in Kokapet
+            </h2>
+
+            <p className="mt-6 text-lg leading-8 text-gray-700">
+              MindSplash Academy also provides exam preparation support for
+              students who need structured revision and practice.
+            </p>
+
+            <Link
+              href="/programs/exam-prep"
+              className="mt-6 inline-block font-semibold underline hover:text-orange-600"
+            >
+              Explore Exam Preparation →
+            </Link>
+          </section>
+
+          <section className="mt-14">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              MindSplash Academy Kokapet Location
+            </h2>
+
+            <p className="mt-5 text-lg leading-8 text-gray-700">
+              4th Floor, Raichandani Business Bay, opposite Rajapushpa Regalia,
+              Kokapet, Hyderabad - 500075
+            </p>
+          </section>
+
+          <section className="mt-14">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              Frequently Asked Questions
+            </h2>
+
+            <div className="mt-8 space-y-4">
+              {faqs.map((faq) => (
+                <details
+                  key={faq.question}
+                  className="rounded-xl border p-5 shadow-sm"
+                >
+                  <summary className="cursor-pointer font-semibold">
+                    {faq.question}
+                  </summary>
+
+                  <p className="mt-3 leading-7 text-gray-600">
+                    {faq.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-16 rounded-3xl bg-gray-50 p-8 text-center md:p-12">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              Looking for Academic Coaching in Kokapet?
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-gray-600">
+              Contact MindSplash Academy to discuss programs, availability and
+              academic requirements.
+            </p>
+
+            <Link
+              href="/contact"
+              className="mt-7 inline-block rounded-xl bg-black px-7 py-4 font-semibold text-white hover:bg-gray-800"
+            >
+              Contact MindSplash Academy
+            </Link>
+          </section>
+        </article>
+      </main>
+
+      <ContactUsModal />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(branchSchema),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+      />
+    </>
   );
 }
-

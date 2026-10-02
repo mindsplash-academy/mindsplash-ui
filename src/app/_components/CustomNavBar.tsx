@@ -1,181 +1,377 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ChevronDownIcon, ChevronRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
 
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import {
+  ChevronDownIcon,
+  ChevronRight,
+  MapPin,
+  BookOpen,
+  GraduationCap,
+  Trophy,
+  ClipboardCheck,
+} from "lucide-react";
+
 import MobileNavbar from "./MobileNavbar";
 
 export default function CustomNavBar() {
-  const [open, setOpen] = useState<boolean>(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [programsOpen, setProgramsOpen] = useState(false);
+  const [branchesOpen, setBranchesOpen] = useState(false);
 
   return (
-    <>
-      <div className="hidden flex-wrap gap-2 md:flex">
-        <Button type="button" variant="nav">
-          <Link href="/" className="flex items-center">
-            Home
-          </Link>
-        </Button>
-        <Popover>
-          <PopoverTrigger
-            onClick={() => setOpen(!open)}
-            className="flex rounded-md items-center px-4 bg-transparent text-foreground hover:text-accent-foreground cursor-pointer text-base text-left leading-[19px] tracking-[0px] font-normal"
+    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white shadow-sm">
+      <div className="mx-auto flex min-h-[76px] w-full max-w-7xl items-center px-4">
+        {/* =====================================================
+            DESKTOP NAVBAR
+        ====================================================== */}
+
+        <nav className="hidden w-full items-center md:flex">
+          {/* LOGO */}
+
+          <Link
+            href="/"
+            className="flex w-[210px] shrink-0 items-center"
+            aria-label="MindSplash Academy Home"
           >
-            <a href="/about">About Us</a>
-            <ChevronDownIcon
-              className={`relative top-[1px] ml-1 size-4 transition-transform duration-300 ${
-                open ? "rotate-0" : "rotate-180"
-              }`}
-              aria-hidden="true"
-            />
-          </PopoverTrigger>
-          <PopoverContent className="grid gap-2 md:grid-cols-2 bg-foreground py-4 px-2 rounded-[20px]">
-            <Link href="/about#leadership-team">
-              <Button
-                type="button"
-                variant="navItem"
-                size="xl"
-                className="group flex justify-start pl-5 gap-0 items-center relative"
-              >
-                <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
-                  <Image
-                    src={"/leader.svg"}
-                    alt="mind-splash"
-                    width={20}
-                    height={20}
-                  />
-                </div>
-                Leadership Team
-                <div className="opacity-0 group-hover:opacity-100 invisible group-hover:visible absolute right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
-                  <ChevronRight className="text-foreground" />
-                </div>
-              </Button>
-            </Link>
-
-            <Link href="/about#our-teachers">
-              <Button
-                type="button"
-                variant="navItem"
-                size="xl"
-                className="group flex justify-start pl-5 gap-0 items-center relative"
-              >
-                <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
-                  <Image
-                    src={"/teachers.svg"}
-                    alt="mind-splash"
-                    width={20}
-                    height={20}
-                  />
-                </div>
-                Our Teachers
-                <div className="opacity-0 group-hover:opacity-100 invisible group-hover:visible absolute right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
-                  <ChevronRight className="text-foreground" />
-                </div>
-              </Button>
-            </Link>
-
-            <Link href="/about#methodology">
-              <Button
-                type="button"
-                variant="navItem"
-                size="xl"
-                className="group flex justify-start pl-5 gap-0 items-center relative"
-              >
-                <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
-                  <Image
-                    src={"/methodology.svg"}
-                    alt="mind-splash"
-                    width={20}
-                    height={20}
-                  />
-                </div>
-                Our Methodology
-                <div className="opacity-0 group-hover:opacity-100 invisible group-hover:visible absolute right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
-                  <ChevronRight className="text-foreground" />
-                </div>
-              </Button>
-            </Link>
-
-            <Link href="/about#results">
-              <Button
-                type="button"
-                variant="navItem"
-                size="xl"
-                className="group flex justify-start pl-5 gap-0 items-center relative"
-              >
-                <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
-                  <Image
-                    src={"/results.svg"}
-                    alt="mind-splash"
-                    width={20}
-                    height={20}
-                  />
-                </div>
-                Results
-                <div className="opacity-0 group-hover:opacity-100 invisible group-hover:visible absolute right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
-                  <ChevronRight className="text-foreground" />
-                </div>
-              </Button>
-            </Link>
-
-            <Link href="/about#curriculum">
-              <Button
-                type="button"
-                variant="navItem"
-                size="xl"
-                className="group flex justify-start pl-5 gap-0 items-center relative"
-              >
-                <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
-                  <Image
-                    src={"/curriculum.svg"}
-                    alt="mind-splash"
-                    width={20}
-                    height={20}
-                  />
-                </div>
-                Our Curriculum
-                <div className="opacity-0 group-hover:opacity-100 invisible group-hover:visible absolute right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
-                  <ChevronRight className="text-foreground" />
-                </div>
-              </Button>
-            </Link>
-          </PopoverContent>
-        </Popover>
-
-        <Button type="button" variant="nav">
-          <Link href="/programs" className="flex items-center">
-            Our Programs
-          </Link>
-        </Button>
-        <Button type="button" variant="nav">
-          <Link href="/contact" className="flex items-center">
-            Contact Us
-          </Link>
-        </Button>
-        <Link href="https://wa.me/917075340810">
-          <Button type="button" variant="navIcon">
             <Image
-              src={"/WhatsApp.svg"}
-              alt="mind-splash"
-              width={20}
-              height={20}
+              src="/footer_logo.png"
+              alt="MindSplash Academy"
+              width={216}
+              height={77}
+              priority
+              className="block h-auto w-[180px] object-contain opacity-100"
             />
-            WhatsApp
-          </Button>
-        </Link>
-      </div>
+          </Link>
 
-      <MobileNavbar />
-    </>
+          {/* NAVIGATION */}
+
+          <div className="flex flex-1 items-center justify-end gap-1 whitespace-nowrap">
+            {/* HOME */}
+
+            <Link href="/">
+              <Button
+                variant="ghost"
+                className="px-3 font-semibold text-gray-800 hover:bg-orange-50 hover:text-orange-600"
+              >
+                Home
+              </Button>
+            </Link>
+
+            {/* ABOUT */}
+
+            <Popover open={aboutOpen} onOpenChange={setAboutOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="gap-1 px-3 font-semibold text-gray-800 hover:bg-orange-50 hover:text-orange-600"
+                >
+                  About Us
+
+                  <ChevronDownIcon
+                    className={`h-4 w-4 transition-transform ${
+                      aboutOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </Button>
+              </PopoverTrigger>
+
+              <PopoverContent
+                align="center"
+                className="w-64 rounded-xl border border-gray-200 bg-white p-2 shadow-xl"
+              >
+                <NavItem
+                  href="/about#leadership-team"
+                  label="Leadership Team"
+                  onClick={() => setAboutOpen(false)}
+                />
+
+                <NavItem
+                  href="/about#our-teachers"
+                  label="Our Teachers"
+                  onClick={() => setAboutOpen(false)}
+                />
+
+                <NavItem
+                  href="/about#methodology"
+                  label="Our Methodology"
+                  onClick={() => setAboutOpen(false)}
+                />
+
+                <NavItem
+                  href="/about#results"
+                  label="Results"
+                  onClick={() => setAboutOpen(false)}
+                />
+
+                <NavItem
+                  href="/about#curriculum"
+                  label="Our Curriculum"
+                  onClick={() => setAboutOpen(false)}
+                />
+              </PopoverContent>
+            </Popover>
+
+            {/* PROGRAMS */}
+
+            <Popover open={programsOpen} onOpenChange={setProgramsOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="gap-1 px-3 font-semibold text-gray-800 hover:bg-orange-50 hover:text-orange-600"
+                >
+                  Our Programs
+
+                  <ChevronDownIcon
+                    className={`h-4 w-4 transition-transform ${
+                      programsOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </Button>
+              </PopoverTrigger>
+
+              <PopoverContent
+                align="center"
+                className="w-72 rounded-xl border border-gray-200 bg-white p-2 shadow-xl"
+              >
+                <ProgramItem
+                  href="/programs"
+                  label="All Programs"
+                  icon={<BookOpen className="h-4 w-4" />}
+                  onClick={() => setProgramsOpen(false)}
+                />
+
+                <ProgramItem
+                  href="/programs/igcse"
+                  label="IGCSE"
+                  icon={<GraduationCap className="h-4 w-4" />}
+                  onClick={() => setProgramsOpen(false)}
+                />
+
+                <ProgramItem
+                  href="/programs/ib-myp"
+                  label="IB MYP"
+                  icon={<GraduationCap className="h-4 w-4" />}
+                  onClick={() => setProgramsOpen(false)}
+                />
+
+                <ProgramItem
+                  href="/programs/ib-dp"
+                  label="IB DP"
+                  icon={<GraduationCap className="h-4 w-4" />}
+                  onClick={() => setProgramsOpen(false)}
+                />
+
+                <ProgramItem
+                  href="/programs/olympiads"
+                  label="Olympiads"
+                  icon={<Trophy className="h-4 w-4" />}
+                  onClick={() => setProgramsOpen(false)}
+                />
+
+                <ProgramItem
+                  href="/programs/exam-prep"
+                  label="Exam Preparation"
+                  icon={<ClipboardCheck className="h-4 w-4" />}
+                  onClick={() => setProgramsOpen(false)}
+                />
+              </PopoverContent>
+            </Popover>
+
+            {/* BLOG */}
+
+            <Link href="/blog">
+              <Button
+                variant="ghost"
+                className="px-3 font-semibold text-gray-800 hover:bg-orange-50 hover:text-orange-600"
+              >
+                Blog
+              </Button>
+            </Link>
+
+            {/* BRANCHES */}
+
+            <Popover open={branchesOpen} onOpenChange={setBranchesOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="gap-1 px-3 font-semibold text-gray-800 hover:bg-orange-50 hover:text-orange-600"
+                >
+                  Branches
+
+                  <ChevronDownIcon
+                    className={`h-4 w-4 transition-transform ${
+                      branchesOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </Button>
+              </PopoverTrigger>
+
+              <PopoverContent
+                align="center"
+                className="w-64 rounded-xl border border-gray-200 bg-white p-2 shadow-xl"
+              >
+                <BranchItem
+                  href="/branches/khajaguda"
+                  label="Khajaguda"
+                  onClick={() => setBranchesOpen(false)}
+                />
+
+                <BranchItem
+                  href="/branches/kokapet"
+                  label="Kokapet"
+                  onClick={() => setBranchesOpen(false)}
+                />
+
+                <BranchItem
+                  href="/branches/financialdistrict"
+                  label="Financial District"
+                  onClick={() => setBranchesOpen(false)}
+                />
+              </PopoverContent>
+            </Popover>
+
+            {/* CONTACT */}
+
+            <Link href="/contact">
+              <Button
+                variant="ghost"
+                className="px-3 font-semibold text-gray-800 hover:bg-orange-50 hover:text-orange-600"
+              >
+                Contact Us
+              </Button>
+            </Link>
+
+            {/* WHATSAPP */}
+
+            <a
+              href="https://wa.me/917075340810"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat with MindSplash Academy on WhatsApp"
+            >
+              <Button className="ml-2 rounded-full bg-green-500 px-5 font-semibold text-white shadow-sm hover:bg-green-600">
+                <span className="mr-2">●</span>
+                WhatsApp
+              </Button>
+            </a>
+          </div>
+        </nav>
+
+        {/* =====================================================
+            MOBILE NAVBAR
+        ====================================================== */}
+
+        <div className="flex w-full items-center justify-between md:hidden">
+          <Link
+            href="/"
+            className="flex items-center"
+            aria-label="MindSplash Academy Home"
+          >
+            <Image
+              src="/footer_logo.png"
+              alt="MindSplash Academy"
+              width={216}
+              height={77}
+              priority
+              className="block h-auto w-[150px] object-contain opacity-100"
+            />
+          </Link>
+
+          <MobileNavbar />
+        </div>
+      </div>
+    </header>
+  );
+}
+
+/* ============================================================
+   ABOUT / NORMAL NAV ITEM
+============================================================ */
+
+function NavItem({
+  href,
+  label,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className="flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-orange-50 hover:text-orange-600"
+    >
+      {label}
+
+      <ChevronRight className="h-4 w-4" />
+    </Link>
+  );
+}
+
+/* ============================================================
+   PROGRAM ITEM
+============================================================ */
+
+function ProgramItem({
+  href,
+  label,
+  icon,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  icon: React.ReactNode;
+  onClick: () => void;
+}) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className="flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-orange-50 hover:text-orange-600"
+    >
+      <span className="flex items-center gap-3">
+        {icon}
+        {label}
+      </span>
+
+      <ChevronRight className="h-4 w-4" />
+    </Link>
+  );
+}
+
+/* ============================================================
+   BRANCH ITEM
+============================================================ */
+
+function BranchItem({
+  href,
+  label,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-orange-50 hover:text-orange-600"
+    >
+      <MapPin className="h-4 w-4" />
+      {label}
+    </Link>
   );
 }
