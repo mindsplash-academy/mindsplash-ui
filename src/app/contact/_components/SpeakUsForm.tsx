@@ -8,9 +8,11 @@ import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronRight } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 import { toast } from "sonner";
 import z from "zod";
 import { submitUser } from "@/lib/api";
+import { trackEvent } from "@/lib/analytics";
 
 const formSchema = z.object({
   salutation: z.string().min(2, "Required"),
@@ -46,6 +48,18 @@ export default function SpeakUsForm() {
     },
   });
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const location = params.get("location");
+    const program = params.get("program");
+    if (location && locationOptions.some((option) => option.value === location)) {
+      form.setValue("location", location, { shouldValidate: true });
+    }
+    if (program && programOptions.some((option) => option.value === program)) {
+      form.setValue("program", program, { shouldValidate: true });
+    }
+  }, [form]);
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const payload = {
       salutation: values.salutation,
@@ -66,15 +80,11 @@ export default function SpeakUsForm() {
       toast.success("Success", { description: data.message || "Form submitted successfully!" });
       form.reset();
 
-      // Lead tracking event for Google Tag Manager / Meta Pixel
-      if (typeof window !== "undefined" && (window as any).dataLayer) {
-        (window as any).dataLayer.push({
-          event: "generate_lead",
-          form_name: "SpeakUsForm",
-          program: values.program,
-          location: values.location
-        });
-      }
+      trackEvent("generate_lead", {
+        form_name: "SpeakUsForm",
+        program: values.program,
+        location: values.location,
+      });
     } catch (error) {
       console.error("Contact form submission failed:", error);
       toast.error("Error", { description: error instanceof Error ? error.message : "Failed to submit the form. Please try again." });
@@ -133,20 +143,20 @@ export default function SpeakUsForm() {
           <FormInput
             control={form.control}
             name="level"
-            label="Child Level in 2024"
-            placeholder="Enter child level"
+            label="Current Grade / Level"
+            placeholder="Enter current grade"
           />
           <SelectField
             control={form.control}
             name="program"
-            label="Child Preferred Program"
+            label="Preferred Programme"
             placeholder="Select program"
             options={programOptions}
           />
           <SelectField
             control={form.control}
             name="location"
-            label="Preferred Location Of Child"
+            label="Preferred Centre"
             placeholder="Select location"
             options={locationOptions}
           />
@@ -175,7 +185,7 @@ export const salutationOptions = [
 export const programOptions = [
   { value: "Primary", label: "Primary" },
   { value: "IGCSE", label: "IGCSE" },
-  { value: " IB_MYP", label: "IB MYP" },
+  { value: "IB_MYP", label: "IB MYP" },
   { value: "IB_DP", label: "IB DP" },
   { value: "Olympiads", label: "OLYMPIADS" },
   { value: "ExamPrep", label: "EXAM PREP" },

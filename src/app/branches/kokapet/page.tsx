@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Heading from "@/components/Heading";
@@ -9,45 +9,24 @@ import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "MindSplash Academy Kokapet | IGCSE, IB & Olympiad Coaching",
+  title: "IB & IGCSE Tuition in Kokapet | MindSplash Academy",
   description:
-    "Explore MindSplash Academy Kokapet for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs in Hyderabad.",
+    "Explore IB and IGCSE tuition in Kokapet with MindSplash Academy. Learn about programs, subjects, results and book a free demo.",
   keywords: [
-    "MindSplash Academy Kokapet",
-    "academic coaching Kokapet",
-    "coaching institute Kokapet",
-    "IGCSE coaching Kokapet",
-    "IGCSE classes Kokapet",
-    "IB coaching Kokapet",
+    "IB & IGCSE tuition Kokapet",
+    "IB tuition Kokapet",
+    "IGCSE tuition Kokapet",
     "IB MYP coaching Kokapet",
     "IB DP coaching Kokapet",
-    "Olympiad coaching Kokapet",
-    "Olympiad preparation Kokapet",
-    "exam preparation Kokapet",
-    "academic support Kokapet",
-    "MindSplash Kokapet",
-    "best IGCSE coaching in Kokapet",
-    "IGCSE coaching institute in Kokapet",
-    "IB coaching institute in Kokapet",
-    "IB MYP coaching in Kokapet",
-    "IB DP coaching in Kokapet",
-    "Olympiad preparation classes in Kokapet",
-    "exam preparation classes in Kokapet",
-    "academic coaching classes in Kokapet",
-    "MindSplash Academy in Kokapet",
-    "academic coaching near Kokapet",
-    "IGCSE classes near Kokapet",
-    "IB classes near Kokapet"
   ],
   openGraph: {
-    title: "MindSplash Academy Kokapet | IGCSE, IB & Olympiad Coaching",
-    description:
-      "Explore MindSplash Academy Kokapet for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs in Hyderabad.",
+    title: "IB & IGCSE Tuition in Kokapet | MindSplash Academy",
+    description: "Explore IB and IGCSE tuition in Kokapet with MindSplash Academy. Learn about programs, subjects, results and book a free demo.",
     type: "website",
     url: "https://mindsplash.in/branches/kokapet",
   },
   alternates: {
-    canonical: "https://mindsplash.in/branches/kokapet",
+    canonical: "/branches/kokapet",
   },
 };
 
@@ -55,7 +34,7 @@ const PROGRAMS = [
   { name: "IB MYP", grades: "Years 4 & 5", href: "/programs#ib-myp-program-heading" },
   { name: "IB DP", grades: "Diploma Programme", href: "/programs#ib-dp-program-heading" },
   { name: "IGCSE", grades: "O-Level & A-Level", href: "/programs#igcse-program-heading" },
-  { name: "Olympiads", grades: "Grades 6–10", href: "/programs#olympiad-program-heading" },
+  { name: "Olympiads", grades: "Grades 6â€“10", href: "/programs#olympiad-program-heading" },
   { name: "SAT / PSAT", grades: "University admission prep", href: "/programs#exam-prep-program-heading" },
   { name: "Primary", grades: "Grade 5 & below", href: "/programs#primary-program-heading" },
 ];
@@ -71,7 +50,7 @@ const FAQS = [
   },
   {
     q: "How small are the batches at Kokapet?",
-    a: "We maintain small batches of 8–12 students per class so that our teachers can monitor and mentor each student individually — this is a key differentiator across all MindSplash centres.",
+    a: "We maintain small batches of 8â€“12 students per class so that our teachers can monitor and mentor each student individually â€” this is a key differentiator across all MindSplash centres.",
   },
   {
     q: "Can I schedule a free demo at Kokapet?",
@@ -97,7 +76,7 @@ export default function KokapetPage() {
       ]} />
 
       {/* Hero */}
-      <section className="mx-7 mt-5 flex flex-col justify-center items-center min-h-[320px] md:min-h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center">
+      <section className="mx-3 mt-2 sm:mx-5 md:mx-7 md:mt-3 flex flex-col justify-center items-center min-h-[320px] md:min-h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center">
         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-sm font-semibold mb-4">
           <MapPin className="w-4 h-4" /> Kokapet, Hyderabad
         </div>
@@ -105,10 +84,10 @@ export default function KokapetPage() {
           MindSplash Academy Kokapet
         </h1>
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
-          Expert-led coaching near Rajapushpa Regalia — small batches, personalised attention, outstanding results.
+          Expert-led coaching near Rajapushpa Regalia â€” small batches, personalised attention, outstanding results.
         </p>
         <div className="mt-8">
-          <Link href="/contact" aria-label="Book a free demo at Kokapet">
+          <Link href="/contact?location=Kokapet" aria-label="Book a free demo at Kokapet">
             <PrimaryButton content="Book a Free Demo" />
           </Link>
         </div>
@@ -138,6 +117,7 @@ export default function KokapetPage() {
             Opp. Rajapushpa Regalia, Kokapet,<br />
             Hyderabad 500075
           </p>
+          <a href="https://www.google.com/maps/search/?api=1&query=4th%20Floor%2C%20Raichandani%20Business%20Bay%2C%20Opp.%20Rajapushpa%20Regalia%2C%20Kokapet%2C%20Hyderabad%20500075" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-gradient-start hover:underline">Get directions</a>
         </div>
 
         <div className="p-7 bg-secondary-foreground border border-card-border rounded-[30px] shadow-sm flex flex-col gap-4">
@@ -146,8 +126,8 @@ export default function KokapetPage() {
           </div>
           <h3 className="font-bold text-xl text-gradient-start">Contact</h3>
           <p className="text-description text-sm leading-relaxed">
-            <strong>Phone:</strong> +91 7075340810<br />
-            <strong>Email:</strong> reachus@mindsplash.com
+            <strong>Phone:</strong> <a href="tel:+917075340810" className="hover:underline">+91 7075340810</a><br />
+            <strong>Email:</strong> <a href="mailto:reachus@mindsplash.com" className="hover:underline">reachus@mindsplash.com</a>
           </p>
         </div>
 
@@ -157,7 +137,7 @@ export default function KokapetPage() {
           </div>
           <h3 className="font-bold text-xl text-gradient-start">Timings</h3>
           <p className="text-description text-sm leading-relaxed">
-            <strong>Mon – Sat:</strong> 3:00 PM – 8:00 PM<br />
+            <strong>Mon â€“ Sat:</strong> 3:00 PM â€“ 8:00 PM<br />
             <strong>Sunday:</strong> By appointment
           </p>
         </div>
@@ -227,11 +207,11 @@ export default function KokapetPage() {
             <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
               <Award className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
               <p className="text-3xl font-bold text-gradient-start mb-2">54/56</p>
-              <p className="text-sm text-description">IB MYP 2024 Topper Score</p>
+              <p className="text-sm text-description">Archived 2024 IB MYP top score</p>
             </div>
             <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
               <Users className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
-              <p className="text-3xl font-bold text-gradient-start mb-2">8–12</p>
+              <p className="text-3xl font-bold text-gradient-start mb-2">8â€“12</p>
               <p className="text-sm text-description">Students per Batch</p>
             </div>
             <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
@@ -256,7 +236,7 @@ export default function KokapetPage() {
           ))}
         </div>
         <p className="text-description text-sm">
-          We also welcome students from our sister branches. Explore our <Link href="/branches/khajaguda" className="text-gradient-start hover:underline">Khajaguda</Link> and <Link href="/branches/financialdistrict" className="text-gradient-start hover:underline">Financial District</Link> branches. For any inquiries, please <Link href="/contact" className="text-gradient-start hover:underline font-medium">Contact MindSplash Academy</Link>.
+          We also welcome students from our sister branches. Explore our <Link href="/branches/khajaguda" className="text-gradient-start hover:underline">Khajaguda</Link> and <Link href="/branches/financialdistrict" className="text-gradient-start hover:underline">Financial District</Link> branches. For any inquiries, please <Link href="/contact?location=Kokapet" className="text-gradient-start hover:underline font-medium">contact the Kokapet team</Link>.
         </p>
       </section>
 
@@ -286,12 +266,12 @@ export default function KokapetPage() {
         <p className="text-foreground/90 text-lg mb-8 max-w-xl">
           Schedule a free demo class and see why families across western Hyderabad choose MindSplash.
         </p>
-        <Link href="/contact">
+        <Link href="/contact?location=Kokapet">
           <PrimaryButton content="Book a Free Demo" />
         </Link>
       </section>
 
-      <ContactUsModal />
+      <ContactUsModal location="Kokapet" />
 
       {/* JSON-LD */}
       <script
@@ -300,7 +280,7 @@ export default function KokapetPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "MindSplash Academy — Kokapet",
+            name: "MindSplash Academy â€” Kokapet",
             description:
               "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching in Kokapet, Hyderabad.",
             url: "https://mindsplash.in/branches/kokapet",

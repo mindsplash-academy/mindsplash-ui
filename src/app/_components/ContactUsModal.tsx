@@ -12,7 +12,7 @@ import ContactForm from "./ContactForm";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 
-export default function ContactUsModal({ triggerText = "Book a Free Demo Class" }: { triggerText?: string }) {
+export default function ContactUsModal({ triggerText = "Book a Free Demo Class", location = "", program = "" }: { triggerText?: string, location?: string, program?: string }) {
     const [contactModalOpen, setContactModalOpen] = useState(false);
     return (
         <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
@@ -30,7 +30,7 @@ export default function ContactUsModal({ triggerText = "Book a Free Demo Class" 
                     Please fill out the form below to get in touch with us.
                 </DialogDescription>
                 <div className="w-[88%] sm:w-full mx-auto mt-4">
-                    <ContactForm isDialogForm onCancel={() => setContactModalOpen(false)} />
+                    <ContactForm isDialogForm defaultLocation={location} defaultProgram={program} onCancel={() => setContactModalOpen(false)} />
                 </div>
             </DialogContent>
         </Dialog>

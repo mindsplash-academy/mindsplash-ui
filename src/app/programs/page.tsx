@@ -1,27 +1,44 @@
-import Description from "@/components/Description";
+﻿import Description from "@/components/Description";
 import GradientHeading from "@/components/GradientHeading";
 import SubHeading from "@/components/SubHeading";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import ContactUsModal from "../_components/ContactUsModal";
+import Link from "next/link";
+import { Metadata } from "next";
+import Breadcrumbs from "@/components/Breadcrumbs";
+
+export const metadata: Metadata = {
+  title: "IB, IGCSE & Olympiad Programs in Hyderabad | MindSplash Academy",
+  description:
+    "Explore MindSplash programs for Primary, IGCSE, IB MYP, IB DP, Olympiads and exam preparation across Hyderabad.",
+  openGraph: {
+    title: "IB, IGCSE & Olympiad Programs in Hyderabad | MindSplash Academy",
+    description:
+      "Explore MindSplash programs for Primary, IGCSE, IB MYP, IB DP, Olympiads and exam preparation across Hyderabad.",
+    type: "website",
+    url: "https://mindsplash.in/programs",
+  },
+  keywords: ["IB IGCSE programs Hyderabad", "IB MYP coaching Hyderabad", "IB DP coaching Hyderabad", "IGCSE tuition Hyderabad", "Olympiad classes Hyderabad"],
+  alternates: { canonical: "/programs" },
+};
 
 // SEO and Content Constants
 const SEO_CONSTANTS = {
-  PAGE_TITLE_ONE: "IB & IGCSE Coaching Programs",
-  PAGE_TITLE_TWO: "in Hyderabad",
+  PAGE_TITLE_ONE: "Academic Programmes in Hyderabad",
+  PAGE_TITLE_TWO: "IB, IGCSE, Olympiad & Exam Preparation",
   PRIMARY_TITLE: "Primary",
-  PRIMARY_SUBTITLE: "Grade 5 and below — Building strong Math & Science foundations",
+  PRIMARY_SUBTITLE: "Grade 5 and below: Math and Science foundations",
   IGCSE_TITLE: "IGCSE",
-  IGCSE_SUBTITLE: "Cambridge O-Level & A-Level — Maths, Physics, Chemistry, Biology & CS",
+  IGCSE_SUBTITLE: "Cambridge O-Level and A-Level tuition in Maths, Sciences and Computer Science",
   IB_MYP_TITLE: "IB MYP",
-  IB_MYP_SUBTITLE: "Years 4 & 5 — eAssessment preparation & criteria-based mastery",
+  IB_MYP_SUBTITLE: "Years 4 and 5: criteria-based learning and eAssessment practice",
   IB_DP_TITLE: "IB DP",
-  IB_DP_SUBTITLE: "IB Diploma Programme — Math AA/AI, Physics, Chemistry, Economics & more",
+  IB_DP_SUBTITLE: "IB Diploma Programme subject support: Math AA/AI, Sciences, Economics and more",
   OLYMPIAD_TITLE: "Olympiads",
-  OLYMPIAD_SUBTITLE: "IOQM, AMC 8/10/12 & international maths and science competitions",
+  OLYMPIAD_SUBTITLE: "Problem-solving preparation for Maths and Science competitions",
   EXAM_PREP_TITLE: "SAT / PSAT & Exam Prep",
-  EXAM_PREP_SUBTITLE: "Standardised test preparation for university admissions",
+  EXAM_PREP_SUBTITLE: "Digital SAT, PSAT and school exam preparation",
   FOOTER_HEADING: "Experience learning that's engaging, immersive, and fun.",
   SPEAK_WITH_US: "Speak With Us",
 } as const;
@@ -29,15 +46,16 @@ const SEO_CONSTANTS = {
 export default function ProgramsPage() {
   return (
     <>
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Programs" }]} />
       {/* Hero Section */}
-      <section className="mx-7 mt-5 flex justify-center items-center h-[300px] md:h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end">
+      <section className="mx-3 mt-2 sm:mx-5 md:mx-7 md:mt-3 flex justify-center items-center h-[300px] md:h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end">
         <div className="relative lg:mt-25 xl:mt-0">
           <div className="mt-20 md:mt-25 lg:mt-8">
             <h1 className="relative text-center break-word font-bold text-[22px] sm:text-[24px] md:text-[30px] lg:text-[36px] 2xl:text-[60px] leading-10 lg:leading-[72px] tracking-[0px] px-12 md:px-0">
               {SEO_CONSTANTS.PAGE_TITLE_ONE}
-            </h1>
-            <h1 className="text-center break-word font-bold text-[22px] sm:text-[24px] md:text-[30px] lg:text-[36px] 2xl:text-[60px] leading-10 md:leading-[72px] tracking-[0px] px-12 md:px-0">
-              {SEO_CONSTANTS.PAGE_TITLE_TWO}
+              <span className="block text-center">
+                {SEO_CONSTANTS.PAGE_TITLE_TWO}
+              </span>
             </h1>
           </div>
         </div>
@@ -50,7 +68,7 @@ export default function ProgramsPage() {
         <figure className="relative">
           <Image
             src="/new_image.svg"
-            alt="MindSplash Academy"
+            alt=""
             width={64}
             height={80}
             style={{ width: "auto", height: "auto" }}
@@ -59,23 +77,23 @@ export default function ProgramsPage() {
           />
           <Image
             src={"/primary_kid.jpg"}
-            alt="MindSplash Academy primary students learning math and science concepts"
+            alt="Students learning Mathematics and Science"
             width={541}
             height={473}
             className="w-full max-w-[541px] h-auto rounded-[28px]"
             loading="lazy"
           />
         </figure>
-        <dl className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
-          <dt className="mb-[18px]" id="primary-program-heading">
+        <div className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
+          <h2 className="mb-[18px]" id="primary-program-heading">
             <GradientHeading content={SEO_CONSTANTS.PRIMARY_TITLE} />
-          </dt>
+          </h2>
           <SubHeading
             content={SEO_CONSTANTS.PRIMARY_SUBTITLE}
             className="mb-8"
           />
-          <Description content="The Math Component of the Program aims at mental math along with good grasp of basic concepts like number systems, fractions, decimals, ratio, percentages, variation, data handling etc., The program lays strong foundation for Secondary School Math. The Science Component of the Program lays stress on biology and physics concepts. Concepts related to basic life processes and fundamentals of mechanics, optics, sound waves, etc., are discussed connecting them with real-life examples. The program aims at igniting and inspiring young minds towards basic sciences." />
-        </dl>
+          <Description content="The Primary programme builds confidence in mental maths and core concepts such as number systems, fractions, decimals, ratios, percentages, and data handling. Science lessons introduce life processes and foundational physics through examples connected to everyday experience." />
+        </div>
       </section>
       {/* IGCSE Program Section */}
       <section
@@ -83,20 +101,21 @@ export default function ProgramsPage() {
         aria-labelledby="igcse-program-heading"
       >
         <div className="w-[74%] flex flex-col-reverse lg:flex-row mx-auto justify-between mt-10 lg:mt-0 items-center px-4 lg:gap-20 py-[100px] pb-20">
-          <dl className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
-            <dt className="mb-[18px]" id="igcse-program-heading">
+          <div className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
+            <h2 className="mb-[18px]" id="igcse-program-heading">
               <GradientHeading content={SEO_CONSTANTS.IGCSE_TITLE} />
-            </dt>
+            </h2>
             <SubHeading
               content={SEO_CONSTANTS.IGCSE_SUBTITLE}
               className="mb-8"
             />
-            <Description content="We offer IGCSE (O-level) and A-level programs for Math, Physics, Chemistry, Biology and Computer Science. Our programs are designed to give an edge in the Cambridge examinations. Given the vastness of the syllabus, we have designed memory maps which are single page topic revisions sheets which will help them revise a lot of content over a small time." />
-          </dl>
+            <Description content="Cambridge O-Level and A-Level tuition covers Mathematics, Physics, Chemistry, Biology, and Computer Science. Topic-based memory maps help students organise syllabus content for revision, alongside practice applying ideas to Cambridge-style questions." />
+            <p className="mt-4"><Link href="/programs/igcse" className="font-semibold text-gradient-start hover:underline">Cambridge IGCSE tuition in Hyderabad</Link></p>
+          </div>
           <figure className="relative">
             <Image
               src="/new_image.svg"
-              alt="MindSplash Academy - IGCSE education program"
+              alt=""
               width={64}
               height={80}
               style={{ width: "auto", height: "auto" }}
@@ -105,7 +124,7 @@ export default function ProgramsPage() {
             />
             <Image
               src={"/igcse_kid.jpg"}
-              alt="MindSplash Academy IGCSE students preparing for Cambridge examinations"
+              alt="Student preparing for Cambridge IGCSE exams"
               width={541}
               height={473}
               loading="lazy"
@@ -122,7 +141,7 @@ export default function ProgramsPage() {
         <figure className="relative">
           <Image
             src="/new_image.svg"
-            alt="MindSplash Academy - IB MYP coaching in Hyderabad"
+            alt=""
             width={64}
             height={80}
             style={{ width: "auto", height: "auto" }}
@@ -131,23 +150,24 @@ export default function ProgramsPage() {
           />
           <Image
             src={"/mvp_kid.jpg"}
-            alt="MindSplash Academy IB MYP students preparing for eAssessment in Hyderabad"
+            alt="Student preparing for an IB MYP eAssessment"
             width={541}
             height={473}
             loading="lazy"
             className="rounded-[28px]"
           />
         </figure>
-        <dl className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
-          <dt className="mb-[18px]" id="ib-myp-program-heading">
+        <div className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
+          <h2 className="mb-[18px]" id="ib-myp-program-heading">
             <GradientHeading content={SEO_CONSTANTS.IB_MYP_TITLE} />
-          </dt>
+          </h2>
           <SubHeading
             content={SEO_CONSTANTS.IB_MYP_SUBTITLE}
             className="mb-8"
           />
-          <Description content="IB MYP eAssessment is a computer-based test taken on the IB proprietary platform. At MindSplash Academy, assessments are conducted on Assessprep — a platform that closely mirrors the actual IB MYP eAssessment experience. Through rigorous exam-styled worksheets, timed mock tests, and criteria-based grading (Criteria A–D), our students build mastery and confidence well before exam day. Our 2024 cohort achieved 54/56 — proof that structured practice works. The programme includes 6 hours of classes per week (3 hours Maths, 3 hours Science — Physics, Chemistry, Biology). For exact schedules across Khajaguda, Kokapet and Financial District, please contact our branches." />
-        </dl>
+          <Description content="Students practise computer-based IB MYP eAssessment-style tasks on Assessprep and use criteria-based worksheets and feedback to work on Mathematics and Science skills. An archived result from the 2024 cohort is one student score of 54/56. The programme includes six hours of classes per week: three hours of Mathematics and three hours of Science. Contact a branch for current schedules." />
+            <p className="mt-4"><Link href="/programs/ib-myp" className="font-semibold text-gradient-start hover:underline">IB MYP tuition in Hyderabad</Link></p>
+        </div>
       </section>
       {/* IB DP Program Section */}
       <section
@@ -155,20 +175,21 @@ export default function ProgramsPage() {
         aria-labelledby="ib-dp-program-heading"
       >
         <div className="w-[74%] flex mx-auto flex flex-col-reverse lg:flex-row justify-between mt-10 lg:mt-0 items-center px-4 lg:gap-20 py-[100px] pb-20">
-          <dl className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
-            <dt className="mb-[18px]" id="ib-dp-program-heading">
+          <div className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
+            <h2 className="mb-[18px]" id="ib-dp-program-heading">
               <GradientHeading content={SEO_CONSTANTS.IB_DP_TITLE} />
-            </dt>
+            </h2>
             <SubHeading
               content={SEO_CONSTANTS.IB_DP_SUBTITLE}
               className="mb-8"
             />
-            <Description content="IB DP is the most globally recognised diploma programme for admission into Ivy League and top-tier universities worldwide. The rigorous Higher Level (HL) options set a high standard that prepares students to be truly university-ready. At MindSplash Academy we offer IB DP coaching in multiple subjects. Each programme runs 3 hours per week across our Khajaguda, Kokapet and Financial District centres. The relative difficulty of the Higher Level (HL) options compared to other similar programmes makes a successful IB DP student ‘ivy-league ready’. We offer IB DP programmes in Maths Analysis & Approaches (AA & Al), Physics, Chemistry, Economics, Language and Literature and Computer Science. Each program has 3 hours of classes per week with 1 hour each day. For exact schedules, please contact our branches." />
-          </dl>
+            <Description content="The IB Diploma Programme combines subject study with independent academic work. MindSplash Academy offers coaching in Mathematics: Analysis and Approaches (AA), Mathematics: Applications and Interpretation (AI), Physics, Chemistry, Economics, Language and Literature, and Computer Science. Classes run for three hours per subject each week across our Khajaguda, Kokapet and Financial District centres. Contact a branch for current schedules and subject availability." />
+            <p className="mt-4"><Link href="/programs/ib-dp" className="font-semibold text-gradient-start hover:underline">IB DP subject tuition in Hyderabad</Link></p>
+          </div>
           <figure className="relative">
             <Image
               src="/new_image.svg"
-              alt="MindSplash Academy - IB Diploma Programme"
+              alt=""
               width={64}
               height={80}
               style={{ width: "auto", height: "auto" }}
@@ -177,7 +198,7 @@ export default function ProgramsPage() {
             />
             <Image
               src={"/dp_kid.jpg"}
-              alt="MindSplash Academy IB Diploma Programme students preparing for university"
+              alt="Student studying IB Diploma Programme subjects"
               width={541}
               height={473}
               loading="lazy"
@@ -194,7 +215,7 @@ export default function ProgramsPage() {
         <figure className="relative">
           <Image
             src="/new_image.svg"
-            alt="MindSplash Academy - Olympiad training program"
+            alt=""
             width={64}
             height={80}
             style={{ width: "auto", height: "auto" }}
@@ -203,23 +224,24 @@ export default function ProgramsPage() {
           />
           <Image
             src={"/olympiad_kid.jpg"}
-            alt="MindSplash Academy students preparing for international math and science competitions"
+            alt="Students practising Mathematics and Science problems"
             width={541}
             height={473}
             loading="lazy"
             className="rounded-[28px]"
           />
         </figure>
-        <dl className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
-          <dt className="mb-[18px]" id="olympiad-program-heading">
+        <div className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
+          <h2 className="mb-[18px]" id="olympiad-program-heading">
             <GradientHeading content={SEO_CONSTANTS.OLYMPIAD_TITLE} />
-          </dt>
+          </h2>
           <SubHeading
             content={SEO_CONSTANTS.OLYMPIAD_SUBTITLE}
             className="mb-8"
           />
-          <Description content="MindSplash Academy is pioneers and leaders in Olympiads! Our results and national level ranks speak for us. We train students of grades 6 to 10 for various international math and science competitions. The recognition at these Olympiads add to their resume and have a significant impact on their university admissions. Along with Olympiads, we offer training for American Math Competitions (AMC), IOQM, and other such Olympiads which lead to participation to represent their nation at international level." />
-        </dl>
+            <Description content="Olympiad preparation covers problem-solving in Mathematics and Science, with practice for competitions such as IOQM and AMC. Contact a branch for current competition and class details." />
+            <p className="mt-4"><Link href="/programs/olympiads" className="font-semibold text-gradient-start hover:underline">Olympiad classes in Hyderabad</Link></p>
+        </div>
       </section>
       {/* SAT/PSAT & Exam Prep Program Section */}
       <section
@@ -227,22 +249,23 @@ export default function ProgramsPage() {
         aria-labelledby="exam-prep-program-heading"
       >
         <div className="w-[74%] flex flex-col-reverse lg:flex-row mx-auto justify-between items-center px-4 lg:gap-20 py-[100px] pb-20">
-          <dl className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
-            <dt className="mb-[18px]" id="exam-prep-program-heading">
+          <div className="w-full lg:max-w-[51%] self-center mt-10 lg:mt-0">
+            <h2 className="mb-[18px]" id="exam-prep-program-heading">
               <GradientHeading content={SEO_CONSTANTS.EXAM_PREP_TITLE} />
-            </dt>
+            </h2>
             <SubHeading
               content={SEO_CONSTANTS.EXAM_PREP_SUBTITLE}
               className="mb-8"
             />
-            <Description content="MindSplash Academy offers focused Digital SAT and PSAT preparation for students aiming at top university admissions. Our programme covers adaptive Math strategies, Evidence-Based Reading & Writing, and timed full-length practice tests on the latest College Board format. Students also receive personalised score analysis to target weak areas systematically." />
+            <Description content="Students practise Digital SAT and PSAT Math and Reading and Writing, including timed exercises and review of missed questions." />
+            <p className="mt-4"><Link href="/programs/exam-prep" className="font-semibold text-gradient-start hover:underline">SAT, PSAT and school exam preparation in Hyderabad</Link></p>
             <br />
-            <Description content="Beyond standardised tests, we support students with school exam preparation — including midterms, final exams and internal assessments — across IB, IGCSE and national board curricula. Mocks, revision workshops and one-on-one doubt-clearing sessions ensure students approach every exam with confidence." />
-          </dl>
+            <Description content="We also support school exam preparation across IB, IGCSE, and national board curricula through mock exams, revision workshops, and doubt-clearing sessions. Contact a branch for current schedules." />
+          </div>
           <figure className="relative">
             <Image
               src="/new_image.svg"
-              alt="MindSplash Academy - SAT PSAT and exam preparation in Hyderabad"
+              alt=""
               width={64}
               height={80}
               style={{ width: "auto", height: "auto" }}
@@ -251,13 +274,23 @@ export default function ProgramsPage() {
             />
             <Image
               src={"/exam_kid.jpg"}
-              alt="MindSplash Academy students preparing for SAT PSAT and school exams in Hyderabad"
+              alt="Student preparing for a standardised test"
               width={541}
               height={473}
               loading="lazy"
               className="rounded-[28px]"
             />
           </figure>
+        </div>
+      </section>
+      <section className="mx-auto mb-16 w-[85%] lg:w-[75%]" aria-labelledby="programme-centres-heading">
+        <h2 id="programme-centres-heading" className="mb-6 text-2xl font-bold text-secondary md:text-3xl">Find a MindSplash tuition centre in Hyderabad</h2>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {[
+            { name: "Khajaguda", href: "/branches/khajaguda" },
+            { name: "Kokapet", href: "/branches/kokapet" },
+            { name: "Financial District", href: "/branches/financialdistrict" },
+          ].map((branch) => <Link key={branch.href} href={branch.href} className="rounded-2xl border border-card-border bg-secondary-foreground p-5 font-semibold text-gradient-start hover:underline">Explore programmes at the {branch.name} centre</Link>)}
         </div>
       </section>
       {/* Call to Action Section */}
@@ -270,29 +303,26 @@ export default function ProgramsPage() {
             className="text-center md:text-left text-xl lg:text-[25px] xl:text-[30px] 2xl:text-[46px] md:leading-[60px] tracking-[0px]"
             id="cta-heading"
           >
-            Experience learning that’s
+            Talk with our team about
             <br />
             <span className="font-semibold">
               {" "}
               engaging, immersive, and fun.
             </span>
           </p>
-          <Button type="button" className="group">
-            <a
+          <Button asChild className="group">
+            <Link
               href="/contact"
               aria-label="Contact MindSplash Academy to learn more about our programs"
             >
               {SEO_CONSTANTS.SPEAK_WITH_US}
-            </a>
-            <div className="self-center group-hover:opacity-100 right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
-              <ChevronRight className="text-foreground" />
-            </div>
+              <div className="self-center group-hover:opacity-100 right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
+                <ChevronRight className="text-foreground" />
+              </div>
+            </Link>
           </Button>
         </div>
       </section>
-
-      {/* Contact Us Modal */}
-      <ContactUsModal />
 
       {/* Structured Data for SEO */}
       <script
@@ -301,15 +331,15 @@ export default function ProgramsPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "MindSplash Academy Educational Programs - Primary, IGCSE, IB MYP, IB DP, Olympiad & Exam Prep",
+            name: "MindSplash Academy Programmes in Hyderabad",
             description:
-              "Discover MindSplash Academy's comprehensive educational programs including Primary, IGCSE, IB MYP, IB DP, Olympiad training, and Exam Preparation. Our programs empower, educate, support and grow students.",
-            url: "https://mindsplash.com/programs",
+              "Compare Primary, Cambridge IGCSE, IB MYP, IB DP, Olympiad, and exam preparation programmes at MindSplash Academy in Hyderabad.",
+            url: "https://mindsplash.in/programs",
             mainEntity: {
               "@type": "EducationalOrganization",
               name: "MindSplash Academy",
               description:
-                "Leading educational institution offering comprehensive programs from primary to IB diploma",
+                "Educational programmes for Primary, Cambridge IGCSE, IB MYP, IB DP, Olympiad, and exam preparation students.",
               hasOfferCatalog: {
                 "@type": "OfferCatalog",
                 name: "Educational Programs",
@@ -330,7 +360,7 @@ export default function ProgramsPage() {
                       "@type": "EducationalProgram",
                       name: "IGCSE Program",
                       description:
-                        "Grades 1-3 - Cambridge IGCSE and A-level preparation",
+                        "Cambridge O-Level and A-Level subject coaching",
                       educationalLevel: "Secondary",
                     },
                   },
@@ -340,7 +370,7 @@ export default function ProgramsPage() {
                       "@type": "EducationalProgram",
                       name: "IB MYP",
                       description:
-                        "Grades 4-5 - International Baccalaureate Middle Years Programme",
+                        "Years 4 and 5: International Baccalaureate Middle Years Programme coaching",
                       educationalLevel: "Secondary",
                     },
                   },
@@ -369,8 +399,7 @@ export default function ProgramsPage() {
                     itemOffered: {
                       "@type": "EducationalProgram",
                       name: "Exam Preparation",
-                      description: "Comprehensive exam preparation program",
-                      educationalLevel: "Primary",
+                      description: "SAT, PSAT and school exam preparation",
                     },
                   },
                 ],

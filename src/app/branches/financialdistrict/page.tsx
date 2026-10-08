@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Heading from "@/components/Heading";
@@ -9,45 +9,24 @@ import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "MindSplash Academy Financial District | IGCSE, IB & Olympiad Coaching",
+  title: "IB & IGCSE Tuition in Financial District | MindSplash Academy",
   description:
-    "Explore MindSplash Academy Financial District for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs in Hyderabad.",
+    "MindSplash Academy provides IB and IGCSE coaching in Financial District, Hyderabad. Explore programs and book a free demo class.",
   keywords: [
-    "MindSplash Academy Financial District",
-    "academic coaching Financial District",
-    "coaching institute Financial District",
-    "IGCSE coaching Financial District",
-    "IGCSE classes Financial District",
-    "IB coaching Financial District",
+    "IB & IGCSE tuition Financial District",
+    "IB tuition Financial District",
+    "IGCSE tuition Financial District",
     "IB MYP coaching Financial District",
     "IB DP coaching Financial District",
-    "Olympiad coaching Financial District",
-    "Olympiad preparation Financial District",
-    "exam preparation Financial District",
-    "academic support Financial District",
-    "MindSplash Financial District",
-    "best IGCSE coaching in Financial District",
-    "IGCSE coaching institute in Financial District",
-    "IB coaching institute in Financial District",
-    "IB MYP coaching in Financial District",
-    "IB DP coaching in Financial District",
-    "Olympiad preparation classes in Financial District",
-    "exam preparation classes in Financial District",
-    "academic coaching classes in Financial District",
-    "MindSplash Academy in Financial District",
-    "academic coaching near Financial District",
-    "IGCSE classes near Financial District",
-    "IB classes near Financial District"
   ],
   openGraph: {
-    title: "MindSplash Academy Financial District | IGCSE, IB & Olympiad Coaching",
-    description:
-      "Explore MindSplash Academy Financial District for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs in Hyderabad.",
+    title: "IB & IGCSE Tuition in Financial District | MindSplash Academy",
+    description: "MindSplash Academy provides IB and IGCSE coaching in Financial District, Hyderabad. Explore programs and book a free demo class.",
     type: "website",
     url: "https://mindsplash.in/branches/financialdistrict",
   },
   alternates: {
-    canonical: "https://mindsplash.in/branches/financialdistrict",
+    canonical: "/branches/financialdistrict",
   },
 };
 
@@ -55,7 +34,7 @@ const PROGRAMS = [
   { name: "IB MYP", grades: "Years 4 & 5", href: "/programs#ib-myp-program-heading" },
   { name: "IB DP", grades: "Diploma Programme", href: "/programs#ib-dp-program-heading" },
   { name: "IGCSE", grades: "O-Level & A-Level", href: "/programs#igcse-program-heading" },
-  { name: "Olympiads", grades: "Grades 6–10", href: "/programs#olympiad-program-heading" },
+  { name: "Olympiads", grades: "Grades 6â€“10", href: "/programs#olympiad-program-heading" },
   { name: "SAT / PSAT", grades: "University admission prep", href: "/programs#exam-prep-program-heading" },
   { name: "Primary", grades: "Grade 5 & below", href: "/programs#primary-program-heading" },
 ];
@@ -71,7 +50,7 @@ const FAQS = [
   },
   {
     q: "What makes the Financial District branch convenient for working parents?",
-    a: "Located in the heart of the IT corridor, our Financial District centre is just minutes from major tech parks and residential communities like My Home Vihanga, Aparna Sarovar and Lanco Hills — making drop-off and pick-up seamless.",
+    a: "Located in the heart of the IT corridor, our Financial District centre is just minutes from major tech parks and residential communities like My Home Vihanga, Aparna Sarovar and Lanco Hills â€” making drop-off and pick-up seamless.",
   },
   {
     q: "Can I book a free trial class at Financial District?",
@@ -79,7 +58,7 @@ const FAQS = [
   },
   {
     q: "What are the batch sizes?",
-    a: "All batches are limited to 8–12 students to ensure personalised attention, regular feedback, and close monitoring by our expert faculty.",
+    a: "All batches are limited to 8â€“12 students to ensure personalised attention, regular feedback, and close monitoring by our expert faculty.",
   },
 ];
 
@@ -97,7 +76,7 @@ export default function FinancialDistrictPage() {
       ]} />
 
       {/* Hero */}
-      <section className="mx-7 mt-5 flex flex-col justify-center items-center min-h-[320px] md:min-h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center">
+      <section className="mx-3 mt-2 sm:mx-5 md:mx-7 md:mt-3 flex flex-col justify-center items-center min-h-[320px] md:min-h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center">
         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-sm font-semibold mb-4">
           <MapPin className="w-4 h-4" /> Financial District, Hyderabad
         </div>
@@ -105,10 +84,10 @@ export default function FinancialDistrictPage() {
           MindSplash Academy Financial District
         </h1>
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
-          Premium coaching in Hyderabad's IT corridor — small batches, expert IIT faculty, and a track record of top scores.
+          Premium coaching in Hyderabad's IT corridor â€” small batches, expert IIT faculty, and a track record of top scores.
         </p>
         <div className="mt-8">
-          <Link href="/contact" aria-label="Book a free demo at Financial District">
+          <Link href="/contact?location=Financial_District" aria-label="Book a free demo at Financial District">
             <PrimaryButton content="Book a Free Demo" />
           </Link>
         </div>
@@ -138,6 +117,7 @@ export default function FinancialDistrictPage() {
             My Home Vihanga Road,<br />
             Gachibowli, Hyderabad 500032
           </p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Above%20ICICI%20Bank%2C%20My%20Home%20Vihanga%20Road%2C%20Gachibowli%2C%20Hyderabad%20500032" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-gradient-start hover:underline">Get directions</a>
         </div>
 
         <div className="p-7 bg-secondary-foreground border border-card-border rounded-[30px] shadow-sm flex flex-col gap-4">
@@ -146,8 +126,8 @@ export default function FinancialDistrictPage() {
           </div>
           <h3 className="font-bold text-xl text-gradient-start">Contact</h3>
           <p className="text-description text-sm leading-relaxed">
-            <strong>Phone:</strong> +91 7075340810<br />
-            <strong>Email:</strong> reachus@mindsplash.com
+            <strong>Phone:</strong> <a href="tel:+917075340810" className="hover:underline">+91 7075340810</a><br />
+            <strong>Email:</strong> <a href="mailto:reachus@mindsplash.com" className="hover:underline">reachus@mindsplash.com</a>
           </p>
         </div>
 
@@ -157,7 +137,7 @@ export default function FinancialDistrictPage() {
           </div>
           <h3 className="font-bold text-xl text-gradient-start">Timings</h3>
           <p className="text-description text-sm leading-relaxed">
-            <strong>Mon – Sat:</strong> 3:00 PM – 8:00 PM<br />
+            <strong>Mon â€“ Sat:</strong> 3:00 PM â€“ 8:00 PM<br />
             <strong>Sunday:</strong> By appointment
           </p>
         </div>
@@ -227,11 +207,11 @@ export default function FinancialDistrictPage() {
             <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
               <Award className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
               <p className="text-3xl font-bold text-gradient-start mb-2">54/56</p>
-              <p className="text-sm text-description">IB MYP 2024 Topper Score</p>
+              <p className="text-sm text-description">Archived 2024 IB MYP top score</p>
             </div>
             <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
               <Users className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
-              <p className="text-3xl font-bold text-gradient-start mb-2">8–12</p>
+              <p className="text-3xl font-bold text-gradient-start mb-2">8â€“12</p>
               <p className="text-sm text-description">Students per Batch</p>
             </div>
             <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
@@ -256,7 +236,7 @@ export default function FinancialDistrictPage() {
           ))}
         </div>
         <p className="text-description text-sm">
-          We also welcome students from our sister branches. Explore our <Link href="/branches/khajaguda" className="text-gradient-start hover:underline">Khajaguda</Link> and <Link href="/branches/kokapet" className="text-gradient-start hover:underline">Kokapet</Link> branches. For any inquiries, please <Link href="/contact" className="text-gradient-start hover:underline font-medium">Contact MindSplash Academy</Link>.
+          We also welcome students from our sister branches. Explore our <Link href="/branches/khajaguda" className="text-gradient-start hover:underline">Khajaguda</Link> and <Link href="/branches/kokapet" className="text-gradient-start hover:underline">Kokapet</Link> branches. For any inquiries, please <Link href="/contact?location=Financial_District" className="text-gradient-start hover:underline font-medium">contact the Financial District team</Link>.
         </p>
       </section>
 
@@ -284,14 +264,14 @@ export default function FinancialDistrictPage() {
           Ready to visit our Financial District centre?
         </h2>
         <p className="text-foreground/90 text-lg mb-8 max-w-xl">
-          Schedule a free demo class — conveniently located in the heart of Hyderabad's tech hub.
+          Schedule a free demo class â€” conveniently located in the heart of Hyderabad's tech hub.
         </p>
-        <Link href="/contact">
+        <Link href="/contact?location=Financial_District">
           <PrimaryButton content="Book a Free Demo" />
         </Link>
       </section>
 
-      <ContactUsModal />
+      <ContactUsModal location="Financial_District" />
 
       {/* JSON-LD */}
       <script
@@ -300,7 +280,7 @@ export default function FinancialDistrictPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "MindSplash Academy — Financial District",
+            name: "MindSplash Academy â€” Financial District",
             description:
               "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching in Financial District, Gachibowli, Hyderabad.",
             url: "https://mindsplash.in/branches/financialdistrict",

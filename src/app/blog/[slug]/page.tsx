@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,14 +10,24 @@ import GradientHeading from "@/components/GradientHeading";
 import Description from "@/components/Description";
 import { BLOG_POSTS } from "../page";
 
+const categoryProgram = {
+  "IB MYP": { label: "IB MYP coaching", href: "/programs/ib-myp", value: "IB_MYP" },
+  "IB DP": { label: "IB DP coaching", href: "/programs/ib-dp", value: "IB_DP" },
+  IGCSE: { label: "IGCSE coaching", href: "/programs/igcse", value: "IGCSE" },
+  Olympiads: { label: "Olympiad preparation", href: "/programs/olympiads", value: "Olympiads" },
+  "SAT & Prep": { label: "exam preparation", href: "/programs/exam-prep", value: "ExamPrep" },
+  Parents: { label: "all academic programmes", href: "/programs", value: undefined },
+} as const;
+
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({
     slug: post.slug,
   }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) return {};
 
   return {
@@ -30,13 +40,14 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       url: `https://mindsplash.in/blog/${post.slug}`,
     },
     alternates: {
-      canonical: `https://mindsplash.in/blog/${post.slug}`,
+      canonical: `/blog/${post.slug}`,
     },
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
 
   if (!post) {
     notFound();
@@ -57,12 +68,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               {post.category}
             </span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
+          <h1 className="mb-6 text-3xl font-bold leading-tight text-secondary md:text-5xl">
             {post.title}
           </h1>
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-secondary font-medium">
             <span className="flex items-center gap-1.5">
-              <User className="w-4 h-4 text-gradient-start" /> {post.author}
+              <User className="w-4 h-4 text-gradient-start" />
+              <Link href={post.author.startsWith("Rahul") ? "/authors/rahul-chakravarthy" : "/about#our-teachers"} className="hover:underline">{post.author}</Link>
             </span>
             <span className="flex items-center gap-1.5">
               <Calendar className="w-4 h-4 text-gradient-start" /> {post.date}
@@ -83,31 +95,46 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           />
         </div>
 
-        <div className="prose prose-lg dark:prose-invert max-w-none mb-16 prose-headings:text-secondary prose-a:text-gradient-start prose-a:no-underline hover:prose-a:underline">
+        <div className="prose prose-lg max-w-none mb-16 text-description prose-headings:text-secondary prose-a:text-gradient-start prose-a:no-underline hover:prose-a:underline">
           <p className="text-xl leading-relaxed text-foreground/90 font-medium mb-8">
             {post.excerpt}
           </p>
 
-          <h2>Understanding the Core Challenges</h2>
-          <p>
-            Many students struggle when transitioning to advanced curriculum levels because they rely on rote memorization rather than deep conceptual understanding. Our approach fundamentally changes this dynamic. By breaking down complex topics into digestible frameworks, we ensure students not only learn but retain the information effectively.
-          </p>
-
-          <h3>Strategic Preparation</h3>
-          <p>
-            The key to mastering these rigorous academic programs is a structured study plan that includes:
-          </p>
-          <ul>
-            <li><strong>Diagnostic Assessments:</strong> Identifying baseline strengths and weaknesses early.</li>
-            <li><strong>Targeted Practice:</strong> Focusing on high-yield topics and frequently tested concepts.</li>
-            <li><strong>Mock Examinations:</strong> Simulating real testing environments to build stamina and time management skills.</li>
-          </ul>
-
-          <h2>Why Our Methodology Works</h2>
-          <p>
-            Unlike traditional tutoring centers, MindSplash focuses on personalized learning trajectories. We utilize visual memory maps, spaced repetition, and active recall techniques that are proven to enhance cognitive retention. This empowers students to face their final examinations with confidence and clarity.
-          </p>
+          {post.sections.map((section) => (
+            <section key={section.heading}>
+              <h2 className="text-secondary">{section.heading}</h2>
+              <p>{section.body}</p>
+              {section.points && (
+                <ul>
+                  {section.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))}
+          {post.sources?.length ? (
+            <section aria-labelledby="article-sources-heading" className="mt-10 border-t border-card-border pt-6">
+              <h2 id="article-sources-heading" className="text-secondary">Official curriculum references</h2>
+              <ul>
+                {post.sources.map((source) => <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer">{source.label}</a></li>)}
+              </ul>
+            </section>
+          ) : null}
         </div>
+
+        <nav aria-label="Related pages" className="mb-12 rounded-3xl border border-card-border bg-secondary-foreground p-6 md:p-8">
+          <h2 className="mb-4 text-xl font-bold text-secondary">Explore related learning and locations</h2>
+          <div className="flex flex-wrap gap-x-6 gap-y-3 text-gradient-start">
+            <Link href={categoryProgram[post.category].href} className="font-semibold hover:underline">
+              {categoryProgram[post.category].label}
+            </Link>
+            <Link href="/branches/khajaguda" className="hover:underline">Khajaguda centre</Link>
+            <Link href="/branches/kokapet" className="hover:underline">Kokapet centre</Link>
+            <Link href="/branches/financialdistrict" className="hover:underline">Financial District centre</Link>
+            <Link href="/contact" className="font-semibold hover:underline">Ask about {categoryProgram[post.category].label} or book a free demo</Link>
+          </div>
+        </nav>
 
         <div className="border-t border-card-border pt-8 mb-12 flex items-center justify-between">
           <Link href="/blog" className="inline-flex items-center gap-2 text-gradient-start font-semibold hover:underline">
@@ -124,7 +151,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </h2>
           <Description content="Join MindSplash Academy and unlock your true academic potential." />
           <div className="mt-8">
-            <ContactUsModal />
+            <ContactUsModal program={categoryProgram[post.category].value} />
           </div>
         </div>
       </section>
@@ -138,11 +165,17 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             "@type": "BlogPosting",
             headline: post.title,
             description: post.excerpt,
-            author: {
-              "@type": "Person",
-              name: post.author,
-            },
-            datePublished: post.date, // Note: In a real app, use ISO string dates
+            author: post.author.startsWith("MindSplash")
+              ? {
+                  "@type": "Organization",
+                  name: "MindSplash Academic Team",
+                  url: "https://mindsplash.in/about",
+                }
+              : {
+                  "@type": "Person",
+                  name: "Rahul Chakravarthy",
+                  url: "https://mindsplash.in/about#leadership-team",
+                },
             image: "https://mindsplash.in/meticulous.jpg",
             publisher: {
               "@type": "Organization",

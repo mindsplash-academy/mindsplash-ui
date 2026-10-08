@@ -1,18 +1,37 @@
-import { MetadataRoute } from 'next';
+﻿import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mindsplash.in';
-  const lastModified = new Date();
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://mindsplash.in').replace(/\/$/, '');
 
   const routes = [
     '',
     '/about',
+    '/authors/rahul-chakravarthy',
+    '/methodology',
+    '/parents/faq',
     '/programs',
     '/programs/ib-myp',
+    '/programs/ib-myp/mathematics',
+    '/programs/ib-myp/physics',
+    '/programs/ib-myp/chemistry',
+    '/programs/ib-myp/biology',
     '/programs/ib-dp',
+    '/programs/ib-dp/mathematics-analysis-approaches',
+    '/programs/ib-dp/mathematics-applications-interpretation',
+    '/programs/ib-dp/physics',
+    '/programs/ib-dp/chemistry',
+    '/programs/ib-dp/economics',
+    '/programs/ib-dp/english-language-and-literature',
+    '/programs/ib-dp/computer-science',
     '/programs/igcse',
+    '/programs/igcse/mathematics',
+    '/programs/igcse/physics',
+    '/programs/igcse/chemistry',
+    '/programs/igcse/biology',
+    '/programs/igcse/computer-science',
     '/programs/olympiads',
     '/programs/exam-prep',
+    '/branches',
     '/branches/khajaguda',
     '/branches/kokapet',
     '/branches/financialdistrict',
@@ -22,12 +41,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/blog/ib-dp-aa-vs-ai-math-guide',
     '/blog/olympiad-preparation-strategy-ioqm-amc',
     '/blog/sat-psat-prep-tips-hyderabad',
+    '/blog/parent-guide-choosing-academic-coaching',
+    '/blog/ib-physics-common-mistakes-preparation',
+    '/blog/igcse-physics-vs-ib-physics',
+    '/blog/ib-myp-study-timetable-exam-season',
+    '/blog/parents-identify-learning-gaps-before-exams',
+    '/blog/ib-vs-igcse-curriculum-assessment-pathway',
+    '/blog/mock-examinations-time-management',
+    '/blog/math-study-techniques-international-curriculum',
     '/contact',
   ];
 
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified,
     changeFrequency: route === '' ? 'daily' : 'weekly',
     priority: route === '' ? 1.0 : route.startsWith('/programs/') || route.startsWith('/branches/') ? 0.9 : 0.8,
   }));

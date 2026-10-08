@@ -10,9 +10,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Menu, ChevronDown, ChevronUp, ChevronRight, BookOpen, GraduationCap, Trophy, ClipboardList, MapPin } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 export default function MobileNavbar() {
+  const pathname = usePathname();
   const [aboutOpen, setAboutOpen] = useState(false);
   const [programsOpen, setProgramsOpen] = useState(false);
   const [branchesOpen, setBranchesOpen] = useState(false);
@@ -21,6 +23,10 @@ export default function MobileNavbar() {
   const closeMenu = () => {
     setSheetOpen(false);
   };
+
+  const isRouteActive = (route: string) =>
+    route === "/" ? pathname === "/" : pathname === route || pathname.startsWith(`${route}/`);
+  const activeLinkClass = "underline decoration-2 underline-offset-4 decoration-white";
 
   return (
     <div className="min-[1100px]:hidden flex items-center">
@@ -45,7 +51,8 @@ export default function MobileNavbar() {
             >
               <Link
                 href="/"
-                className="flex items-center gap-3 hover:underline"
+                aria-current={isRouteActive("/") ? "page" : undefined}
+                className={`flex items-center gap-3 ${isRouteActive("/") ? activeLinkClass : "hover:underline"}`}
                 onClick={closeMenu}
               >
                 Home
@@ -56,7 +63,7 @@ export default function MobileNavbar() {
             <div className="flex flex-col justify-center">
               <div className="flex items-center">
                 <Button asChild variant="nav">
-                  <Link href="/about" onClick={closeMenu}>
+                  <Link href="/about" aria-current={isRouteActive("/about") ? "page" : undefined} className={isRouteActive("/about") ? activeLinkClass : ""} onClick={closeMenu}>
                     About Us
                   </Link>
                 </Button>
@@ -90,7 +97,7 @@ export default function MobileNavbar() {
                       icon: "/teachers.svg",
                     },
                     {
-                      href: "/about#methodology",
+                      href: "/methodology",
                       label: "Our Methodology",
                       icon: "/methodology.svg",
                     },
@@ -113,7 +120,7 @@ export default function MobileNavbar() {
                       <Link href={item.href} onClick={closeMenu}>
                         <Image
                           src={item.icon}
-                          alt={item.label}
+                          alt=""
                           width={20}
                           height={20}
                           className="brightness-0 invert"
@@ -131,7 +138,7 @@ export default function MobileNavbar() {
             <div className="flex flex-col justify-center w-full">
               <div className="flex items-center">
                 <Button asChild variant="nav" className="pl-5">
-                  <Link href="/programs" onClick={closeMenu}>
+                  <Link href="/programs" aria-current={isRouteActive("/programs") ? "page" : undefined} className={isRouteActive("/programs") ? activeLinkClass : ""} onClick={closeMenu}>
                     Our Programs
                   </Link>
                 </Button>
@@ -159,14 +166,14 @@ export default function MobileNavbar() {
                     { label: "IB MYP", href: "/programs/ib-myp", icon: GraduationCap },
                     { label: "IB DP", href: "/programs/ib-dp", icon: GraduationCap },
                     { label: "Olympiads", href: "/programs/olympiads", icon: Trophy },
-                    { label: "Exam Preparation", href: "/programs/exam-preparation", icon: ClipboardList }
+                    { label: "Exam Preparation", href: "/programs/exam-prep", icon: ClipboardList }
                   ].map((item) => (
                     <Button
                       asChild
                       key={item.label}
                         className="flex items-center gap-2 bg-transparent border-transparent text-white hover:bg-transparent"
                       >
-                      <Link href={item.href} onClick={closeMenu}>
+                      <Link href={item.href} aria-current={pathname === item.href ? "page" : undefined} className={pathname === item.href ? activeLinkClass : ""} onClick={closeMenu}>
                         <item.icon className="w-5 h-5" />
                         {item.label}
                         <ChevronRight className="w-4 h-4 ml-auto" />
@@ -186,7 +193,8 @@ export default function MobileNavbar() {
             >
               <Link
                 href="/blog"
-                className="flex items-start gap-3 hover:underline"
+                aria-current={isRouteActive("/blog") ? "page" : undefined}
+                className={`flex items-start gap-3 ${isRouteActive("/blog") ? activeLinkClass : "hover:underline"}`}
                 onClick={closeMenu}
               >
                 Blog
@@ -197,7 +205,7 @@ export default function MobileNavbar() {
             <div className="flex flex-col justify-center w-full">
               <div className="flex items-center">
                 <Button asChild variant="nav" className="pl-5">
-                  <Link href="/branches" onClick={closeMenu}>
+                  <Link href="/branches" aria-current={isRouteActive("/branches") ? "page" : undefined} className={isRouteActive("/branches") ? activeLinkClass : ""} onClick={closeMenu}>
                     Branches
                   </Link>
                 </Button>
@@ -241,7 +249,7 @@ export default function MobileNavbar() {
                       key={item.label}
                       className="flex items-start gap-3 bg-transparent border-transparent text-white hover:bg-white/10 h-auto py-2 rounded-lg"
                     >
-                      <Link href={item.href} onClick={closeMenu}>
+                      <Link href={item.href} aria-current={pathname === item.href ? "page" : undefined} className={pathname === item.href ? activeLinkClass : ""} onClick={closeMenu}>
                         <MapPin className="w-5 h-5 shrink-0 mt-0.5" />
                         <div className="flex flex-col text-left whitespace-normal">
                           <span className="font-medium text-base">{item.label}</span>
@@ -263,7 +271,8 @@ export default function MobileNavbar() {
             >
               <Link
                 href="/contact"
-                className="flex gap-3 justify-start hover:underline"
+                aria-current={isRouteActive("/contact") ? "page" : undefined}
+                className={`flex gap-3 justify-start ${isRouteActive("/contact") ? activeLinkClass : "hover:underline"}`}
                 onClick={closeMenu}
               >
                 Contact Us

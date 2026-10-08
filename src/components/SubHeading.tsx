@@ -6,10 +6,10 @@ export default function SubHeading({
   className?: string;
 }) {
   return (
-    <h2
-      className={`text-left text-[26px] leading-[34px] tracking-[0px] text-secondary self-baseline ${className}`}
+    <p
+      className={`self-baseline text-left text-[21px] leading-7 tracking-[0px] text-secondary sm:text-[23px] md:text-[26px] md:leading-[34px] ${className}`}
     >
       {content}
-    </h2>
+    </p>
   );
 }

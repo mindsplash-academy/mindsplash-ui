@@ -11,6 +11,8 @@ interface BreadcrumbsProps {
 }
 
 export default function Breadcrumbs({ items }: BreadcrumbsProps) {
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://mindsplash.in").replace(/\/$/, "");
+
   return (
     <>
       <nav
@@ -48,7 +50,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
               position: i + 1,
               name: item.label,
               ...(item.href
-                ? { item: `https://mindsplash.in${item.href}` }
+                ? { item: `${siteUrl}${item.href}` }
                 : {}),
             })),
           }),

@@ -7,7 +7,7 @@ export default function Heading({
 }) {
   return (
     <span
-      className={`text-left font-bold text-[46px] leading-[50px] tracking-[0px] text-secondary self-baseline ${className}`}
+      className={`self-baseline text-left text-[32px] leading-[1.15] font-bold tracking-[0px] text-secondary sm:text-[38px] md:text-[42px] md:leading-[1.15] lg:text-[46px] lg:leading-[50px] ${className}`}
     >
       {content}
     </span>

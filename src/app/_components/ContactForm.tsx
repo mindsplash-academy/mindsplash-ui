@@ -8,25 +8,28 @@ import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/FormInput";
 import { ChevronRight } from "lucide-react";
 import { SelectField } from "@/components/SelectField";
-import { locationOptions } from "../contact/_components/SpeakUsForm";
+import { locationOptions, programOptions } from "../contact/_components/SpeakUsForm";
 import { toast } from "sonner";
 import { submitUser } from "@/lib/api";
+import { trackEvent } from "@/lib/analytics";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "Min 2 chars").max(50, "Max 50 chars"),
   lastName: z.string().min(2, "Min 2 chars").max(50, "Max 50 chars"),
   email: z.string().email("Invalid email"),
   phone: z.string().regex(/^[0-9]{10}$/, "Must be 10 digits"),
+  program: z.string().min(1, "Required"),
   location: z.string().min(1, "Required"),
 });
 
-export default function ContactForm({ isDialogForm = false, onCancel = () => { } }: { isDialogForm?: boolean, onCancel?: () => void }) {
+export default function ContactForm({ isDialogForm = false, onCancel = () => { }, defaultLocation = "", defaultProgram = "" }: { isDialogForm?: boolean, onCancel?: () => void, defaultLocation?: string, defaultProgram?: string }) {
   const defaultValues = {
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    location: "",
+    program: defaultProgram,
+    location: defaultLocation,
   };
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -44,7 +47,7 @@ export default function ContactForm({ isDialogForm = false, onCancel = () => { }
       childFirstName: "Child First Name",
       childLastName: "Child Last Name",
       childLevel2024: "Grade 6",
-      childPreferredProgram: "Primary",
+      childPreferredProgram: values.program,
       preferredLocation: values.location,
       consent: true,
     }
@@ -54,14 +57,11 @@ export default function ContactForm({ isDialogForm = false, onCancel = () => { }
       toast.success("Success", { description: data.message || "Form submitted successfully!" });
       form.reset(defaultValues);
       
-      // Lead tracking event for Google Tag Manager / Meta Pixel
-      if (typeof window !== "undefined" && (window as any).dataLayer) {
-        (window as any).dataLayer.push({
-          event: "generate_lead",
-          form_name: "ContactForm",
-          location: values.location
-        });
-      }
+      trackEvent("generate_lead", {
+        form_name: "ContactForm",
+        location: values.location,
+        program: values.program,
+      });
     } catch (error) {
       console.error("Contact form submission failed:", error);
       toast.error("Error", { description: error instanceof Error ? error.message : "Failed to submit the form. Please try again." });
@@ -72,9 +72,9 @@ export default function ContactForm({ isDialogForm = false, onCancel = () => { }
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 pb-8 md:pb-0"
+        className="space-y-5 pb-5 md:pb-0"
       >
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${isDialogForm ? 'xl:grid-cols-2' : 'xl:grid-cols-3'}`}>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <FormInput
             control={form.control}
             name="firstName"
@@ -98,6 +98,13 @@ export default function ContactForm({ isDialogForm = false, onCancel = () => { }
             name="phone"
             label="Mobile Number *"
             placeholder="+91"
+          />
+          <SelectField
+            control={form.control}
+            name="program"
+            label="Preferred Programme *"
+            placeholder="Select programme"
+            options={programOptions}
           />
           <div className="col-span-1 md:col-span-2">
             <SelectField

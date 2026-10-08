@@ -12,6 +12,16 @@ const nextConfig: NextConfig = {
         destination: '/blog',
         permanent: true,
       },
+      {
+        source: '/programs/ib-mvp',
+        destination: '/programs/ib-myp',
+        permanent: true,
+      },
+      {
+        source: '/programs/1b-dp',
+        destination: '/programs/ib-dp',
+        permanent: true,
+      },
     ];
   },
 };

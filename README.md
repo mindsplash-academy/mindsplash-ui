@@ -20,6 +20,17 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## SEO and analytics configuration
+
+Copy `.env.example` to `.env.local` for local development and set the deployment environment variables:
+
+- `NEXT_PUBLIC_SITE_URL` — canonical site origin, such as `https://mindsplash.in`.
+- `API_BASE_URL` — server-side backend origin used to forward contact form submissions. It defaults to the current Google Cloud Run API if omitted.
+- `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` — the verification token provided by Google Search Console.
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — the GA4 web stream measurement ID, in `G-XXXXXXXXXX` format.
+
+When the GA4 ID is configured, the site tracks successful form submissions (`generate_lead`), phone clicks (`phone_click`), and WhatsApp clicks (`whatsapp_click`). Lead events include the selected programme and branch when available.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

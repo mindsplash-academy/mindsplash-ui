@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Heading from "@/components/Heading";
@@ -11,45 +11,24 @@ import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "MindSplash Academy Khajaguda | IGCSE, IB & Olympiad Coaching",
+  title: "IB & IGCSE Tuition in Khajaguda | MindSplash Academy",
   description:
-    "Explore MindSplash Academy Khajaguda for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs in Hyderabad.",
+    "Looking for IB or IGCSE tuition in Khajaguda? Explore MindSplash Academy's programs, subjects, teaching approach and free demo class.",
   keywords: [
-    "MindSplash Academy Khajaguda",
-    "academic coaching Khajaguda",
-    "coaching institute Khajaguda",
-    "IGCSE coaching Khajaguda",
-    "IGCSE classes Khajaguda",
-    "IB coaching Khajaguda",
+    "IB & IGCSE tuition Khajaguda",
+    "IB tuition Khajaguda",
+    "IGCSE tuition Khajaguda",
     "IB MYP coaching Khajaguda",
     "IB DP coaching Khajaguda",
-    "Olympiad coaching Khajaguda",
-    "Olympiad preparation Khajaguda",
-    "exam preparation Khajaguda",
-    "academic support Khajaguda",
-    "MindSplash Khajaguda",
-    "best IGCSE coaching in Khajaguda",
-    "IGCSE coaching institute in Khajaguda",
-    "IB coaching institute in Khajaguda",
-    "IB MYP coaching in Khajaguda",
-    "IB DP coaching in Khajaguda",
-    "Olympiad preparation classes in Khajaguda",
-    "exam preparation classes in Khajaguda",
-    "academic coaching classes in Khajaguda",
-    "MindSplash Academy in Khajaguda",
-    "academic coaching near Khajaguda",
-    "IGCSE classes near Khajaguda",
-    "IB classes near Khajaguda"
   ],
   openGraph: {
-    title: "MindSplash Academy Khajaguda | IGCSE, IB & Olympiad Coaching",
-    description:
-      "Explore MindSplash Academy Khajaguda for IGCSE, IB MYP, IB DP, Olympiad preparation and exam preparation programs in Hyderabad.",
+    title: "IB & IGCSE Tuition in Khajaguda | MindSplash Academy",
+    description: "Looking for IB or IGCSE tuition in Khajaguda? Explore MindSplash Academy's programs, subjects, teaching approach and free demo class.",
     type: "website",
     url: "https://mindsplash.in/branches/khajaguda",
   },
   alternates: {
-    canonical: "https://mindsplash.in/branches/khajaguda",
+    canonical: "/branches/khajaguda",
   },
 };
 
@@ -57,7 +36,7 @@ const PROGRAMS = [
   { name: "IB MYP", grades: "Years 4 & 5", href: "/programs#ib-myp-program-heading" },
   { name: "IB DP", grades: "Diploma Programme", href: "/programs#ib-dp-program-heading" },
   { name: "IGCSE", grades: "O-Level & A-Level", href: "/programs#igcse-program-heading" },
-  { name: "Olympiads", grades: "Grades 6–10", href: "/programs#olympiad-program-heading" },
+  { name: "Olympiads", grades: "Grades 6â€“10", href: "/programs#olympiad-program-heading" },
   { name: "SAT / PSAT", grades: "University admission prep", href: "/programs#exam-prep-program-heading" },
   { name: "Primary", grades: "Grade 5 & below", href: "/programs#primary-program-heading" },
 ];
@@ -73,7 +52,7 @@ const FAQS = [
   },
   {
     q: "What are the batch sizes at Khajaguda?",
-    a: "We maintain small batches of 8–12 students per class so that our teachers can monitor and mentor each student individually.",
+    a: "We maintain small batches of 8â€“12 students per class so that our teachers can monitor and mentor each student individually.",
   },
   {
     q: "Can I get a free demo class at Khajaguda?",
@@ -81,7 +60,7 @@ const FAQS = [
   },
   {
     q: "What results have students at Khajaguda achieved?",
-    a: "Our 2024 IB MYP cohort produced the topper with 54/56. Multiple students secured top scores in IGCSE Cambridge examinations and national-level Olympiad ranks.",
+    a: "The Academy-wide 2024 IB MYP cohort included a student who scored 54/56. For current details about IGCSE and Olympiad results, contact our academic team.",
   },
 ];
 
@@ -99,7 +78,7 @@ export default function KhajagudaPage() {
       ]} />
 
       {/* Hero */}
-      <section className="mx-7 mt-5 flex flex-col justify-center items-center min-h-[320px] md:min-h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center">
+      <section className="mx-3 mt-2 sm:mx-5 md:mx-7 md:mt-3 flex flex-col justify-center items-center min-h-[320px] md:min-h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center">
         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-sm font-semibold mb-4">
           <MapPin className="w-4 h-4" /> Khajaguda, Hyderabad
         </div>
@@ -107,10 +86,10 @@ export default function KhajagudaPage() {
           MindSplash Academy Khajaguda
         </h1>
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
-          Small batches, expert IIT-trained faculty, and proven results — right in the heart of Gachibowli.
+          Small batches, expert IIT-trained faculty, and proven results â€” right in the heart of Gachibowli.
         </p>
         <div className="mt-8">
-          <Link href="/contact" aria-label="Book a free demo at Khajaguda">
+          <Link href="/contact?location=Khajaguda" aria-label="Book a free demo at Khajaguda">
             <PrimaryButton content="Book a Free Demo" />
           </Link>
         </div>
@@ -140,6 +119,7 @@ export default function KhajagudaPage() {
             Khajaguda-Nanakramguda Road,<br />
             Gachibowli, Hyderabad 500089
           </p>
+          <a href="https://www.google.com/maps/search/?api=1&query=4th%20Floor%2C%20Arka%20Rochish%2C%20Khajaguda-Nanakramguda%20Road%2C%20Gachibowli%2C%20Hyderabad%20500089" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-gradient-start hover:underline">Get directions</a>
         </div>
 
         <div className="p-7 bg-secondary-foreground border border-card-border rounded-[30px] shadow-sm flex flex-col gap-4">
@@ -148,8 +128,8 @@ export default function KhajagudaPage() {
           </div>
           <h3 className="font-bold text-xl text-gradient-start">Contact</h3>
           <p className="text-description text-sm leading-relaxed">
-            <strong>Phone:</strong> +91 7075340810<br />
-            <strong>Email:</strong> reachus@mindsplash.com
+            <strong>Phone:</strong> <a href="tel:+917075340810" className="hover:underline">+91 7075340810</a><br />
+            <strong>Email:</strong> <a href="mailto:reachus@mindsplash.com" className="hover:underline">reachus@mindsplash.com</a>
           </p>
         </div>
 
@@ -159,7 +139,7 @@ export default function KhajagudaPage() {
           </div>
           <h3 className="font-bold text-xl text-gradient-start">Timings</h3>
           <p className="text-description text-sm leading-relaxed">
-            <strong>Mon – Sat:</strong> 3:00 PM – 8:00 PM<br />
+            <strong>Mon â€“ Sat:</strong> 3:00 PM â€“ 8:00 PM<br />
             <strong>Sunday:</strong> By appointment
           </p>
         </div>
@@ -224,11 +204,11 @@ export default function KhajagudaPage() {
             <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
               <Award className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
               <p className="text-3xl font-bold text-gradient-start mb-2">54/56</p>
-              <p className="text-sm text-description">IB MYP 2024 Topper Score</p>
+              <p className="text-sm text-description">Archived 2024 IB MYP top score</p>
             </div>
             <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
               <Users className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
-              <p className="text-3xl font-bold text-gradient-start mb-2">8–12</p>
+              <p className="text-3xl font-bold text-gradient-start mb-2">8â€“12</p>
               <p className="text-sm text-description">Students per Batch</p>
             </div>
             <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
@@ -253,7 +233,7 @@ export default function KhajagudaPage() {
           ))}
         </div>
         <p className="text-description text-sm">
-          We also welcome students from our sister branches. Explore our <Link href="/branches/kokapet" className="text-gradient-start hover:underline">Kokapet</Link> and <Link href="/branches/financialdistrict" className="text-gradient-start hover:underline">Financial District</Link> branches. For any inquiries, please <Link href="/contact" className="text-gradient-start hover:underline font-medium">Contact MindSplash Academy</Link>.
+          We also welcome students from our sister branches. Explore our <Link href="/branches/kokapet" className="text-gradient-start hover:underline">Kokapet</Link> and <Link href="/branches/financialdistrict" className="text-gradient-start hover:underline">Financial District</Link> branches. For any inquiries, please <Link href="/contact?location=Khajaguda" className="text-gradient-start hover:underline font-medium">contact the Khajaguda team</Link>.
         </p>
       </section>
 
@@ -283,12 +263,12 @@ export default function KhajagudaPage() {
         <p className="text-foreground/90 text-lg mb-8 max-w-xl">
           Schedule a free demo class and experience the MindSplash difference first-hand.
         </p>
-        <Link href="/contact">
+        <Link href="/contact?location=Khajaguda">
           <PrimaryButton content="Book a Free Demo" />
         </Link>
       </section>
 
-      <ContactUsModal />
+      <ContactUsModal location="Khajaguda" />
 
       {/* JSON-LD */}
       <script
@@ -297,7 +277,7 @@ export default function KhajagudaPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "MindSplash Academy — Khajaguda",
+            name: "MindSplash Academy â€” Khajaguda",
             description:
               "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching in Khajaguda, Gachibowli, Hyderabad.",
             url: "https://mindsplash.in/branches/khajaguda",

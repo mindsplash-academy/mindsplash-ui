@@ -6,7 +6,7 @@ export default function ImageCard({image, name}: {image: string, name: string}) 
       <figcaption className="text-center text-white font-bold text-[17px] leading-[29px] tracking-[0px] bg-gradient-to-r from-gradient-start to-gradient-end">
         {name}
       </figcaption>
-      <Image src={image} alt={`mindsplash-${name}`} width={194} height={242} />
+      <Image src={image} alt={name} width={194} height={242} />
     </figure>
   );
 }

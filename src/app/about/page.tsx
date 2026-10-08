@@ -1,4 +1,4 @@
-import Description from "@/components/Description";
+﻿import Description from "@/components/Description";
 import GradientHeading from "@/components/GradientHeading";
 import Heading from "@/components/Heading";
 import PrimaryButton from "@/components/PrimaryButton";
@@ -20,18 +20,18 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About MindSplash Academy | Leadership, Methodology & Results",
+  title: "About MindSplash Academy | IB & IGCSE Experts in Hyderabad",
   description:
-    "Meet Rahul Chakravarthy (IIT Madras, National Math Olympiad Awardee) and the MindSplash Academy team. Learn about our dynamic-feedback methodology, IB MYP 2024 topper (54/56) and proven results across Hyderabad.",
+    "Meet the academic team and discover MindSplash Academy's teaching methodology, curriculum approach, archived results and student-focused learning model.",
   keywords:
-    "MindSplash Academy about, Rahul Chakravarthy IIT Madras, IB MYP results 2024, teaching methodology, MindSplash Hyderabad",
+    "IB IGCSE coaching experts Hyderabad, MindSplash Academy, Rahul Chakravarthy, teaching methodology",
   openGraph: {
-    title: "About MindSplash Academy | Leadership, Methodology & Results",
-    description: "Meet our IIT-trained leadership, learn our methodology, and see our IB MYP 2024 results (54/56 topper).",
+    title: "About MindSplash Academy | IB & IGCSE Experts in Hyderabad",
+    description: "Meet the academic team and discover MindSplash Academy's teaching methodology, curriculum approach, archived results and student-focused learning model.",
     type: "website",
     url: "https://mindsplash.in/about",
   },
-  alternates: { canonical: "https://mindsplash.in/about" },
+  alternates: { canonical: "/about" },
 };
 
 // SEO and Content Constants
@@ -41,16 +41,16 @@ const SEO_CONSTANTS = {
   METHODOLOGY_HEADING: "Our Teaching Methodology",
   HIGHLIGHTS_HEADING: "Highlights",
   TEACHERS_HEADING: "Our Teachers",
-  RESULTS_HEADING: "Results",
+  RESULTS_HEADING: "Archived Results",
   KNOW_MORE_BUTTON: "Know More",
   LEADER_NAME: "RAHUL CHAKRAVARTHY",
   LEADER_QUALIFICATION: "B.Tech IIT Madras",
   LEADER_ROLE: "Head of Academics",
   LEADER_DESCRIPTION:
-    "National Math Olympiad Awardee, IITian, Author and Teacher by choice!",
-  IB_MYP_TOPPER: "IB MYP 2024 Topper — Nihal (54/56)",
-  MATH_TOPPERS: "IB MYP 2024 Mathematics Toppers (7/7)",
-  ACADEMY_TOPPERS: "MindSplash Academy IB MYP 2024 Top Performers",
+    "National Math Olympiad awardee, IIT Madras graduate, Olympiad author, and educator.",
+  IB_MYP_TOPPER: "Archived IB MYP 2024 cohort result â€” 54/56",
+  MATH_TOPPERS: "Archived IB MYP 2024 Mathematics results (7/7)",
+  ACADEMY_TOPPERS: "Archived MindSplash Academy IB MYP 2024 cohort results",
 } as const;
 
 export default function AboutPage() {
@@ -62,12 +62,34 @@ export default function AboutPage() {
       ]} />
 
       {/* Hero Section */}
-      <section className="mx-7 mt-5 flex justify-center items-center h-[300px] md:h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end">
+      <section className="mx-3 mt-2 sm:mx-5 md:mx-7 md:mt-3 flex justify-center items-center h-[300px] md:h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end">
         <div className="mt-16 md:mt-24 xl:mt-0">
           <h1 className="relative text-center break-word font-bold text-[22px] sm:text-[24px] md:text-[30px] lg:text-[36px] 2xl:text-[60px] leading-10 md:leading-[72px] tracking-[0px] px-12 md:px-0 lg:max-w-[800px]">
             {SEO_CONSTANTS.PAGE_TITLE}
           </h1>
         </div>
+      </section>
+      <section
+        id="academy-overview"
+        className="mx-auto my-12 w-[88%] max-w-6xl md:my-16"
+        aria-labelledby="academy-overview-heading"
+      >
+        <h2 id="academy-overview-heading" className="mb-4 text-2xl font-bold text-secondary md:text-3xl">
+          Academic support for Hyderabad students
+        </h2>
+        <p className="max-w-5xl leading-relaxed text-description">
+          MindSplash Academy provides subject-focused academic support for students following IB MYP, IB DP and Cambridge IGCSE programmes, alongside Olympiad, SAT/PSAT and school exam preparation. Lessons use topic-based practice and teacher feedback to help students work on the subjects and skills in their school courses.
+        </p>
+        <p className="mt-4 max-w-5xl leading-relaxed text-description">
+          The academy has centres in Khajaguda, Kokapet and Financial District. Programme availability and schedules can vary by subject and centre, so families can contact the team to discuss a student&apos;s current grade, curriculum and preferred location.
+        </p>
+        <nav aria-label="Explore MindSplash programmes and centres" className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-gradient-start">
+          <Link href="/programs/ib-myp" className="hover:underline">IB MYP coaching in Hyderabad</Link>
+          <Link href="/programs/ib-dp" className="hover:underline">IB DP subject coaching in Hyderabad</Link>
+          <Link href="/programs/igcse" className="hover:underline">Cambridge IGCSE tuition in Hyderabad</Link>
+          <Link href="/programs/olympiads" className="hover:underline">Olympiad preparation in Hyderabad</Link>
+          <Link href="/branches" className="hover:underline">Find a Hyderabad centre</Link>
+        </nav>
       </section>
       {/* Leadership Section */}
       <section
@@ -76,10 +98,10 @@ export default function AboutPage() {
         aria-labelledby="leadership-heading"
       >
         <header className="w-[77%] max-w-full px-4">
-          <div id="leadership-heading">
+          <h2 id="leadership-heading">
             <Heading content="Meet Our " />
             <GradientHeading content="Leaders" />
-          </div>
+          </h2>
         </header>
       </section>
       {/* Teachers Section */}
@@ -90,7 +112,7 @@ export default function AboutPage() {
         <figure className="relative max-w-full">
           <Image
             src="/new_right.svg"
-            alt="MindSplash Academy - Innovative teaching methodology"
+            alt=""
             width={64}
             height={80}
             className="absolute -top-12 right-[-12%] h-auto w-16 md:hidden lg:block lg:-right-14"
@@ -98,14 +120,14 @@ export default function AboutPage() {
           />
           <Image
             src={"/mvp_kid.png"}
-            alt="MindSplash Academy student demonstrating learning success"
+            alt="Student studying at MindSplash Academy"
             width={540}
             height={576}
             loading="lazy"
           />
         </figure>
-        <dl className="w-full mt-8 lg:mt-0 lg:max-w-[54%] self-center">
-          <dt
+        <div className="w-full mt-8 lg:mt-0 lg:max-w-[54%] self-center">
+          <h2
             className="text-left font-bold text-[36px] leading-[47px] tracking-[0px] self-baseline"
             id="teachers-heading"
           >
@@ -117,15 +139,17 @@ export default function AboutPage() {
             <span className={`text-secondary`}>
               , {SEO_CONSTANTS.LEADER_QUALIFICATION}
             </span>
-          </dt>
+          </h2>
           <SubHeading content={SEO_CONSTANTS.LEADER_ROLE} className="mb-11" />
           <SubHeading
             content={SEO_CONSTANTS.LEADER_DESCRIPTION}
             className="font-bold mb-6"
           />
-          <Description content="At Mindsplash Academy, he teaches, designs worksheets and other learning tools, plans lessons, oversees quality of lessons delivered across all centers. Besides these, he is also involved in recruitment and training of teachers at the Academy. His other activities include training students of Telangana and Andhra Pradesh on behalf of Govt of India for Indian National Mathematical Olympiad. He is also author of bestsellers of Math, Physics and Chemistry Olympiad books for high school students. His past works include designing content and training teachers of various corporates across India." />
-          {/* <PrimaryButton content="Know More" className="mt-5" /> */}
-        </dl>
+          <Description content="At MindSplash Academy, Rahul teaches, develops worksheets and other learning tools, plans lessons, and oversees lesson quality across the centres. He also recruits and trains teachers. On behalf of the Government of India, he has trained students from Telangana and Andhra Pradesh for the Indian National Mathematical Olympiad. He has authored Mathematics, Physics, and Chemistry Olympiad books for high school students, and has designed learning content and teacher training for companies across India." />
+          <Link href="/authors/rahul-chakravarthy" className="mt-5 inline-flex font-semibold text-gradient-start hover:underline">
+            View Rahul Chakravarthy&apos;s academic profile
+          </Link>
+        </div>
       </section>
       {/* Methodology Section */}
       <section
@@ -134,14 +158,14 @@ export default function AboutPage() {
         aria-labelledby="methodology-heading"
       >
         <div className="mb-10">
-          <h1
+          <h2
             className="mb-5 text-center font-bold text-[32px] tracking-[0px] bg-gradient-to-r bg-clip-text text-transparent from-gradient-start to-gradient-end self-baseline"
             id="methodology-heading"
           >
             {SEO_CONSTANTS.METHODOLOGY_HEADING}
-          </h1>
+          </h2>
           <SubHeading
-            content="National Math Olympiad Awardee, IlTian, Author and teacher by choice!"
+            content="Teachers check understanding during lessons and use feedback to decide when students need another explanation or practice."
             className="mb-6 px-8"
           />
         </div>
@@ -152,11 +176,11 @@ export default function AboutPage() {
               <p className="bg-foreground bg-no-repeat shadow-[0px_3px_26px_#00000008] rounded-[20px] h-[98px] w-[180px] flex justify-center items-center text-secondary font-bold text-[20px] leading-[24px] tracking-[0px]">
                 Baseline
                 <br />
-                Assesssment
+                Assessment
               </p>
               <Image
                 src={"/point_one.svg"}
-                alt="mindsplash-point-1"
+                alt=""
                 className=""
                 height={48}
                 width={48}
@@ -166,7 +190,7 @@ export default function AboutPage() {
             <div className="flex flex-col items-center space-y-5 absolute top-[91%] left-[36%]">
               <Image
                 src={"/point_two.svg"}
-                alt="mindsplash-point-2"
+                alt=""
                 className=""
                 height={48}
                 width={48}
@@ -184,7 +208,7 @@ export default function AboutPage() {
               </p>
               <Image
                 src={"/point_three.svg"}
-                alt="mindsplash-point-3"
+                alt=""
                 className=""
                 height={48}
                 width={48}
@@ -194,7 +218,7 @@ export default function AboutPage() {
             <div className="flex flex-col items-center space-y-5 absolute top-[91%] left-[58%]">
               <Image
                 src={"/point_four.svg"}
-                alt="mindsplash-point-4"
+                alt=""
                 className=""
                 height={48}
                 width={48}
@@ -212,11 +236,11 @@ export default function AboutPage() {
               <p className="bg-foreground bg-no-repeat shadow-[0px_3px_26px_#00000008] rounded-[20px] h-[98px] w-[180px] flex justify-center items-center text-secondary font-bold text-[20px] leading-[24px] tracking-[0px]">
                 Summative Topic
                 <br />
-                Assesssment
+                Assessment
               </p>
               <Image
                 src={"/point_five.svg"}
-                alt="mindsplash-point-5"
+                alt=""
                 className=""
                 height={48}
                 width={48}
@@ -226,7 +250,7 @@ export default function AboutPage() {
             <div className="flex flex-col items-center space-y-5 absolute top-[91%] left-[80%]">
               <Image
                 src={"/point_six.svg"}
-                alt="mindsplash-point-6"
+                alt=""
                 className=""
                 height={48}
                 width={48}
@@ -277,11 +301,11 @@ export default function AboutPage() {
         </div>
 
         <dl className="w-[65%]">
-          <Description content="Our teaching methodology is built on a dynamic-feedback approach. Each 60-minute lesson is divided into 5 ‘dynamic feedback’ approach. The teaching plan of a lesson is divided into many checkpoints. An average session (or lesson which lasts for around (60 minutes) has around 5 to 6 checkpoints." />
+          <Description content="Lessons use a dynamic feedback approach. A typical 60-minute session has five or six checkpoints where teachers check whether students understand." />
           <br />
-          <Description content="At Mindsplash Academy, we strongly believe that our teachers are like gardeners. Every plant is unique with respect to its needs and growth rate - so is every child! We cannot have rigid templates. After every checkpoint, the teacher asks questions (to take feedback) to see how many students understood it the right way." />
+          <Description content="Teachers treat each student as an individual learner. At every checkpoint, they ask questions to check understanding and adjust their explanation when needed." />
           <br />
-          <Description content=" If there are students who did not understand or misunderstood, the concept is cleared to all the students. Only then, the teacher proceeds further to the next checkpoint. This regular, dynamic-feedback loop ensures deep conceptual clarity rather than surface-level coverage." />
+          <Description content="If a student has misunderstood a concept, the teacher revisits it before moving on. This feedback loop helps the class address gaps during the lesson." />
           <Link href="/contact">
             <PrimaryButton content="Explore More" className="mt-5" />
           </Link>
@@ -294,12 +318,12 @@ export default function AboutPage() {
         aria-labelledby="highlights-heading"
       >
         <div>
-          <h1
+          <h2
             className="mb-[50px] text-center font-bold text-[32px] tracking-[0px] bg-gradient-to-r bg-clip-text text-transparent from-gradient-start to-gradient-end self-baseline"
             id="highlights-heading"
           >
             {SEO_CONSTANTS.HIGHLIGHTS_HEADING}
-          </h1>
+          </h2>
         </div>
         <Carousal />
       </section>
@@ -310,14 +334,14 @@ export default function AboutPage() {
         className="mx-auto mb-5 flex w-[90%] flex-col-reverse justify-between gap-8 pt-12 sm:w-[85%] md:w-[80%] md:pt-8 lg:w-[75%] lg:flex-row lg:items-stretch lg:gap-12 xl:gap-16"
         aria-labelledby="our-teachers-heading"
       >
-        <dl className="flex w-full flex-col justify-center lg:max-w-[52%]">
-          <dt className="mb-8" id="our-teachers-heading">
+        <div className="flex w-full flex-col justify-center lg:max-w-[52%]">
+          <h2 className="mb-8" id="our-teachers-heading">
             <Heading content={"Our "} />
             <GradientHeading content="Teachers " />
-          </dt>
+          </h2>
           <Description
             content={
-              "Our teachers are not just learning facilitators! They are here to understand their emotions and limitations. They plug these factors during their lessons! At Mindsplash Academy, our teachers consistently strive to make the class room a fun-filled learning space. More than academic results, our achievements are measured in smiles we bring on their faces!"
+              "Our teachers aim to understand each studentâ€™s needs and challenges and take them into account when planning lessons. At MindSplash Academy, they work to create an engaging classroom where students feel comfortable learning. We value both academic progress and studentsâ€™ confidence in class."
             }
             className="!leading-[25px] !text-base"
           />
@@ -329,54 +353,47 @@ export default function AboutPage() {
           >
             <AccordionItem value="item-1">
               <AccordionTrigger>
-                <h1 className="font-bold">
+                <h3 className="font-bold">
                   People{" "}
                   <span className="font-normal">
-                    (The best minds of India!)
+                    (Subject knowledge, communication, and lesson planning)
                   </span>
-                </h1>
+                </h3>
               </AccordionTrigger>
               <AccordionContent className="flex flex-col gap-4 text-balance">
-                <Description
-                  content="Our teachers are hired from premier institutes of India. The
-                  hiring process is very rigid which evaluates their knowledge,
-                  passion, communication, emotions, sense of humor, lesson
-                  planning abilities etc., Almost all our teachers are
-                  postgraduates or doctorates. For our teachers, their
-                  professions is their identity, not a mere job!"
-                />
+                  <Description content="Our teachers are hired from leading institutes in India. The selection process considers subject knowledge, communication, teaching approach, and lesson-planning skills. Most hold postgraduate or doctoral qualifications." />
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>
-                <h1 className="font-bold">
+                <h3 className="font-bold">
                   Roles{" "}
                   <span className="font-normal">
                     (Understanding role of teacher)
                   </span>
-                </h1>
+                </h3>
               </AccordionTrigger>
               <AccordionContent className="flex flex-col gap-4 text-balance">
-                <Description content="The role of a teacher is not confined to classroom alone! This is a part of the role. A teacher spends good time on preparation of lessons, grading, remedial lesson plans etc., At Mindsplash Academy, we completely realize the off-class room role of a teacher. The number of teaching hours for teachers are planned accordingly. Each role of teacher has its own importance which improves over all class-room experience." />
+                <Description content="A teacher's work includes lesson preparation, grading, and planning additional support as well as classroom teaching. We plan teachers' hours to account for these responsibilities and support a positive classroom experience." />
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
               <AccordionTrigger>
-                <h1 className="font-bold">
+                <h3 className="font-bold">
                   Processes{" "}
                   <span className="font-normal">(Weekly meetings)</span>
-                </h1>
+                </h3>
               </AccordionTrigger>
               <AccordionContent className="flex flex-col gap-4 text-balance">
-                <Description content="The lesson plans drawn by teachers are discussed every week. A micro-schedule helps us to be in sync with school structure and also gives us edge to plan tests and remedials upfront." />
+                <Description content="Teachers discuss lesson plans in weekly meetings. Shared scheduling helps them align lessons with school curricula and plan assessments and additional support." />
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-        </dl>
+        </div>
         <figure className="relative flex w-full items-center lg:w-[48%] lg:shrink-0">
           <Image
             src="/new_image.svg"
-            alt="mindsplsh-new"
+            alt=""
             width={64}
             height={80}
             style={{ width: "auto", height: "auto" }}
@@ -385,7 +402,7 @@ export default function AboutPage() {
           />
           <Image
             src={"/meticulous.png"}
-            alt="mindsplash-meticulous"
+            alt="Students learning at MindSplash Academy"
             width={540}
             height={576}
             loading="lazy"
@@ -399,29 +416,24 @@ export default function AboutPage() {
         className="w-full mx-auto flex flex-col items-center mb-15 md:mb-[100px] md:overflow-visible"
         aria-labelledby="results-heading"
       >
-        <div className="mb-5 flex" id="results-heading">
-          <Heading
-            content="Our"
-            className="text-center font-bold text-[42px] tracking-[0px] self-baseline"
-          />
-          <h1 className="text-center font-bold text-[42px] tracking-[0px] bg-gradient-to-r bg-clip-text text-transparent from-gradient-start to-gradient-end self-baseline">
-            &nbsp;{SEO_CONSTANTS.RESULTS_HEADING}
-          </h1>
-        </div>
+        <h2 className="mb-5 flex text-center font-bold text-[42px] tracking-[0px]" id="results-heading">
+          <Heading content="Our " />
+          <GradientHeading content={SEO_CONSTANTS.RESULTS_HEADING} />
+        </h2>
         <div className="mb-12 text-center">
           <SubHeading content={SEO_CONSTANTS.IB_MYP_TOPPER} />
         </div>
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 max-w-4xl">
           <ImageCard image="/nihal.png" name="Nihal" />
           <div className="bg-secondary-foreground p-6 rounded-2xl border border-card-border shadow-sm flex-1 text-left">
-            <h3 className="font-bold text-xl text-secondary mb-3">Case Study: Nihal's Journey to 54/56</h3>
+            <h3 className="font-bold text-xl text-secondary mb-3">Archived case study: Nihal's 2024 IB MYP result</h3>
             <p className="text-secondary/80 mb-3 text-sm leading-relaxed">
               <strong>Curriculum:</strong> IB MYP (2024 Cohort)<br/>
-              <strong>Key Achievement:</strong> Secured 54 out of 56 in the rigorous IB MYP eAssessment, ranking among the top percentile globally.
+              <strong>Archived result:</strong> 54 out of 56 in the 2024 IB MYP eAssessment.
             </p>
             <blockquote className="italic border-l-4 border-gradient-start pl-4 text-secondary/90 my-4">
               "The dynamic feedback methodology and detailed memory maps at MindSplash helped me break down complex criteria into manageable goals. The mock eAssessments exactly mirrored the real platform, which gave me immense confidence on exam day."
-              <br/><span className="text-sm font-semibold mt-2 block">— Nihal (Permission secured for publication)</span>
+              <br/><span className="text-sm font-semibold mt-2 block">â€” Nihal (shared with permission)</span>
             </blockquote>
           </div>
         </div>
@@ -447,14 +459,14 @@ export default function AboutPage() {
             "@type": "WebPage",
             name: "About MindSplash Academy - Our History, Leadership & Methodology",
             description:
-              "Discover the history of MindSplash Academy. Meet our leaders including Rahul Chakravarthy, Head of Academics and IIT Madras graduate. Learn about our innovative teaching methodology and proven results.",
-            url: "https://mindsplash.com/about",
+              "Meet Rahul Chakravarthy and the MindSplash Academy team, learn about the teaching methodology, and read an archived IB MYP 2024 cohort result.",
+            url: "https://mindsplash.in/about",
             mainEntity: {
               "@type": "EducationalOrganization",
               name: "MindSplash Academy",
               description:
-                "Leading educational institution with innovative learning methodologies",
-              founder: {
+                "Academic support for IB MYP, IB DP, Cambridge IGCSE, Olympiad, SAT/PSAT, and school exam preparation in Hyderabad.",
+              employee: {
                 "@type": "Person",
                 name: "Rahul Chakravarthy",
                 jobTitle: "Head of Academics",
@@ -463,19 +475,19 @@ export default function AboutPage() {
                   name: "IIT Madras",
                 },
                 description:
-                  "National Math Olympiad Awardee, IITian, Author and teacher by choice",
+                  "National Math Olympiad awardee, IIT Madras graduate, Olympiad author, and educator",
               },
               hasOfferCatalog: {
                 "@type": "OfferCatalog",
                 name: "Educational Programs",
-                description:
-                  "Comprehensive educational programs with proven track record",
+                itemListElement: [
+                  { "@type": "Offer", itemOffered: { "@type": "EducationalProgram", name: "IB MYP coaching" } },
+                  { "@type": "Offer", itemOffered: { "@type": "EducationalProgram", name: "IB DP subject coaching" } },
+                  { "@type": "Offer", itemOffered: { "@type": "EducationalProgram", name: "Cambridge IGCSE tuition" } },
+                  { "@type": "Offer", itemOffered: { "@type": "EducationalProgram", name: "Olympiad preparation" } },
+                  { "@type": "Offer", itemOffered: { "@type": "EducationalProgram", name: "SAT, PSAT and school exam preparation" } },
+                ],
               },
-              award: [
-                "IB MYP 2024 Topper (54/56)",
-                "Multiple IB MYP Mathematics Toppers",
-                "Proven track record in academic excellence",
-              ],
             },
           }),
         }}

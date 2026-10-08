@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Heading from "@/components/Heading";
@@ -8,9 +8,10 @@ import PrimaryButton from "@/components/PrimaryButton";
 import { ChevronRight, Trophy, Users, Target, Flame, Medal, Swords } from "lucide-react";
 import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import ProgramLocations from "@/app/_components/ProgramLocations";
 
 export const metadata: Metadata = {
-  title: "Olympiad Preparation in Hyderabad | MindSplash Academy",
+  title: "Math & Science Olympiad Coaching in Hyderabad | MindSplash Academy",
   description:
     "Explore Olympiad preparation in Hyderabad with focused academic learning, problem-solving practice and subject preparation.",
   keywords: [
@@ -23,39 +24,40 @@ export const metadata: Metadata = {
     "Olympiad problem solving Hyderabad"
   ],
   openGraph: {
-    title: "Olympiad Preparation in Hyderabad | MindSplash Academy",
+    title: "Math & Science Olympiad Coaching in Hyderabad | MindSplash Academy",
     description: "Explore Olympiad preparation in Hyderabad with focused academic learning, problem-solving practice and subject preparation.",
     type: "website", url: "https://mindsplash.in/programs/olympiads",
   },
-  alternates: { canonical: "https://mindsplash.in/programs/olympiads" },
+  alternates: { canonical: "/programs/olympiads" },
 };
 
 const COMPETITIONS = [
   { name: "IOQM", full: "Indian Olympiad Qualifier in Mathematics", desc: "The first stage of India's national selection for the International Mathematical Olympiad (IMO). Combines PRMO and RMO into a single qualifying exam." },
   { name: "AMC 8", full: "American Mathematics Competition 8", desc: "25-question, 40-minute multiple-choice exam for students in grade 8 and below. Builds foundational problem-solving skills." },
-  { name: "AMC 10 / AMC 12", full: "American Mathematics Competitions 10 & 12", desc: "Gateway to the AIME (American Invitational Mathematics Examination). Top scores significantly boost Ivy League university applications." },
+  { name: "AMC 10 / AMC 12", full: "American Mathematics Competitions 10 & 12", desc: "Mathematics competitions for students in the corresponding age groups, with problem-solving questions that build on school mathematics." },
   { name: "Science Olympiads", full: "National & International Science Competitions", desc: "Physics, Chemistry and Biology Olympiad preparation including NSEP, NSEC, NSEB and international qualifiers." },
 ];
 
 const METHODOLOGY = [
-  { icon: Target, title: "Problem-Solving Framework", desc: "Structured approach to breaking down competition problems: Identify → Model → Solve → Verify. Beyond rote tricks." },
+  { icon: Target, title: "Problem-Solving Framework", desc: "Structured approach to breaking down competition problems: Identify â†’ Model â†’ Solve â†’ Verify. Beyond rote tricks." },
   { icon: Flame, title: "Difficulty Progression", desc: "Worksheets graded from standard to fiendishly hard. Students build confidence at each level before advancing." },
-  { icon: Medal, title: "Mock Competitions", desc: "Regular timed mock tests replicating real Olympiad conditions — question count, time limits, scoring rules." },
-  { icon: Swords, title: "Expert Mentorship", desc: "Led by Rahul Chakravarthy — National Math Olympiad Awardee, IIT Madras graduate, Olympiad book author, and Govt. of India trainer." },
+  { icon: Medal, title: "Mock Competitions", desc: "Regular timed mock tests replicating real Olympiad conditions â€” question count, time limits, scoring rules." },
+  { icon: Swords, title: "Expert Mentorship", desc: "Led by Rahul Chakravarthy â€” National Math Olympiad Awardee, IIT Madras graduate, Olympiad book author, and Govt. of India trainer." },
 ];
 
 const FAQS = [
   { q: "Which grades does MindSplash train for Olympiads?", a: "We train students in grades 6 through 10 for various national and international maths and science competitions." },
-  { q: "Who leads the Olympiad programme?", a: "Rahul Chakravarthy, our Head of Academics — a National Math Olympiad Awardee, IIT Madras graduate, published Olympiad book author, and official Govt. of India trainer for students of Telangana and Andhra Pradesh preparing for INMO." },
-  { q: "How does Olympiad training help with university admissions?", a: "Olympiad ranks and awards are among the strongest signals on a university application. AMC scores are specifically considered by US universities, while IOQM/INMO recognition carries weight globally. Our students consistently achieve national-level ranks." },
-  { q: "What is the schedule for Olympiad classes?", a: "Olympiad classes typically run 2–3 hours per week with additional intensive sessions before major competitions. Contact us for current schedules across our three centres." },
+  { q: "Who leads the Olympiad programme?", a: "Rahul Chakravarthy, our Head of Academics â€” a National Math Olympiad Awardee, IIT Madras graduate, published Olympiad book author, and official Govt. of India trainer for students of Telangana and Andhra Pradesh preparing for INMO." },
+  { q: "What skills does Olympiad preparation develop?", a: "Preparation gives students practice with multi-step problems, mathematical reasoning, and explaining a solution clearly. The competitions and their requirements differ, so students should choose practice based on the specific Olympiad they plan to take." },
+  { q: "What is the schedule for Olympiad classes?", a: "Olympiad classes typically run 2â€“3 hours per week with additional intensive sessions before major competitions. Contact us for current schedules across our three centres." },
   { q: "Can a student do Olympiad training alongside IB MYP or IGCSE?", a: "Absolutely. Many of our students combine Olympiad training with their IB MYP or IGCSE programme. The problem-solving skills transfer directly to improved exam performance." },
 ];
 
 export default function OlympiadsPage() {
   return (
     <>
-      <section className="mx-7 mt-5 flex flex-col justify-center items-center min-h-[320px] md:min-h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Programs", href: "/programs" }, { label: "Olympiads" }]} />
+      <section className="mx-3 mt-2 sm:mx-5 md:mx-7 md:mt-3 flex flex-col justify-center items-center min-h-[320px] md:min-h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center">
         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-sm font-semibold mb-4">
           <Trophy className="w-4 h-4" /> Olympiad Training
         </div>
@@ -63,17 +65,17 @@ export default function OlympiadsPage() {
           Olympiad Coaching in Hyderabad
         </h1>
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
-          IOQM, AMC 8/10/12 & science Olympiad training for grades 6–10 — led by a National Math Olympiad awardee from IIT Madras.
+          IOQM, AMC 8/10/12 & science Olympiad training for grades 6â€“10 â€” led by a National Math Olympiad awardee from IIT Madras.
         </p>
-        <div className="mt-8"><Link href="/contact"><PrimaryButton content="Book a Free Demo" /></Link></div>
+        <div className="mt-8"><Link href="/contact?program=Olympiads"><PrimaryButton content="Book a Free Demo" /></Link></div>
       </section>
 
       <section className="w-[85%] lg:w-[75%] mx-auto my-16 grid sm:grid-cols-4 gap-6">
         {[
           { val: "4+", label: "Competitions Covered" },
-          { val: "Gr 6–10", label: "Eligible Grades" },
-          { val: "8–12", label: "Batch Size" },
-          { val: "National", label: "Level Ranks Achieved" },
+          { val: "Gr 6â€“10", label: "Eligible Grades" },
+          { val: "8â€“12", label: "Batch Size" },
+          { val: "INMO", label: "Training experience" },
         ].map((s) => (
           <div key={s.label} className="p-6 text-center bg-secondary-foreground border border-card-border rounded-[24px] shadow-sm">
             <p className="text-3xl font-bold text-gradient-start mb-1">{s.val}</p>
@@ -87,16 +89,16 @@ export default function OlympiadsPage() {
           <Image src="/olympiad_kid.jpg" alt="Olympiad students at MindSplash Academy Hyderabad preparing for IOQM and AMC" width={541} height={473} className="rounded-[28px] w-full" />
         </figure>
         <div className="lg:w-[55%]">
-          <div className="mb-4"><Heading content="Why " /><GradientHeading content="Olympiads?" /></div>
-          <Description content="Olympiad competitions go far beyond school-level maths and science. They develop deep analytical thinking, creative problem-solving and mathematical elegance — skills that set students apart in university admissions, competitive exams and professional careers." />
+          <h2 className="mb-4"><Heading content="Why " /><GradientHeading content="Olympiads?" /></h2>
+          <Description content="Mathematics and Science Olympiads ask students to work through unfamiliar problems, connect ideas, and explain a line of reasoning. Preparation gives students structured practice with those skills alongside their regular school learning." />
           <br />
-          <Description content="MindSplash Academy is a pioneer and leader in Olympiad coaching in Hyderabad. Our students consistently achieve national-level ranks in IOQM, AMC and science Olympiads. Recognition at these competitions adds significant weight to university applications — especially for Ivy League, MIT, Stanford and IIT admissions." />
+          <Description content="Our Olympiad programme covers competitions including IOQM, AMC and science Olympiads. Coaching focuses on mathematical reasoning, problem-solving strategies, and practice with competition-style questions. Rahul Chakravarthy, a National Math Olympiad awardee, leads academic planning and has trained students from Telangana and Andhra Pradesh for the Indian National Mathematical Olympiad on behalf of the Government of India." />
         </div>
       </section>
 
       <section className="w-full bg-secondary-foreground py-16 mb-16">
         <div className="w-[85%] lg:w-[75%] mx-auto">
-          <div className="mb-10 text-center"><Heading content="Competitions " /><GradientHeading content="We Train For" /></div>
+          <h2 className="mb-10 text-center"><Heading content="Competitions " /><GradientHeading content="We Train For" /></h2>
           <div className="grid sm:grid-cols-2 gap-6">
             {COMPETITIONS.map((comp) => (
               <div key={comp.name} className="p-7 bg-foreground border border-card-border rounded-[28px] shadow-sm">
@@ -110,7 +112,7 @@ export default function OlympiadsPage() {
       </section>
 
       <section className="w-[85%] lg:w-[75%] mx-auto mb-16">
-        <div className="mb-10 text-center"><Heading content="Training " /><GradientHeading content="Methodology" /></div>
+        <h2 className="mb-10 text-center"><Heading content="Training " /><GradientHeading content="Methodology" /></h2>
         <div className="grid sm:grid-cols-2 gap-6">
           {METHODOLOGY.map((m) => (
             <div key={m.title} className="p-6 bg-secondary-foreground border border-card-border rounded-[24px] shadow-sm">
@@ -122,8 +124,10 @@ export default function OlympiadsPage() {
         </div>
       </section>
 
+      <ProgramLocations programme="Olympiad preparation" />
+
       <section className="w-[85%] lg:w-[75%] mx-auto mb-20">
-        <div className="mb-10"><Heading content="Olympiad " /><GradientHeading content="FAQs" /></div>
+        <h2 className="mb-10"><Heading content="Olympiad " /><GradientHeading content="FAQs" /></h2>
         <div className="space-y-4">
           {FAQS.map((faq, i) => (
             <details key={i} className="p-6 bg-secondary-foreground border border-card-border rounded-[20px] shadow-sm group">
@@ -137,9 +141,9 @@ export default function OlympiadsPage() {
       </section>
 
       <section className="mx-7 mb-16 flex flex-col items-center justify-center min-h-[280px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-8 py-12 text-center">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Train with the best. Compete with the best.</h2>
+        <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Plan your Olympiad preparation</h2>
         <p className="text-foreground/90 text-lg mb-8 max-w-xl">Start your Olympiad journey with a National Math Olympiad Awardee.</p>
-        <Link href="/contact"><PrimaryButton content="Book a Free Demo" /></Link>
+        <Link href="/contact?program=Olympiads"><PrimaryButton content="Book a Free Demo" /></Link>
       </section>
 
       <ContactUsModal />

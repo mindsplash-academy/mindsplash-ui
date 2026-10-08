@@ -5,12 +5,18 @@ import Link from "next/link";
 import CustomNavBar from "./_components/CustomNavBar";
 import Footer from "./_components/Footer";
 import { Toaster } from "sonner";
+import Script from "next/script";
+import AnalyticsEvents from "./_components/AnalyticsEvents";
+
+const configuredGaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const gaMeasurementId = configuredGaId && /^G-[A-Z0-9]+$/i.test(configuredGaId)
+  ? configuredGaId
+  : undefined;
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://mindsplash.in"),
   title: {
     default: "IB & IGCSE Coaching in Hyderabad | MindSplash Academy",
-    template: "%s | MindSplash Academy",
   },
   description:
     "Premium IB (MYP, DP) and IGCSE coaching in Hyderabad. Located in Khajaguda, Kokapet, and Financial District. Expert coaching for SAT, PSAT, and Olympiads.",
@@ -51,6 +57,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
@@ -85,7 +94,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
 
-        {/* Canonical URL — removed here; set per-page via Next.js metadata.alternates */}
+        {/* Canonical URLs are set per page through metadata.alternates. */}
 
         {/* Structured Data for Organization + LocalBusiness branches */}
         <script
@@ -165,9 +174,25 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased relative">
+      <body className="antialiased relative overflow-x-hidden">
+        {gaMeasurementId && (
+          <>
+            <Script
+              id="google-analytics-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || []; window.gtag = function(){window.dataLayer.push(arguments);}; window.gtag('js', new Date()); window.gtag('config', '${gaMeasurementId}');`,
+              }}
+            />
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+          </>
+        )}
+        <AnalyticsEvents />
         <Toaster position="top-right" richColors />
-        <header className="relative z-50 mx-4 mt-4 flex min-h-20 flex-wrap items-center justify-between gap-x-3 gap-y-2 rounded-3xl bg-gradient-to-r from-gradient-start to-gradient-end px-4 py-3 shadow-lg sm:mx-6 sm:px-6 lg:mx-auto lg:mt-5 lg:max-w-7xl lg:flex-nowrap lg:px-8">
+        <header className="relative z-50 mx-3 mt-2 flex min-h-16 flex-wrap items-center justify-between gap-x-3 gap-y-1 rounded-3xl bg-gradient-to-r from-gradient-start to-gradient-end px-4 py-2 shadow-lg sm:mx-5 sm:px-6 lg:mx-auto lg:mt-3 lg:max-w-7xl lg:flex-nowrap lg:px-8 lg:py-2">
           <Link href="/" aria-label="MindSplash home" className="shrink-0">
             <Image
               src="/mindsplash-logo.png"

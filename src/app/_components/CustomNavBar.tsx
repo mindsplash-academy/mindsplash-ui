@@ -1,13 +1,15 @@
-"use client";
+﻿"use client";
 
 import { Button } from "@/components/ui/button";
 import { ChevronDownIcon, ChevronRight, BookOpen, GraduationCap, Trophy, ClipboardList, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import MobileNavbar from "./MobileNavbar";
 
 export default function CustomNavBar() {
+  const pathname = usePathname();
   const [open, setOpen] = useState<boolean>(false);
   const [programsOpen, setProgramsOpen] = useState<boolean>(false);
   const [branchesOpen, setBranchesOpen] = useState<boolean>(false);
@@ -18,6 +20,10 @@ export default function CustomNavBar() {
     setBranchesOpen(false);
   };
 
+  const isRouteActive = (route: string) =>
+    route === "/" ? pathname === "/" : pathname === route || pathname.startsWith(`${route}/`);
+  const activeLinkClass = "underline decoration-2 underline-offset-8 decoration-white";
+
   return (
     <>
       {(open || programsOpen || branchesOpen) && (
@@ -25,13 +31,13 @@ export default function CustomNavBar() {
       )}
       <div className="hidden flex-wrap items-center justify-end gap-2 xl:gap-4 min-[1100px]:flex relative z-50">
         <Button asChild type="button" variant="nav">
-          <Link href="/" className="flex items-center">
+          <Link href="/" aria-current={isRouteActive("/") ? "page" : undefined} className={`flex items-center ${isRouteActive("/") ? activeLinkClass : ""}`}>
             Home
           </Link>
         </Button>
         <div className="relative flex items-center">
           <Button asChild type="button" variant="nav">
-            <Link href="/about">About Us</Link>
+            <Link href="/about" aria-current={isRouteActive("/about") ? "page" : undefined} className={isRouteActive("/about") ? activeLinkClass : ""}>About Us</Link>
           </Button>
           <Button
             type="button"
@@ -65,7 +71,7 @@ export default function CustomNavBar() {
                 <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
                   <Image
                     src={"/leader.svg"}
-                    alt="mind-splash"
+                    alt=""
                     width={20}
                     height={20}
                   />
@@ -88,7 +94,7 @@ export default function CustomNavBar() {
                 <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
                   <Image
                     src={"/teachers.svg"}
-                    alt="mind-splash"
+                    alt=""
                     width={20}
                     height={20}
                   />
@@ -107,11 +113,11 @@ export default function CustomNavBar() {
                 size="xl"
                 className="group flex justify-start pl-5 gap-0 items-center relative"
               >
-              <Link href="/about#methodology" onClick={() => setOpen(false)}>
+              <Link href="/methodology" onClick={() => setOpen(false)}>
                 <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
                   <Image
                     src={"/methodology.svg"}
-                    alt="mind-splash"
+                    alt=""
                     width={20}
                     height={20}
                   />
@@ -134,7 +140,7 @@ export default function CustomNavBar() {
                 <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
                   <Image
                     src={"/results.svg"}
-                    alt="mind-splash"
+                    alt=""
                     width={20}
                     height={20}
                   />
@@ -157,7 +163,7 @@ export default function CustomNavBar() {
                 <div className="group-hover:bg-foreground bg-secondary-foreground rounded-full h-10 w-10 flex items-center justify-center mr-4">
                   <Image
                     src={"/curriculum.svg"}
-                    alt="mind-splash"
+                    alt=""
                     width={20}
                     height={20}
                   />
@@ -173,7 +179,7 @@ export default function CustomNavBar() {
 
         <div className="relative flex items-center">
           <Button asChild type="button" variant="nav">
-            <Link href="/programs" onClick={closeAllMenus}>Our Programs</Link>
+            <Link href="/programs" aria-current={isRouteActive("/programs") ? "page" : undefined} className={isRouteActive("/programs") ? activeLinkClass : ""} onClick={closeAllMenus}>Our Programs</Link>
           </Button>
           <Button
             type="button"
@@ -202,33 +208,36 @@ export default function CustomNavBar() {
               { label: "IB MYP", href: "/programs/ib-myp", icon: GraduationCap },
               { label: "IB DP", href: "/programs/ib-dp", icon: GraduationCap },
               { label: "Olympiads", href: "/programs/olympiads", icon: Trophy },
-              { label: "Exam Preparation", href: "/programs/exam-preparation", icon: ClipboardList }
+              { label: "Exam Preparation", href: "/programs/exam-prep", icon: ClipboardList }
             ].map((item, index) => (
               <Link
                 key={index}
                 href={item.href}
                 onClick={closeAllMenus}
-                className="group flex justify-between items-center w-full h-12 px-4 hover:bg-slate-100 rounded-lg font-normal text-base text-slate-800 transition-colors"
+                aria-current={pathname === item.href ? "page" : undefined}
+                className={`group flex items-center w-full min-h-14 gap-3 rounded-lg px-4 font-normal text-base text-secondary transition-colors hover:bg-secondary-foreground ${pathname === item.href ? "underline decoration-2 underline-offset-4" : ""}`}
               >
-                <div className="flex items-center gap-3">
-                  <item.icon className="w-5 h-5 text-slate-600 group-hover:text-slate-900" />
-                  <span className="text-slate-800 group-hover:text-slate-900">{item.label}</span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-slate-900" />
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-secondary-foreground transition-colors group-hover:bg-foreground">
+                  <item.icon className="size-5 text-gradient-start" aria-hidden="true" />
+                </span>
+                <span className="flex-1">{item.label}</span>
+                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-secondary text-foreground opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+                  <ChevronRight className="size-4" aria-hidden="true" />
+                </span>
               </Link>
             ))}
           </div>}
         </div>
 
         <Button asChild type="button" variant="nav">
-          <Link href="/blog" className="flex items-center" onClick={closeAllMenus}>
+          <Link href="/blog" aria-current={isRouteActive("/blog") ? "page" : undefined} className={`flex items-center ${isRouteActive("/blog") ? activeLinkClass : ""}`} onClick={closeAllMenus}>
             Blog
           </Link>
         </Button>
 
         <div className="relative flex items-center">
           <Button asChild type="button" variant="nav">
-            <Link href="/branches" onClick={closeAllMenus}>Branches</Link>
+            <Link href="/branches" aria-current={isRouteActive("/branches") ? "page" : undefined} className={isRouteActive("/branches") ? activeLinkClass : ""} onClick={closeAllMenus}>Branches</Link>
           </Button>
           <Button
             type="button"
@@ -272,7 +281,8 @@ export default function CustomNavBar() {
                 key={index}
                 href={item.href}
                 onClick={closeAllMenus}
-                className="group flex justify-start items-start w-full px-4 py-3 hover:bg-slate-100 rounded-lg font-normal text-base gap-3 text-slate-800 transition-colors"
+                aria-current={pathname === item.href ? "page" : undefined}
+                className={`group flex justify-start items-start w-full px-4 py-3 hover:bg-slate-100 rounded-lg font-normal text-base gap-3 text-slate-800 transition-colors ${pathname === item.href ? "underline decoration-2 underline-offset-4" : ""}`}
               >
                 <MapPin className="w-5 h-5 text-slate-600 group-hover:text-slate-900 shrink-0 mt-0.5" />
                 <div className="flex flex-col">
@@ -285,7 +295,7 @@ export default function CustomNavBar() {
         </div>
 
         <Button asChild type="button" variant="nav">
-          <Link href="/contact" className="flex items-center" onClick={closeAllMenus}>
+          <Link href="/contact" aria-current={isRouteActive("/contact") ? "page" : undefined} className={`flex items-center ${isRouteActive("/contact") ? activeLinkClass : ""}`} onClick={closeAllMenus}>
             Contact Us
           </Link>
         </Button>
@@ -293,7 +303,7 @@ export default function CustomNavBar() {
           <Link href="https://wa.me/917075340810" target="_blank" rel="noopener noreferrer">
             <Image
               src={"/WhatsApp.svg"}
-              alt="mind-splash"
+              alt=""
               width={20}
               height={20}
             />

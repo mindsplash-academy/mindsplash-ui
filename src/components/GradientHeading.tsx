@@ -7,7 +7,7 @@ export default function GradientHeading({
 }) {
   return (
     <span
-      className={`text-left font-bold text-[46px] leading-[50px] tracking-[0px] bg-gradient-to-r bg-clip-text text-transparent from-gradient-start to-gradient-end self-baseline ${className}`}
+      className={`self-baseline bg-gradient-to-r bg-clip-text text-left text-[32px] leading-[1.15] font-bold tracking-[0px] text-transparent from-gradient-start to-gradient-end sm:text-[38px] md:text-[42px] md:leading-[1.15] lg:text-[46px] lg:leading-[50px] ${className}`}
     >
       {content}
     </span>
