@@ -41,8 +41,8 @@ export default function BranchesPage() {
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Branches" }]} />
       <main className="mx-auto w-[92%] max-w-6xl py-10 md:py-16">
         <header className="mb-10 text-center md:mb-14">
-          <h1 className="mb-4 text-3xl font-bold text-secondary md:text-5xl">
-            MindSplash Academy Branches
+          <h1 className="mb-4 text-2xl font-bold text-secondary md:text-4xl">
+            IB, IGCSE &amp; Olympiad Coaching in Hyderabad | MindSplash Academy
           </h1>
           <p className="mx-auto max-w-2xl text-description md:text-lg">
             Visit one of our Hyderabad learning centres for IB, IGCSE, Olympiad,
@@ -62,7 +62,7 @@ export default function BranchesPage() {
                 <p className="mb-5 flex-1 text-sm leading-relaxed text-description">
                   {branch.address}
                 </p>
-                <span className="font-semibold text-gradient-start">View branch details â†’</span>
+                <span className="font-semibold text-gradient-start">View branch details &rarr;</span>
               </Link>
             </li>
           ))}

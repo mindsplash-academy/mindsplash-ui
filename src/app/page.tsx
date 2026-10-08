@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 
 // SEO and Content Constants
 const SEO_CONSTANTS = {
-  HERO_TITLE: "IB, IGCSE & Olympiad Coaching in Hyderabad",
+  HERO_TITLE: "IB, IGCSE & Olympiad Coaching in Hyderabad | MindSplash Academy",
   HERO_SUBTITLE: "Small-group tuition with focused academic support",
   HERO_DESCRIPTION:
     "Explore IB, IGCSE, Olympiad and exam preparation at our Hyderabad centres.",
@@ -50,7 +50,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative mx-3 mt-4 flex min-h-[500px] items-center justify-center overflow-hidden rounded-[28px] bg-gradient-to-r from-gradient-start to-gradient-end shadow-lg sm:mx-5 sm:min-h-[480px] md:mx-7 md:min-h-[480px] md:rounded-[40px] lg:min-h-[520px]">
         <div className="relative z-10 w-full px-5 py-10 sm:w-[88%] sm:px-0 md:py-12 lg:mr-auto lg:ml-[8%] lg:w-[54%]">
-          <h1 className="max-w-[594px] font-bold text-[30px] leading-[1.2] tracking-[0px] md:text-[52px] md:leading-[1.2] lg:text-[60px]">
+          <h1 className="max-w-[594px] font-bold text-[26px] leading-[1.2] tracking-[0px] md:text-[42px] md:leading-[1.2] lg:text-[48px]">
             {SEO_CONSTANTS.HERO_TITLE}
           </h1>
           <p className="mt-7 font-bold text-xl leading-[29px] tracking-[0px] md:mt-9 md:text-2xl">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Heading from "@/components/Heading";
 import GradientHeading from "@/components/GradientHeading";
 import PrimaryButton from "@/components/PrimaryButton";
-import { ChevronRight, MapPin, Phone, Clock, BookOpen, Award, Users } from "lucide-react";
+import { ChevronRight, MapPin, Phone, Clock } from "lucide-react";
 import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
@@ -34,7 +34,7 @@ const PROGRAMS = [
   { name: "IB MYP", grades: "Years 4 & 5", href: "/programs#ib-myp-program-heading" },
   { name: "IB DP", grades: "Diploma Programme", href: "/programs#ib-dp-program-heading" },
   { name: "IGCSE", grades: "O-Level & A-Level", href: "/programs#igcse-program-heading" },
-  { name: "Olympiads", grades: "Grades 6â€“10", href: "/programs#olympiad-program-heading" },
+  { name: "Olympiads", grades: "Grades 6-10", href: "/programs#olympiad-program-heading" },
   { name: "SAT / PSAT", grades: "University admission prep", href: "/programs#exam-prep-program-heading" },
   { name: "Primary", grades: "Grade 5 & below", href: "/programs#primary-program-heading" },
 ];
@@ -50,7 +50,7 @@ const FAQS = [
   },
   {
     q: "What makes the Financial District branch convenient for working parents?",
-    a: "Located in the heart of the IT corridor, our Financial District centre is just minutes from major tech parks and residential communities like My Home Vihanga, Aparna Sarovar and Lanco Hills â€” making drop-off and pick-up seamless.",
+    a: "Located in the heart of the IT corridor, our Financial District centre is just minutes from major tech parks and residential communities like My Home Vihanga, Aparna Sarovar and Lanco Hills, making drop-off and pick-up seamless.",
   },
   {
     q: "Can I book a free trial class at Financial District?",
@@ -58,7 +58,7 @@ const FAQS = [
   },
   {
     q: "What are the batch sizes?",
-    a: "All batches are limited to 8â€“12 students to ensure personalised attention, regular feedback, and close monitoring by our expert faculty.",
+    a: "All batches are limited to 8-12 students to ensure personalised attention, regular feedback, and close monitoring by our expert faculty.",
   },
 ];
 
@@ -80,11 +80,11 @@ export default function FinancialDistrictPage() {
         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-sm font-semibold mb-4">
           <MapPin className="w-4 h-4" /> Financial District, Hyderabad
         </div>
-        <h1 className="font-bold text-3xl md:text-5xl lg:text-6xl text-foreground leading-tight tracking-tight mb-4 max-w-4xl">
-          MindSplash Academy Financial District
+        <h1 className="font-bold text-2xl md:text-4xl lg:text-5xl text-foreground leading-tight tracking-tight mb-4 max-w-4xl">
+          IB, IGCSE &amp; Olympiad Coaching in Financial District | MindSplash Academy
         </h1>
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
-          Premium coaching in Hyderabad's IT corridor â€” small batches, expert IIT faculty, and a track record of top scores.
+          Premium coaching in Hyderabad's IT corridor, with small batches and expert IIT-trained faculty.
         </p>
         <div className="mt-8">
           <Link href="/contact?location=Financial_District" aria-label="Book a free demo at Financial District">
@@ -137,7 +137,7 @@ export default function FinancialDistrictPage() {
           </div>
           <h3 className="font-bold text-xl text-gradient-start">Timings</h3>
           <p className="text-description text-sm leading-relaxed">
-            <strong>Mon â€“ Sat:</strong> 3:00 PM â€“ 8:00 PM<br />
+            <strong>Mon &ndash; Sat:</strong> 3:00 PM &ndash; 8:00 PM<br />
             <strong>Sunday:</strong> By appointment
           </p>
         </div>
@@ -196,33 +196,6 @@ export default function FinancialDistrictPage() {
         </p>
       </section>
 
-      {/* Local Proof / Results */}
-      <section className="w-full bg-secondary-foreground py-16 mb-16">
-        <div className="w-[85%] lg:w-[75%] mx-auto">
-          <div className="mb-10 text-center">
-            <Heading content="Proven " />
-            <GradientHeading content="Results" />
-          </div>
-          <div className="grid sm:grid-cols-3 gap-8 text-center">
-            <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
-              <Award className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
-              <p className="text-3xl font-bold text-gradient-start mb-2">54/56</p>
-              <p className="text-sm text-description">Archived 2024 IB MYP top score</p>
-            </div>
-            <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
-              <Users className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
-              <p className="text-3xl font-bold text-gradient-start mb-2">8â€“12</p>
-              <p className="text-sm text-description">Students per Batch</p>
-            </div>
-            <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
-              <BookOpen className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
-              <p className="text-3xl font-bold text-gradient-start mb-2">6+</p>
-              <p className="text-sm text-description">Subjects Across IB & IGCSE</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Nearby Areas */}
       <section className="w-[85%] lg:w-[75%] mx-auto mb-16">
         <div className="mb-6">
@@ -264,7 +237,7 @@ export default function FinancialDistrictPage() {
           Ready to visit our Financial District centre?
         </h2>
         <p className="text-foreground/90 text-lg mb-8 max-w-xl">
-          Schedule a free demo class â€” conveniently located in the heart of Hyderabad's tech hub.
+          Schedule a free demo class, conveniently located in the heart of Hyderabad's tech hub.
         </p>
         <Link href="/contact?location=Financial_District">
           <PrimaryButton content="Book a Free Demo" />
@@ -280,7 +253,7 @@ export default function FinancialDistrictPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "MindSplash Academy â€” Financial District",
+            name: "MindSplash Academy - Financial District",
             description:
               "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching in Financial District, Gachibowli, Hyderabad.",
             url: "https://mindsplash.in/branches/financialdistrict",

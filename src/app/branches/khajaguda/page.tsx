@@ -6,7 +6,7 @@ import GradientHeading from "@/components/GradientHeading";
 import SubHeading from "@/components/SubHeading";
 import Description from "@/components/Description";
 import PrimaryButton from "@/components/PrimaryButton";
-import { ChevronRight, MapPin, Phone, Clock, BookOpen, Award, Users } from "lucide-react";
+import { ChevronRight, MapPin, Phone, Clock } from "lucide-react";
 import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
@@ -36,7 +36,7 @@ const PROGRAMS = [
   { name: "IB MYP", grades: "Years 4 & 5", href: "/programs#ib-myp-program-heading" },
   { name: "IB DP", grades: "Diploma Programme", href: "/programs#ib-dp-program-heading" },
   { name: "IGCSE", grades: "O-Level & A-Level", href: "/programs#igcse-program-heading" },
-  { name: "Olympiads", grades: "Grades 6â€“10", href: "/programs#olympiad-program-heading" },
+  { name: "Olympiads", grades: "Grades 6-10", href: "/programs#olympiad-program-heading" },
   { name: "SAT / PSAT", grades: "University admission prep", href: "/programs#exam-prep-program-heading" },
   { name: "Primary", grades: "Grade 5 & below", href: "/programs#primary-program-heading" },
 ];
@@ -52,7 +52,7 @@ const FAQS = [
   },
   {
     q: "What are the batch sizes at Khajaguda?",
-    a: "We maintain small batches of 8â€“12 students per class so that our teachers can monitor and mentor each student individually.",
+    a: "We maintain small batches of 8-12 students per class so that our teachers can monitor and mentor each student individually.",
   },
   {
     q: "Can I get a free demo class at Khajaguda?",
@@ -82,11 +82,11 @@ export default function KhajagudaPage() {
         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-sm font-semibold mb-4">
           <MapPin className="w-4 h-4" /> Khajaguda, Hyderabad
         </div>
-        <h1 className="font-bold text-3xl md:text-5xl lg:text-6xl text-foreground leading-tight tracking-tight mb-4 max-w-4xl">
-          MindSplash Academy Khajaguda
+        <h1 className="font-bold text-2xl md:text-4xl lg:text-5xl text-foreground leading-tight tracking-tight mb-4 max-w-4xl">
+          IB, IGCSE &amp; Olympiad Coaching in Khajaguda | MindSplash Academy
         </h1>
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
-          Small batches, expert IIT-trained faculty, and proven results â€” right in the heart of Gachibowli.
+          Small batches and expert IIT-trained faculty in the heart of Gachibowli.
         </p>
         <div className="mt-8">
           <Link href="/contact?location=Khajaguda" aria-label="Book a free demo at Khajaguda">
@@ -139,7 +139,7 @@ export default function KhajagudaPage() {
           </div>
           <h3 className="font-bold text-xl text-gradient-start">Timings</h3>
           <p className="text-description text-sm leading-relaxed">
-            <strong>Mon â€“ Sat:</strong> 3:00 PM â€“ 8:00 PM<br />
+            <strong>Mon &ndash; Sat:</strong> 3:00 PM &ndash; 8:00 PM<br />
             <strong>Sunday:</strong> By appointment
           </p>
         </div>
@@ -191,33 +191,6 @@ export default function KhajagudaPage() {
         <p className="text-description mb-6 leading-relaxed">
           Unlock your competitive edge with our dedicated <Link href="/programs/olympiads" className="text-gradient-start hover:underline font-medium">Olympiad preparation</Link> for IOQM and AMC. We also offer focused <Link href="/programs/exam-prep" className="text-gradient-start hover:underline font-medium">exam preparation</Link> strategies for SAT/PSAT test takers aiming for top scores.
         </p>
-      </section>
-
-      {/* Local Proof / Results */}
-      <section className="w-full bg-secondary-foreground py-16 mb-16">
-        <div className="w-[85%] lg:w-[75%] mx-auto">
-          <div className="mb-10 text-center">
-            <Heading content="Proven " />
-            <GradientHeading content="Results" />
-          </div>
-          <div className="grid sm:grid-cols-3 gap-8 text-center">
-            <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
-              <Award className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
-              <p className="text-3xl font-bold text-gradient-start mb-2">54/56</p>
-              <p className="text-sm text-description">Archived 2024 IB MYP top score</p>
-            </div>
-            <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
-              <Users className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
-              <p className="text-3xl font-bold text-gradient-start mb-2">8â€“12</p>
-              <p className="text-sm text-description">Students per Batch</p>
-            </div>
-            <div className="p-8 bg-foreground rounded-[28px] shadow-sm">
-              <BookOpen className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
-              <p className="text-3xl font-bold text-gradient-start mb-2">6+</p>
-              <p className="text-sm text-description">Subjects Across IB & IGCSE</p>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Nearby Areas */}
@@ -277,7 +250,7 @@ export default function KhajagudaPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "MindSplash Academy â€” Khajaguda",
+            name: "MindSplash Academy - Khajaguda",
             description:
               "IB MYP, IB DP, IGCSE, Olympiad and SAT coaching in Khajaguda, Gachibowli, Hyderabad.",
             url: "https://mindsplash.in/branches/khajaguda",
