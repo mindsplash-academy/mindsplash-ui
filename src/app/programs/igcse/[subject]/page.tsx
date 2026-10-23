@@ -3,8 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BookOpen, ChevronRight } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import ContactUsModal from "@/app/_components/ContactUsModal";
-import PrimaryButton from "@/components/PrimaryButton";
 import ProgramLocations from "@/app/_components/ProgramLocations";
 
 const SUBJECT_PAGES = {
@@ -130,7 +128,6 @@ export default async function IGCSESubjectPage({ params }: { params: Promise<{ s
         <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold"><BookOpen className="h-4 w-4" /> Cambridge IGCSE</div>
         <h1 className="mb-4 max-w-4xl text-3xl font-bold leading-tight md:text-5xl">IGCSE {subject.name} Tuition in Hyderabad</h1>
         <p className="max-w-2xl text-lg text-white/90 md:text-xl">{subject.description}</p>
-        <Link href="/contact?program=IGCSE" className="mt-7"><PrimaryButton content={`Ask about IGCSE ${subject.name}`} /></Link>
       </section>
 
       <main className="mx-auto my-12 w-[90%] max-w-5xl space-y-12 md:my-16">
@@ -172,11 +169,9 @@ export default async function IGCSESubjectPage({ params }: { params: Promise<{ s
         </section>
         <div className="flex flex-wrap items-center justify-between gap-4 rounded-3xl bg-secondary-foreground p-6">
           <Link href="/programs/igcse" className="inline-flex items-center gap-2 font-semibold text-gradient-start hover:underline"><ChevronRight className="h-4 w-4 rotate-180" /> All IGCSE subjects</Link>
-          <Link href="/contact?program=IGCSE"><PrimaryButton content="Request a free demo" /></Link>
         </div>
       </main>
       <ProgramLocations programme={`IGCSE ${subject.name} tuition`} />
-      <ContactUsModal program="IGCSE" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Course",

@@ -11,11 +11,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import ImageCard from "@/components/ImageCard";
 import ImageCarousal from "./_components/ImageCarousal";
 import Marquee from "@/components/Marquee";
+import StudentResultsCarousel from "../_components/StudentResultsCarousel";
 import Link from "next/link";
-import ContactUsModal from "../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Metadata } from "next";
 
@@ -41,14 +40,14 @@ const SEO_CONSTANTS = {
   METHODOLOGY_HEADING: "Our Teaching Methodology",
   HIGHLIGHTS_HEADING: "Highlights",
   TEACHERS_HEADING: "Our Teachers",
-  RESULTS_HEADING: "Archived Results",
+  RESULTS_HEADING: "Student Results and Achievements",
   KNOW_MORE_BUTTON: "Know More",
   LEADER_NAME: "RAHUL CHAKRAVARTHY",
   LEADER_QUALIFICATION: "B.Tech IIT Madras",
   LEADER_ROLE: "Head of Academics",
   LEADER_DESCRIPTION:
     "National Math Olympiad awardee, IIT Madras graduate, Olympiad author, and educator.",
-  IB_MYP_TOPPER: "Archived IB MYP 2024 cohort result â€” 54/56",
+  IB_MYP_TOPPER: "Explore recent student achievements across IB DP, IB MYP, Olympiads, and JEE Advanced.",
   MATH_TOPPERS: "Archived IB MYP 2024 Mathematics results (7/7)",
   ACADEMY_TOPPERS: "Archived MindSplash Academy IB MYP 2024 cohort results",
 } as const;
@@ -423,20 +422,7 @@ export default function AboutPage() {
         <div className="mb-12 text-center">
           <SubHeading content={SEO_CONSTANTS.IB_MYP_TOPPER} />
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 max-w-4xl">
-          <ImageCard image="/nihal.png" name="Nihal" />
-          <div className="bg-secondary-foreground p-6 rounded-2xl border border-card-border shadow-sm flex-1 text-left">
-            <h3 className="font-bold text-xl text-secondary mb-3">Archived case study: Nihal's 2024 IB MYP result</h3>
-            <p className="text-secondary/80 mb-3 text-sm leading-relaxed">
-              <strong>Curriculum:</strong> IB MYP (2024 Cohort)<br/>
-              <strong>Archived result:</strong> 54 out of 56 in the 2024 IB MYP eAssessment.
-            </p>
-            <blockquote className="italic border-l-4 border-gradient-start pl-4 text-secondary/90 my-4">
-              "The dynamic feedback methodology and detailed memory maps at MindSplash helped me break down complex criteria into manageable goals. The mock eAssessments exactly mirrored the real platform, which gave me immense confidence on exam day."
-              <br/><span className="text-sm font-semibold mt-2 block">â€” Nihal (shared with permission)</span>
-            </blockquote>
-          </div>
-        </div>
+        <StudentResultsCarousel />
         <div className="text-center mt-16 md:mt-[65px] mb-12">
           <SubHeading
             content={SEO_CONSTANTS.ACADEMY_TOPPERS}
@@ -446,9 +432,6 @@ export default function AboutPage() {
 
         <Marquee cards={toppperCards} />
       </section>
-
-      {/* Contact Us Modal */}
-      <ContactUsModal />
 
       {/* Structured Data for SEO */}
       <script
@@ -548,28 +531,5 @@ const toppperCards = [
     figure: "/shruthi.png",
     title: "Shruti",
   },
-  {
-    figure: "/nihal.png",
-    title: "Nihal",
-  },
-  {
-    figure: "/dhruv.png",
-    title: "Dhruv",
-  },
-  {
-    figure: "/hansini.png",
-    title: "Hansini",
-  },
-  {
-    figure: "/naithrav.png",
-    title: "Naithrav",
-  },
-  {
-    figure: "/rohan.png",
-    title: "Rohan",
-  },
-  {
-    figure: "/shruthi.png",
-    title: "Shruti",
-  },
 ];
+

@@ -7,7 +7,6 @@ import SubHeading from "@/components/SubHeading";
 import Description from "@/components/Description";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Calendar, User, Clock, BookOpen, Tag } from "lucide-react";
-import ContactUsModal from "../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
@@ -382,7 +381,7 @@ export default function BlogHubPage() {
                   </h3>
                 </Link>
 
-                <p className="text-description text-base md:text-lg leading-relaxed mb-6">
+                <p className="max-w-2xl font-sans text-lg font-medium leading-8 text-secondary/90 md:text-xl mb-6">
                   {featuredPost.excerpt}
                 </p>
               </div>
@@ -445,7 +444,7 @@ export default function BlogHubPage() {
                     </h3>
                   </Link>
 
-                  <p className="text-description text-sm leading-relaxed mb-6">
+                  <p className="font-sans text-base font-medium leading-7 text-secondary/90 mb-6">
                     {post.excerpt}
                   </p>
                 </div>
@@ -475,7 +474,6 @@ export default function BlogHubPage() {
         <Link href="/contact" className="hover:underline">Ask a question or book a free demo</Link>
       </nav>
 
-      <ContactUsModal />
 
       {/* JSON-LD Schema */}
       <script

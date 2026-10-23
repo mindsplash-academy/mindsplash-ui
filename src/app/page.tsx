@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import VideoSection from "./_components/VideoSection";
 import Heading from "@/components/Heading";
 import GradientHeading from "@/components/GradientHeading";
@@ -204,7 +204,7 @@ export default function Home() {
         </article>
       </section>
 
-      {/* Archived student results */}
+      {/* Latest student results */}
       <section
         className="mx-auto mb-20 w-[88%] max-w-6xl overflow-hidden rounded-[32px] border border-card-border bg-foreground shadow-sm"
         aria-labelledby="home-results-heading"
@@ -212,54 +212,44 @@ export default function Home() {
         <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
           <div className="bg-gradient-to-br from-gradient-start to-gradient-end p-7 text-white sm:p-10 lg:p-12">
             <p className="mb-4 inline-flex rounded-full border border-white/30 bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide">
-              Archived 2024 IB MYP cohort
+              2026 student results
             </p>
             <h2 id="home-results-heading" className="mb-4 text-3xl font-bold leading-tight sm:text-4xl">
-              Student achievement, shown with context
+              Achievements across our programmes
             </h2>
             <p className="max-w-xl text-sm leading-6 text-white/90 sm:text-base">
-              One student scored 54 out of 56 in the IB MYP eAssessment. Multiple students in the same cohort earned 7 out of 7 in Mathematics.
+              Meet students who earned strong results in IB DP, IB MYP, Olympiads, and JEE Advanced in 2026.
             </p>
             <Link
               href="/about#results"
               className="mt-7 inline-flex items-center rounded-full bg-white px-5 py-3 text-sm font-bold text-secondary transition-colors hover:bg-white/90"
             >
-              Read the archived results
+              View student results
               <span aria-hidden="true" className="ml-2">→</span>
             </Link>
           </div>
 
-          <div className="grid gap-4 p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-1 lg:content-center lg:p-10">
-            <article className="rounded-2xl border border-card-border bg-secondary-foreground p-5 sm:p-6">
-              <div className="flex items-end justify-between gap-4">
+          <div className="grid gap-3 p-5 sm:grid-cols-2 sm:p-7 lg:p-8">
+            {[
+              { name: "Ishanvi Tupili", programme: "IB DP 2026", result: "43/45" },
+              { name: "Yashica Reddy", programme: "IB MYP 2026", result: "53/56" },
+              { name: "Dakshesh", programme: "SAMSO 2026 (Olympiads)", result: "Gold Medal" },
+              { name: "Shreya Singh", programme: "IB DP 2026", result: "41/45" },
+              { name: "Deekshitha", programme: "IB MYP 2026", result: "51/56" },
+              { name: "Yash Agarwal", programme: "JEE Advanced 2026", result: "All India Rank 136" },
+            ].map((student) => (
+              <article key={student.name} className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-card-border bg-secondary-foreground p-4">
                 <div>
-                  <p className="text-sm font-semibold text-secondary">IB MYP eAssessment</p>
-                  <p className="mt-1 text-xs text-description">2024 cohort · one student</p>
+                  <h3 className="text-sm font-bold text-secondary">{student.name}</h3>
+                  <p className="mt-1 text-xs text-description">{student.programme}</p>
                 </div>
-                <p className="text-3xl font-bold text-gradient-start">54<span className="text-lg text-description">/56</span></p>
-              </div>
-              <div
-                className="mt-5 h-3 overflow-hidden rounded-full bg-card-border"
-                role="img"
-                aria-label="54 out of 56 points"
-              >
-                <div className="h-full rounded-full bg-gradient-to-r from-gradient-start to-gradient-end" style={{ width: `${(54 / 56) * 100}%` }} />
-              </div>
-              <p className="mt-2 text-right text-xs text-description">54 of 56 points</p>
-            </article>
-
-            <article className="flex flex-col justify-between rounded-2xl border border-card-border bg-secondary-foreground p-5 sm:p-6">
-              <div>
-                <p className="text-sm font-semibold text-secondary">IB MYP Mathematics</p>
-                <p className="mt-1 text-xs text-description">Archived 2024 cohort result</p>
-              </div>
-              <p className="mt-4 text-3xl font-bold text-gradient-start">7<span className="text-lg text-description">/7</span></p>
-              <p className="mt-1 text-sm text-description">Multiple students earned the top score.</p>
-            </article>
+                <p className="mt-3 text-lg font-bold text-gradient-start">{student.result}</p>
+              </article>
+            ))}
           </div>
         </div>
         <p className="border-t border-card-border px-6 py-4 text-xs leading-5 text-description sm:px-10">
-          These are historical results from the 2024 cohort, not current-year results. Individual outcomes vary.
+          Results shown are for the 2026 cohort. Individual outcomes vary.
         </p>
       </section>
 
@@ -554,7 +544,7 @@ const otherSpecialities = [
     icon: "/olympiad_kid.jpg",
     title: "OLYMPIADS",
     description:
-      "Led by a National Math Olympiad awardee, we prepare students in Grades 6â€“10 for IOQM, AMC 8/10/12, and selected Mathematics and Science competitions.",
+      "Led by a National Math Olympiad awardee, we prepare students in Grades 6-10 for IOQM, AMC 8/10/12, and selected Mathematics and Science competitions.",
     from: "#6ADAD4",
     to: "#38758B",
   },

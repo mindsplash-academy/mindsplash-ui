@@ -3,9 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Heading from "@/components/Heading";
 import GradientHeading from "@/components/GradientHeading";
-import PrimaryButton from "@/components/PrimaryButton";
 import { ChevronRight, MapPin, Phone, Clock } from "lucide-react";
-import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
@@ -71,7 +69,7 @@ export default function KokapetPage() {
     <>
       <Breadcrumbs items={[
         { label: "Home", href: "/" },
-        { label: "Locations" },
+        { label: "Locations", href: "/branches" },
         { label: "Kokapet" },
       ]} />
 
@@ -86,11 +84,6 @@ export default function KokapetPage() {
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
           Expert-led coaching near Rajapushpa Regalia, with small batches and personalised attention.
         </p>
-        <div className="mt-8">
-          <Link href="/contact?location=Kokapet" aria-label="Book a free demo at Kokapet">
-            <PrimaryButton content="Book a Free Demo" />
-          </Link>
-        </div>
       </section>
 
       {/* Branch Image */}
@@ -230,21 +223,6 @@ export default function KokapetPage() {
           ))}
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="mx-7 mb-16 flex flex-col items-center justify-center min-h-[280px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-8 py-12 text-center">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">
-          Ready to visit our Kokapet centre?
-        </h2>
-        <p className="text-foreground/90 text-lg mb-8 max-w-xl">
-          Schedule a free demo class and see why families across western Hyderabad choose MindSplash.
-        </p>
-        <Link href="/contact?location=Kokapet">
-          <PrimaryButton content="Book a Free Demo" />
-        </Link>
-      </section>
-
-      <ContactUsModal location="Kokapet" />
 
       {/* JSON-LD */}
       <script

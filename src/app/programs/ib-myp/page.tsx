@@ -1,4 +1,4 @@
-﻿import { Metadata } from "next";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Heading from "@/components/Heading";
@@ -7,7 +7,6 @@ import SubHeading from "@/components/SubHeading";
 import Description from "@/components/Description";
 import PrimaryButton from "@/components/PrimaryButton";
 import { ChevronRight, BookOpen, Award, Users, Clock, Target, CheckCircle } from "lucide-react";
-import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
@@ -45,9 +44,9 @@ const METHODOLOGY = [
   { icon: Target, title: "Baseline Assessment", desc: "Diagnostic test to identify strengths and gaps before starting the programme." },
   { icon: BookOpen, title: "Criteria-Based Worksheets", desc: "Proprietary worksheets mapped to IB MYP Criteria A, B, C and D for each subject." },
   { icon: Clock, title: "Assessprep Practice", desc: "Computer-based practice tasks on Assessprep help students become familiar with digital assessment formats." },
-  { icon: CheckCircle, title: "Timed Mock Exams", desc: "Full-length timed mocks every 3â€“4 weeks with detailed performance analysis and remedial plans." },
+  { icon: CheckCircle, title: "Timed Mock Exams", desc: "Full-length timed mocks every 3-4 weeks with detailed performance analysis and remedial plans." },
   { icon: Award, title: "Score Tracking", desc: "Individual score dashboards tracking criteria-level progress across terms." },
-  { icon: Users, title: "Small Batches (8â€“12)", desc: "Limited class sizes give teachers more opportunity to offer individual feedback and attention." },
+  { icon: Users, title: "Small Batches (8-12)", desc: "Limited class sizes give teachers more opportunity to offer individual feedback and attention." },
 ];
 
 const FAQS = [
@@ -61,7 +60,7 @@ const FAQS = [
   },
   {
     q: "How many hours per week is the IB MYP programme?",
-    a: "The programme includes 6 hours of classes per week â€” 3 hours of Mathematics and 3 hours of Science (Physics, Chemistry, Biology). Sessions are 1 hour each, 6 days a week. Contact us for exact schedules at each centre.",
+    a: "The programme includes 6 hours of classes per week — 3 hours of Mathematics and 3 hours of Science (Physics, Chemistry, Biology). Sessions are 1 hour each, 6 days a week. Contact us for exact schedules at each centre.",
   },
   {
     q: "What results have MindSplash IB MYP students achieved?",
@@ -69,7 +68,7 @@ const FAQS = [
   },
   {
     q: "Which centres offer IB MYP coaching?",
-    a: "IB MYP coaching is available at all three MindSplash centres â€” Khajaguda (Gachibowli), Kokapet and Financial District, Hyderabad.",
+    a: "IB MYP coaching is available at all three MindSplash centres — Khajaguda (Gachibowli), Kokapet and Financial District, Hyderabad.",
   },
   {
     q: "How are the worksheets different from school worksheets?",
@@ -98,7 +97,6 @@ export default function IBMYPPage() {
           IB MYP Years 4 and 5 eAssessment preparation with criteria-based worksheets, digital practice, and teacher feedback.
         </p>
         <div className="mt-8 flex flex-wrap gap-4 justify-center">
-          <Link href="/contact?program=IB_MYP"><PrimaryButton content="Book a Free Demo" /></Link>
         </div>
       </section>
 
@@ -107,7 +105,7 @@ export default function IBMYPPage() {
         {[
           { val: "54/56", label: "Archived 2024 top score" },
           { val: "6 hrs", label: "Per Week" },
-          { val: "8â€“12", label: "Batch Size" },
+          { val: "8-12", label: "Batch Size" },
           { val: "3", label: "Centres in Hyderabad" },
         ].map((stat) => (
           <div key={stat.label} className="p-6 text-center bg-secondary-foreground border border-card-border rounded-[24px] shadow-sm">
@@ -126,7 +124,7 @@ export default function IBMYPPage() {
           <h2 className="mb-4">
             <Heading content="What is " /><GradientHeading content="IB MYP?" />
           </h2>
-          <Description content="The IB Middle Years Programme (MYP) is a challenging framework for students aged 11â€“16 that encourages critical thinking and cross-disciplinary connections. Years 4 and 5 culminate in the MYP eAssessment â€” a computer-based examination that tests deep understanding across criteria A through D." />
+          <Description content="The IB Middle Years Programme (MYP) is a challenging framework for students aged 11-16 that encourages critical thinking and cross-disciplinary connections. Years 4 and 5 culminate in the MYP eAssessment — a computer-based examination that tests deep understanding across criteria A through D." />
           <br />
           <Description content="At MindSplash Academy, students use criteria-based worksheets, practice tasks on Assessprep, and teacher feedback to develop subject understanding and assessment technique. Contact a centre to discuss current class availability and preparation plans." />
         </div>
@@ -176,7 +174,7 @@ export default function IBMYPPage() {
             <div className="p-8 bg-foreground rounded-[28px] shadow-sm text-center">
               <Award className="w-10 h-10 mx-auto mb-4 text-gradient-start" />
               <p className="text-3xl font-bold text-gradient-start mb-2">54/56</p>
-              <p className="text-sm text-description font-semibold">IB MYP 2024 Topper â€” Nihal</p>
+              <p className="text-sm text-description font-semibold">IB MYP 2024 Topper — Nihal</p>
               <p className="text-xs text-description mt-1">Highest score in Hyderabad</p>
             </div>
             <div className="p-8 bg-foreground rounded-[28px] shadow-sm text-center">
@@ -239,15 +237,6 @@ export default function IBMYPPage() {
           ))}
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="mx-7 mb-16 flex flex-col items-center justify-center min-h-[280px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-8 py-12 text-center">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Start your IB MYP journey today</h2>
-        <p className="text-foreground/90 text-lg mb-8 max-w-xl">Book a free demo class and experience criteria-based coaching first-hand.</p>
-        <Link href="/contact?program=IB_MYP"><PrimaryButton content="Book a Free Demo" /></Link>
-      </section>
-
-      <ContactUsModal />
 
       {/* JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({

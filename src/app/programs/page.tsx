@@ -1,8 +1,6 @@
 ﻿import Description from "@/components/Description";
 import GradientHeading from "@/components/GradientHeading";
 import SubHeading from "@/components/SubHeading";
-import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -39,8 +37,6 @@ const SEO_CONSTANTS = {
   OLYMPIAD_SUBTITLE: "Problem-solving preparation for Maths and Science competitions",
   EXAM_PREP_TITLE: "SAT / PSAT & Exam Prep",
   EXAM_PREP_SUBTITLE: "Digital SAT, PSAT and school exam preparation",
-  FOOTER_HEADING: "Experience learning that's engaging, immersive, and fun.",
-  SPEAK_WITH_US: "Speak With Us",
 } as const;
 
 export default function ProgramsPage() {
@@ -293,37 +289,6 @@ export default function ProgramsPage() {
           ].map((branch) => <Link key={branch.href} href={branch.href} className="rounded-2xl border border-card-border bg-secondary-foreground p-5 font-semibold text-gradient-start hover:underline">Explore programmes at the {branch.name} centre</Link>)}
         </div>
       </section>
-      {/* Call to Action Section */}
-      <section
-        className="h-[300px] shadow-lg rounded-[50px] md:rounded-none mx-7 md:mx-0 bg-gradient-to-r from-gradient-start to-gradient-end justify-center sm:px-8 min-h-[400px] md:min-h-[500px] md:px-16 lg:h-[579px] md:bg-[url('/footer_kid.png')] md:bg-no-repeat md:bg-center md:bg-cover flex items-center md:justify-end my-20 md:mb-0"
-        aria-labelledby="cta-heading"
-      >
-        <div className="flex flex-col items-center md:items-start lg:px-30 xl:px-5 space-y-11">
-          <p
-            className="text-center md:text-left text-xl lg:text-[25px] xl:text-[30px] 2xl:text-[46px] md:leading-[60px] tracking-[0px]"
-            id="cta-heading"
-          >
-            Talk with our team about
-            <br />
-            <span className="font-semibold">
-              {" "}
-              engaging, immersive, and fun.
-            </span>
-          </p>
-          <Button asChild className="group">
-            <Link
-              href="/contact"
-              aria-label="Contact MindSplash Academy to learn more about our programs"
-            >
-              {SEO_CONSTANTS.SPEAK_WITH_US}
-              <div className="self-center group-hover:opacity-100 right-4 h-5 w-5 rounded-full bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
-                <ChevronRight className="text-foreground" />
-              </div>
-            </Link>
-          </Button>
-        </div>
-      </section>
-
       {/* Structured Data for SEO */}
       <script
         type="application/ld+json"

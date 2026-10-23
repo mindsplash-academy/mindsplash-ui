@@ -5,9 +5,7 @@ import Heading from "@/components/Heading";
 import GradientHeading from "@/components/GradientHeading";
 import SubHeading from "@/components/SubHeading";
 import Description from "@/components/Description";
-import PrimaryButton from "@/components/PrimaryButton";
 import { ChevronRight, MapPin, Phone, Clock } from "lucide-react";
-import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
@@ -73,7 +71,7 @@ export default function KhajagudaPage() {
     <>
       <Breadcrumbs items={[
         { label: "Home", href: "/" },
-        { label: "Locations" },
+        { label: "Locations", href: "/branches" },
         { label: "Khajaguda" },
       ]} />
 
@@ -88,11 +86,6 @@ export default function KhajagudaPage() {
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
           Small batches and expert IIT-trained faculty in the heart of Gachibowli.
         </p>
-        <div className="mt-8">
-          <Link href="/contact?location=Khajaguda" aria-label="Book a free demo at Khajaguda">
-            <PrimaryButton content="Book a Free Demo" />
-          </Link>
-        </div>
       </section>
 
       {/* Branch Image */}
@@ -227,21 +220,6 @@ export default function KhajagudaPage() {
           ))}
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="mx-7 mb-16 flex flex-col items-center justify-center min-h-[280px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-8 py-12 text-center">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">
-          Ready to visit our Khajaguda centre?
-        </h2>
-        <p className="text-foreground/90 text-lg mb-8 max-w-xl">
-          Schedule a free demo class and experience the MindSplash difference first-hand.
-        </p>
-        <Link href="/contact?location=Khajaguda">
-          <PrimaryButton content="Book a Free Demo" />
-        </Link>
-      </section>
-
-      <ContactUsModal location="Khajaguda" />
 
       {/* JSON-LD */}
       <script

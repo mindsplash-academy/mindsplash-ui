@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, Calendar, User, Clock, BookOpen, ArrowLeft } from "lucide-react";
-import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Heading from "@/components/Heading";
 import GradientHeading from "@/components/GradientHeading";
@@ -95,17 +94,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           />
         </div>
 
-        <div className="prose prose-lg max-w-none mb-16 text-description prose-headings:text-secondary prose-a:text-gradient-start prose-a:no-underline hover:prose-a:underline">
-          <p className="text-xl leading-relaxed text-foreground/90 font-medium mb-8">
+        <div className="mb-16 max-w-none font-sans text-secondary">
+          <p className="mb-10 rounded-2xl border border-card-border bg-secondary-foreground px-6 py-5 text-lg font-medium leading-8 text-secondary/90 md:text-xl">
             {post.excerpt}
           </p>
 
           {post.sections.map((section) => (
-            <section key={section.heading}>
-              <h2 className="text-secondary">{section.heading}</h2>
-              <p>{section.body}</p>
+            <section key={section.heading} className="mb-10">
+              <h2 className="mb-4 text-2xl font-bold leading-snug text-secondary md:text-3xl">{section.heading}</h2>
+              <p className="text-base leading-8 text-secondary/90 md:text-lg">{section.body}</p>
               {section.points && (
-                <ul>
+                <ul className="mt-5 space-y-3 pl-6 text-base leading-7 text-secondary/90 md:text-lg">
                   {section.points.map((point) => (
                     <li key={point}>{point}</li>
                   ))}
@@ -115,9 +114,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           ))}
           {post.sources?.length ? (
             <section aria-labelledby="article-sources-heading" className="mt-10 border-t border-card-border pt-6">
-              <h2 id="article-sources-heading" className="text-secondary">Official curriculum references</h2>
-              <ul>
-                {post.sources.map((source) => <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer">{source.label}</a></li>)}
+              <h2 id="article-sources-heading" className="mb-4 text-2xl font-bold text-secondary">Official curriculum references</h2>
+              <ul className="space-y-3 text-base leading-7 text-secondary/90 md:text-lg">
+                {post.sources.map((source) => <li key={source.href}><a className="font-semibold text-gradient-start underline-offset-4 hover:underline" href={source.href} target="_blank" rel="noreferrer">{source.label}</a></li>)}
               </ul>
             </section>
           ) : null}
@@ -151,7 +150,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </h2>
           <Description content="Join MindSplash Academy and unlock your true academic potential." />
           <div className="mt-8">
-            <ContactUsModal program={categoryProgram[post.category].value} />
           </div>
         </div>
       </section>

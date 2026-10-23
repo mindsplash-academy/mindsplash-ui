@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import PrimaryButton from "@/components/PrimaryButton";
 import ProgramLocations from "@/app/_components/ProgramLocations";
 
 const SUBJECTS = {
@@ -57,7 +56,6 @@ export default async function IBMYPSubjectPage({ params }: { params: Promise<{ s
       <p className="mb-3 rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold">IB Middle Years Programme</p>
       <h1 className="max-w-4xl text-3xl font-bold md:text-5xl">IB MYP {subject.name} Tuition in Hyderabad</h1>
       <p className="mt-4 max-w-3xl text-lg text-white/90">{subject.description}</p>
-      <Link href="/contact?program=IB_MYP" className="mt-7"><PrimaryButton content={`Ask about IB MYP ${subject.name}`} /></Link>
     </header>
     <main className="mx-auto my-12 w-[90%] max-w-5xl space-y-10 md:my-16">
       <section><h2 className="mb-4 text-2xl font-bold text-secondary md:text-3xl">IB MYP {subject.name}: topics and skills</h2><p className="leading-relaxed text-description">The exact learning sequence depends on the student’s school course. MindSplash describes its MYP support as criteria-based, with worksheets and teacher feedback to help students practise understanding, application and clear explanations.</p><ul className="mt-5 grid gap-3 sm:grid-cols-2">{subject.focus.map((item) => <li key={item} className="rounded-2xl bg-secondary-foreground p-5 text-description">{item}</li>)}</ul></section>

@@ -3,9 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Heading from "@/components/Heading";
 import GradientHeading from "@/components/GradientHeading";
-import PrimaryButton from "@/components/PrimaryButton";
 import { ChevronRight, MapPin, Phone, Clock } from "lucide-react";
-import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
@@ -71,7 +69,7 @@ export default function FinancialDistrictPage() {
     <>
       <Breadcrumbs items={[
         { label: "Home", href: "/" },
-        { label: "Locations" },
+        { label: "Locations", href: "/branches" },
         { label: "Financial District" },
       ]} />
 
@@ -86,11 +84,6 @@ export default function FinancialDistrictPage() {
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
           Premium coaching in Hyderabad's IT corridor, with small batches and expert IIT-trained faculty.
         </p>
-        <div className="mt-8">
-          <Link href="/contact?location=Financial_District" aria-label="Book a free demo at Financial District">
-            <PrimaryButton content="Book a Free Demo" />
-          </Link>
-        </div>
       </section>
 
       {/* Branch Image */}
@@ -230,21 +223,6 @@ export default function FinancialDistrictPage() {
           ))}
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="mx-7 mb-16 flex flex-col items-center justify-center min-h-[280px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-8 py-12 text-center">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">
-          Ready to visit our Financial District centre?
-        </h2>
-        <p className="text-foreground/90 text-lg mb-8 max-w-xl">
-          Schedule a free demo class, conveniently located in the heart of Hyderabad's tech hub.
-        </p>
-        <Link href="/contact?location=Financial_District">
-          <PrimaryButton content="Book a Free Demo" />
-        </Link>
-      </section>
-
-      <ContactUsModal location="Financial_District" />
 
       {/* JSON-LD */}
       <script

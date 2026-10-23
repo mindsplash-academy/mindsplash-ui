@@ -1,12 +1,10 @@
-﻿import { Metadata } from "next";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Heading from "@/components/Heading";
 import GradientHeading from "@/components/GradientHeading";
 import Description from "@/components/Description";
-import PrimaryButton from "@/components/PrimaryButton";
 import { ChevronRight, Trophy, Users, Target, Flame, Medal, Swords } from "lucide-react";
-import ContactUsModal from "../../_components/ContactUsModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ProgramLocations from "@/app/_components/ProgramLocations";
 
@@ -39,17 +37,17 @@ const COMPETITIONS = [
 ];
 
 const METHODOLOGY = [
-  { icon: Target, title: "Problem-Solving Framework", desc: "Structured approach to breaking down competition problems: Identify â†’ Model â†’ Solve â†’ Verify. Beyond rote tricks." },
+  { icon: Target, title: "Problem-Solving Framework", desc: "Structured approach to breaking down competition problems: Identify → Model → Solve → Verify. Beyond rote tricks." },
   { icon: Flame, title: "Difficulty Progression", desc: "Worksheets graded from standard to fiendishly hard. Students build confidence at each level before advancing." },
-  { icon: Medal, title: "Mock Competitions", desc: "Regular timed mock tests replicating real Olympiad conditions â€” question count, time limits, scoring rules." },
-  { icon: Swords, title: "Expert Mentorship", desc: "Led by Rahul Chakravarthy â€” National Math Olympiad Awardee, IIT Madras graduate, Olympiad book author, and Govt. of India trainer." },
+  { icon: Medal, title: "Mock Competitions", desc: "Regular timed mock tests replicating real Olympiad conditions — question count, time limits, scoring rules." },
+  { icon: Swords, title: "Expert Mentorship", desc: "Led by Rahul Chakravarthy — National Math Olympiad Awardee, IIT Madras graduate, Olympiad book author, and Govt. of India trainer." },
 ];
 
 const FAQS = [
   { q: "Which grades does MindSplash train for Olympiads?", a: "We train students in grades 6 through 10 for various national and international maths and science competitions." },
-  { q: "Who leads the Olympiad programme?", a: "Rahul Chakravarthy, our Head of Academics â€” a National Math Olympiad Awardee, IIT Madras graduate, published Olympiad book author, and official Govt. of India trainer for students of Telangana and Andhra Pradesh preparing for INMO." },
+  { q: "Who leads the Olympiad programme?", a: "Rahul Chakravarthy, our Head of Academics — a National Math Olympiad Awardee, IIT Madras graduate, published Olympiad book author, and official Govt. of India trainer for students of Telangana and Andhra Pradesh preparing for INMO." },
   { q: "What skills does Olympiad preparation develop?", a: "Preparation gives students practice with multi-step problems, mathematical reasoning, and explaining a solution clearly. The competitions and their requirements differ, so students should choose practice based on the specific Olympiad they plan to take." },
-  { q: "What is the schedule for Olympiad classes?", a: "Olympiad classes typically run 2â€“3 hours per week with additional intensive sessions before major competitions. Contact us for current schedules across our three centres." },
+  { q: "What is the schedule for Olympiad classes?", a: "Olympiad classes typically run 2-3 hours per week with additional intensive sessions before major competitions. Contact us for current schedules across our three centres." },
   { q: "Can a student do Olympiad training alongside IB MYP or IGCSE?", a: "Absolutely. Many of our students combine Olympiad training with their IB MYP or IGCSE programme. The problem-solving skills transfer directly to improved exam performance." },
 ];
 
@@ -65,16 +63,15 @@ export default function OlympiadsPage() {
           Olympiad Coaching in Hyderabad
         </h1>
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
-          IOQM, AMC 8/10/12 & science Olympiad training for grades 6â€“10 â€” led by a National Math Olympiad awardee from IIT Madras.
+          IOQM, AMC 8/10/12 & science Olympiad training for grades 6-10, led by a National Math Olympiad awardee from IIT Madras.
         </p>
-        <div className="mt-8"><Link href="/contact?program=Olympiads"><PrimaryButton content="Book a Free Demo" /></Link></div>
       </section>
 
       <section className="w-[85%] lg:w-[75%] mx-auto my-16 grid sm:grid-cols-4 gap-6">
         {[
           { val: "4+", label: "Competitions Covered" },
-          { val: "Gr 6â€“10", label: "Eligible Grades" },
-          { val: "8â€“12", label: "Batch Size" },
+          { val: "Gr 6-10", label: "Eligible Grades" },
+          { val: "8-12", label: "Batch Size" },
           { val: "INMO", label: "Training experience" },
         ].map((s) => (
           <div key={s.label} className="p-6 text-center bg-secondary-foreground border border-card-border rounded-[24px] shadow-sm">
@@ -139,14 +136,6 @@ export default function OlympiadsPage() {
           ))}
         </div>
       </section>
-
-      <section className="mx-7 mb-16 flex flex-col items-center justify-center min-h-[280px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-8 py-12 text-center">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Plan your Olympiad preparation</h2>
-        <p className="text-foreground/90 text-lg mb-8 max-w-xl">Start your Olympiad journey with a National Math Olympiad Awardee.</p>
-        <Link href="/contact?program=Olympiads"><PrimaryButton content="Book a Free Demo" /></Link>
-      </section>
-
-      <ContactUsModal />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org", "@type": "Course", name: "Olympiad Coaching Programme",
