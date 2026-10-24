@@ -415,9 +415,11 @@ export default function AboutPage() {
         className="w-full mx-auto flex flex-col items-center mb-15 md:mb-[100px] md:overflow-visible"
         aria-labelledby="results-heading"
       >
-        <h2 className="mb-5 flex text-center font-bold text-[42px] tracking-[0px]" id="results-heading">
-          <Heading content="Our " />
-          <GradientHeading content={SEO_CONSTANTS.RESULTS_HEADING} />
+        <h2 className="mb-5 text-center font-bold text-[42px] tracking-[0px]" id="results-heading">
+          <span className="text-secondary">Our&nbsp;</span>
+          <span className="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent">
+            {SEO_CONSTANTS.RESULTS_HEADING}
+          </span>
         </h2>
         <div className="mb-12 text-center">
           <SubHeading content={SEO_CONSTANTS.IB_MYP_TOPPER} />
@@ -442,7 +444,7 @@ export default function AboutPage() {
             "@type": "WebPage",
             name: "About MindSplash Academy - Our History, Leadership & Methodology",
             description:
-              "Meet Rahul Chakravarthy and the MindSplash Academy team, learn about the teaching methodology, and read an archived IB MYP 2024 cohort result.",
+              "Meet Rahul Chakravarthy and the MindSplash Academy team learn about the teaching methodology, and read an archived IB MYP 2024 cohort result.",
             url: "https://mindsplash.in/about",
             mainEntity: {
               "@type": "EducationalOrganization",
