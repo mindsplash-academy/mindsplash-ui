@@ -78,7 +78,7 @@ export default function PageContactBanner() {
   return (
     <section aria-labelledby="page-contact-banner-heading" className="mx-4 my-12 overflow-hidden rounded-[32px] bg-gradient-to-r from-gradient-start to-gradient-end text-foreground shadow-lg sm:mx-7 md:my-16 md:grid md:min-h-[360px] md:grid-cols-2 md:rounded-none lg:min-h-[420px]">
       <div className="relative min-h-[220px] md:min-h-[360px] lg:min-h-[420px]">
-        <Image src="/footer_kid.png" alt="MindSplash student learning with a tablet" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-left" />
+        <Image src="/footerkid.png" alt="MindSplash student learning with a tablet" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-left" />
       </div>
       <div className="flex items-center justify-center px-7 py-10 text-center md:justify-start md:px-10 md:text-left lg:px-[7%]">
         <div className="max-w-xl">

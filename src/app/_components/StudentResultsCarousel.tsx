@@ -6,7 +6,7 @@ import ImageCard from "@/components/ImageCard";
 
 const results = [
   {
-    image: "/1.png",
+    image: "/1.jpeg",
     name: "Ishanvi Tupili",
     heading: "Ishanvi Tupili — IB DP 2026 result",
     programmeLabel: "Curriculum",
@@ -17,7 +17,7 @@ const results = [
     attribution: "Ishanvi Tupili",
   },
   {
-    image: "/2.png",
+    image: "/2.jpeg",
     name: "Yashica Reddy",
     heading: "Yashica Reddy — IB MYP 2026 result",
     programmeLabel: "Curriculum",
@@ -28,7 +28,7 @@ const results = [
     attribution: "Yashica Reddy",
   },
   {
-    image: "/3.png",
+    image: "/3.jpeg",
     name: "Dakshesh",
     heading: "Dakshesh — Olympiad result, SAMSO 2026",
     programmeLabel: "Competition",
@@ -50,7 +50,7 @@ const results = [
     attribution: "Shreya Singh",
   },
   {
-    image: "/5.png",
+    image: "/5.jpeg",
     name: "Deekshitha",
     heading: "Deekshitha — IB MYP 2026 result",
     programmeLabel: "Curriculum",
