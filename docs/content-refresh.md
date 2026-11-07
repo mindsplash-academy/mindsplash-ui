@@ -12,6 +12,8 @@ Use [the organic search measurement guide](./seo-measurement.md) for monthly GSC
 - Review page titles, meta descriptions, canonical URLs, internal links and sitemap entries for pages added, changed or retired.
 - Check visible headings, image alt text and that structured data matches content visitors can see.
 - Review FAQ answers, forms and calls to action for accuracy and usability.
+- Keep the parent FAQ as the home for broad enrolment questions; use programme FAQs for curriculum-specific questions and branch FAQs for local access, services and contact details. Link to the relevant canonical answer instead of repeating it with slightly different wording.
+- Keep every visible FAQ answer identical in meaning to its structured-data answer. Add structured data only for questions and answers visible on that page, and do not promise a search-result enhancement.
 - Review expert profiles and article attribution; add credential or publication details only when the academy has supplied and approved them.
 
 ## Annual results and programme review

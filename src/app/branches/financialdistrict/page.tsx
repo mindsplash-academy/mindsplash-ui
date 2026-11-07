@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 const PROGRAMS = [
   { name: "IB MYP", grades: "Years 4 & 5", href: "/programs#ib-myp-program-heading" },
   { name: "IB DP", grades: "Diploma Programme", href: "/programs#ib-dp-program-heading" },
-  { name: "IGCSE", grades: "O-Level & A-Level", href: "/programs#igcse-program-heading" },
+  { name: "IGCSE", grades: "Cambridge IGCSE subjects", href: "/programs#igcse-program-heading" },
   { name: "Olympiads", grades: "Grades 6-10", href: "/programs#olympiad-program-heading" },
   { name: "SAT / PSAT", grades: "University admission prep", href: "/programs#exam-prep-program-heading" },
   { name: "Primary", grades: "Grade 5 & below", href: "/programs#primary-program-heading" },
@@ -44,7 +44,7 @@ const FAQS = [
   },
   {
     q: "What programmes does the Financial District centre offer?",
-    a: "We offer IB MYP (eAssessment preparation), IB DP (Maths AA/AI, Physics, Chemistry, Economics, CS), IGCSE (Cambridge O-Level & A-Level), Olympiad coaching (IOQM, AMC) and SAT/PSAT preparation.",
+    a: "The programme list includes IB MYP subject coaching, IB DP, Cambridge IGCSE subjects, Olympiad coaching and SAT/PSAT preparation. MYP eAssessment is optional and depends on the student's school pathway. Contact the centre to confirm current subjects and schedules.",
   },
   {
     q: "What makes the Financial District branch convenient for working parents?",
@@ -70,7 +70,7 @@ export default function FinancialDistrictPage() {
       <Breadcrumbs items={[
         { label: "Home", href: "/" },
         { label: "Locations", href: "/branches" },
-        { label: "Financial District" },
+        { label: "Financial District", href: "/branches/financialdistrict" },
       ]} />
 
       {/* Hero */}
@@ -82,7 +82,7 @@ export default function FinancialDistrictPage() {
           IB, IGCSE &amp; Olympiad Coaching in Financial District | MindSplash Academy
         </h1>
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
-          Premium coaching in Hyderabad's IT corridor, with small batches and expert IIT-trained faculty.
+          Find programme details, directions and contact information for our Financial District centre in Gachibowli.
         </p>
       </section>
 
@@ -159,33 +159,11 @@ export default function FinancialDistrictPage() {
         </div>
       </section>
 
-      {/* SEO Content & Internal Linking */}
+      {/* Local programme information */}
       <section className="w-[85%] lg:w-[75%] mx-auto mb-16 bg-secondary-foreground border border-card-border p-8 rounded-[30px] shadow-sm">
-        <h2 className="text-3xl font-bold text-secondary mb-6">Academic Coaching in Financial District</h2>
-        <p className="text-description mb-6 leading-relaxed">
-          MindSplash Academy offers world-class educational support to students in Hyderabad's premier IT corridor. 
-          If you are looking for an <Link href="/programs/igcse" className="text-gradient-start hover:underline font-medium">IGCSE coaching program</Link>, 
-          our Financial District branch provides expert IIT faculty and small batch sizes tailored for Cambridge O-Level and A-Level students.
-        </p>
-
-        <h2 className="text-2xl font-bold text-secondary mt-8 mb-4">IGCSE Coaching in Financial District</h2>
-        <p className="text-description mb-6 leading-relaxed">
-          Our specialized <Link href="/programs/igcse" className="text-gradient-start hover:underline font-medium">IGCSE coaching program</Link> covers essential subjects including Mathematics, Physics, Chemistry, Biology, and Computer Science.
-        </p>
-
-        <h2 className="text-2xl font-bold text-secondary mt-8 mb-4">IB MYP and IB DP Programs</h2>
-        <p className="text-description mb-6 leading-relaxed">
-          For International Baccalaureate students, we provide comprehensive <Link href="/programs/ib-myp" className="text-gradient-start hover:underline font-medium">IB MYP coaching</Link> for eAssessments and rigorous <Link href="/programs/ib-dp" className="text-gradient-start hover:underline font-medium">IB DP coaching</Link> covering Mathematics AA/AI, Economics, Sciences, and more.
-        </p>
-
-        <h2 className="text-2xl font-bold text-secondary mt-8 mb-4">Olympiad Preparation in Financial District</h2>
-        <p className="text-description mb-6 leading-relaxed">
-          Unlock your competitive edge with our dedicated <Link href="/programs/olympiads" className="text-gradient-start hover:underline font-medium">Olympiad preparation</Link> for IOQM and AMC.
-        </p>
-        
-        <h2 className="text-2xl font-bold text-secondary mt-8 mb-4">Exam Preparation in Financial District</h2>
-        <p className="text-description mb-6 leading-relaxed">
-          We also offer focused <Link href="/programs/exam-prep" className="text-gradient-start hover:underline font-medium">exam preparation</Link> strategies for SAT/PSAT test takers aiming for top scores.
+        <h2 className="text-3xl font-bold text-secondary mb-6">Study support in Financial District</h2>
+        <p className="text-description leading-relaxed">
+          The Financial District centre is above ICICI Bank on My Home Vihanga Road in Gachibowli. Nearby areas listed for the centre include Nanakramguda, Raidurgam and Madhapur. Use the programme list above to review the subjects and preparation options, then <Link href="/contact?location=Financial_District" className="text-gradient-start hover:underline font-medium">contact the Financial District team</Link> to confirm current subject availability and class times.
         </p>
       </section>
 

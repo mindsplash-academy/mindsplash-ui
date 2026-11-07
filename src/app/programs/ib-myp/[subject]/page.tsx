@@ -7,7 +7,7 @@ import ProgramLocations from "@/app/_components/ProgramLocations";
 const SUBJECTS = {
   mathematics: {
     name: "Mathematics",
-    description: "IB MYP Mathematics tuition in Hyderabad for concept understanding, mathematical reasoning and preparation for criteria-based tasks and eAssessment-style questions.",
+    description: "IB MYP Mathematics tuition in Hyderabad for concept understanding, mathematical reasoning and criteria-based tasks, with optional eAssessment-style practice where relevant.",
     focus: ["Number, algebra and functions", "Geometry and trigonometry", "Statistics and probability", "Explaining reasoning and applying mathematics in context"],
   },
   physics: {
@@ -47,11 +47,11 @@ export default async function IBMYPSubjectPage({ params }: { params: Promise<{ s
   const title = `${subject.name} Tuition for IB MYP in Hyderabad | MindSplash Academy`;
   const faqs = [
     { q: `What does IB MYP ${subject.name} tuition cover?`, a: `Support follows the student's current school topics and the relevant IB MYP subject objectives. Lessons can include concept review, practice questions and feedback on how to explain or apply ideas.` },
-    { q: "Does the course include eAssessment practice?", a: "MindSplash lists computer-based assessment-style practice and criteria-based worksheets. Ask the academy about current materials and the preparation plan for the student's school and assessment schedule." },
-    { q: "Which MYP years can ask about this subject?", a: "MindSplash currently lists IB MYP coaching for Years 4 and 5. Contact the academy to confirm current class availability and suitability for the student's course." },
+    { q: "Does the course include eAssessment practice?", a: "MYP eAssessment is an optional assessment route, and not every school or student follows it. MindSplash lists computer-based assessment-style practice and criteria-based worksheets; ask the academy whether current materials match the student's school pathway and assessment schedule." },
+    { q: "Which MYP years can ask about this subject?", a: "MindSplash lists IB MYP coaching for Years 4 and 5. Contact the academy to confirm current class availability and suitability for the student's course." },
   ];
   return <>
-    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Programs", href: "/programs" }, { label: "IB MYP", href: "/programs/ib-myp" }, { label: subject.name }]} />
+    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Programs", href: "/programs" }, { label: "IB MYP", href: "/programs/ib-myp" }, { label: subject.name, href: `/programs/ib-myp/${slug}` }]} />
     <header className="mx-3 mt-2 flex min-h-[300px] flex-col items-center justify-center rounded-[40px] bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center text-white sm:mx-5 md:mx-7">
       <p className="mb-3 rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold">IB Middle Years Programme</p>
       <h1 className="max-w-4xl text-3xl font-bold md:text-5xl">IB MYP {subject.name} Tuition in Hyderabad</h1>
@@ -59,7 +59,7 @@ export default async function IBMYPSubjectPage({ params }: { params: Promise<{ s
     </header>
     <main className="mx-auto my-12 w-[90%] max-w-5xl space-y-10 md:my-16">
       <section><h2 className="mb-4 text-2xl font-bold text-secondary md:text-3xl">IB MYP {subject.name}: topics and skills</h2><p className="leading-relaxed text-description">The exact learning sequence depends on the student’s school course. MindSplash describes its MYP support as criteria-based, with worksheets and teacher feedback to help students practise understanding, application and clear explanations.</p><ul className="mt-5 grid gap-3 sm:grid-cols-2">{subject.focus.map((item) => <li key={item} className="rounded-2xl bg-secondary-foreground p-5 text-description">{item}</li>)}</ul></section>
-      <section className="rounded-3xl border border-card-border bg-secondary-foreground p-7"><h2 className="mb-3 text-2xl font-bold text-secondary">Practice and feedback</h2><p className="leading-relaxed text-description">Students work through topic questions and receive feedback on the ideas or reasoning that need more attention. Teachers can revisit prerequisites, clarify a concept and use another task to check understanding. eAssessment-style practice should be aligned with the student’s school guidance and current assessment arrangements.</p></section>
+      <section className="rounded-3xl border border-card-border bg-secondary-foreground p-7"><h2 className="mb-3 text-2xl font-bold text-secondary">Practice and feedback</h2><p className="leading-relaxed text-description">Students work through topic questions and receive feedback on the ideas or reasoning that need more attention. Teachers can revisit prerequisites, clarify a concept and use another task to check understanding. Optional eAssessment-style practice should be aligned with the student’s school guidance and current assessment arrangements.</p></section>
       <section><h2 className="mb-5 text-2xl font-bold text-secondary">IB MYP {subject.name} FAQs</h2><div className="space-y-3">{faqs.map((faq) => <details key={faq.q} className="rounded-2xl border border-card-border bg-secondary-foreground p-5"><summary className="cursor-pointer font-semibold text-secondary">{faq.q}</summary><p className="mt-3 leading-relaxed text-description">{faq.a}</p></details>)}</div></section>
       <nav className="flex flex-wrap gap-5 text-sm font-semibold text-gradient-start" aria-label="Related programme links"><Link href="/programs/ib-myp" className="hover:underline">All IB MYP subject coaching</Link><Link href="/blog/ib-myp-eassessment-guide-hyderabad" className="hover:underline">{slug === "mathematics" ? "IB MYP Mathematics eAssessment preparation guide" : "IB MYP eAssessment preparation guide"}</Link></nav>
     </main>

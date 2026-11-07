@@ -22,7 +22,7 @@ const steps = [
 
 export default function MethodologyPage() {
   return <>
-    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About Us", href: "/about" }, { label: "Teaching Methodology" }]} />
+    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About Us", href: "/about" }, { label: "Teaching Methodology", href: "/methodology" }]} />
     <header className="mx-3 mt-2 flex min-h-[280px] flex-col items-center justify-center rounded-[40px] bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center text-white sm:mx-5 md:mx-7">
       <h1 className="text-3xl font-bold md:text-5xl">How MindSplash lessons work</h1>
       <p className="mt-4 max-w-3xl text-lg text-white/90">A feedback loop helps teachers notice learning gaps during a lesson and adapt the next explanation or practice task.</p>

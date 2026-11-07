@@ -22,7 +22,7 @@ const articles = [
 export default function RahulChakravarthyProfile() {
   return (
     <>
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About Us", href: "/about" }, { label: "Rahul Chakravarthy" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About Us", href: "/about" }, { label: "Rahul Chakravarthy", href: "/authors/rahul-chakravarthy" }]} />
       <main className="mx-auto my-10 w-[90%] max-w-5xl space-y-12 md:my-16">
         <header className="rounded-[36px] bg-gradient-to-r from-gradient-start to-gradient-end px-7 py-12 text-center text-white md:px-16">
           <p className="mb-3 font-semibold">Academic profile</p>

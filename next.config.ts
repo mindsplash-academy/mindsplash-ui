@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/our-programs',
+        destination: '/programs',
+        permanent: true,
+      },
+      {
         source: '/programs/ib-mvp',
         destination: '/programs/ib-myp',
         permanent: true,

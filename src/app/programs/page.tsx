@@ -42,7 +42,7 @@ const SEO_CONSTANTS = {
 export default function ProgramsPage() {
   return (
     <>
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Programs" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Programs", href: "/programs" }]} />
       {/* Hero Section */}
       <section className="mx-3 mt-2 sm:mx-5 md:mx-7 md:mt-3 flex justify-center items-center h-[300px] md:h-[400px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end">
         <div className="relative lg:mt-25 xl:mt-0">

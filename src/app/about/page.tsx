@@ -57,7 +57,7 @@ export default function AboutPage() {
     <>
       <Breadcrumbs items={[
         { label: "Home", href: "/" },
-        { label: "About Us" },
+        { label: "About Us", href: "/about" },
       ]} />
 
       {/* Hero Section */}

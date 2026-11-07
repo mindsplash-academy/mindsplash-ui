@@ -332,7 +332,7 @@ export default function BlogHubPage() {
 
   return (
     <>
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog" }]} />
       {/* Hero Header */}
       <section className="mx-3 mt-2 sm:mx-5 md:mx-7 md:mt-3 flex justify-center items-center min-h-[300px] md:min-h-[360px] rounded-[50px] shadow-lg bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12">
         <div className="text-center max-w-4xl">
@@ -386,11 +386,11 @@ export default function BlogHubPage() {
                 </p>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-card-border/60">
-                <div className="flex items-center gap-2 text-sm font-semibold text-secondary">
+              <div className="flex flex-col items-start gap-3 border-t border-card-border/60 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-2 text-sm font-semibold text-secondary sm:items-center">
                   <User className="w-4 h-4 text-gradient-start" /> {featuredPost.author.startsWith("Rahul") ? <Link href="/authors/rahul-chakravarthy" className="hover:underline">{featuredPost.author}</Link> : featuredPost.author}
                 </div>
-                <Button asChild className="group">
+                <Button asChild className="group h-10 px-4 py-2 text-sm sm:h-15 sm:px-8 sm:py-5">
                   <Link href={`/blog/${featuredPost.slug}`}>
                     Read Guide
                     <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />

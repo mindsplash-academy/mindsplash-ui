@@ -3,7 +3,7 @@ import { ChevronRight } from "lucide-react";
 
 export interface BreadcrumbItem {
   label: string;
-  href?: string;
+  href: string;
 }
 
 interface BreadcrumbsProps {
@@ -23,7 +23,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
           {items.map((item, i) => (
             <li key={i} className="flex items-center gap-1">
               {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-description/50" />}
-              {item.href ? (
+              {item.href && i < items.length - 1 ? (
                 <Link
                   href={item.href}
                   className="hover:text-gradient-start transition-colors"
@@ -49,9 +49,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
               "@type": "ListItem",
               position: i + 1,
               name: item.label,
-              ...(item.href
-                ? { item: `${siteUrl}${item.href}` }
-                : {}),
+              item: `${siteUrl}${item.href}`,
             })),
           }),
         }}

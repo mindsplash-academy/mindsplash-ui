@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <Breadcrumbs items={[
         { label: "Home", href: "/" },
         { label: "Blog", href: "/blog" },
-        { label: post.title },
+        { label: post.title, href: `/blog/${post.slug}` },
       ]} />
 
       <article className="w-[85%] lg:w-[70%] mx-auto my-12">

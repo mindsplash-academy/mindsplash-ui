@@ -12,7 +12,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 export const metadata: Metadata = {
   title: "IB MYP Coaching in Hyderabad | MindSplash Academy",
   description:
-    "Explore IB MYP coaching and academic support in Hyderabad for students following the International Baccalaureate Middle Years Programme.",
+    "Explore IB MYP subject coaching in Hyderabad for Years 4 and 5, with preparation for optional eAssessment where relevant.",
   keywords: [
     "IB MYP coaching Hyderabad",
     "IB MYP classes Hyderabad",
@@ -52,11 +52,11 @@ const METHODOLOGY = [
 const FAQS = [
   {
     q: "What is the IB MYP eAssessment?",
-    a: "The IB MYP eAssessment is a computer-based examination for Year 5 students, with tasks assessed against subject-specific criteria. At MindSplash, students practise computer-based assessment-style tasks on Assessprep and review feedback to become familiar with the format and question types.",
+    a: "The MYP eAssessment is an optional external assessment pathway for Year 5 students at participating schools. Depending on the school's assessment plan, it can include onscreen examinations and ePortfolios. It is not required for every MYP student, so families should confirm the pathway with the student's school. MindSplash can discuss relevant assessment-style practice.",
   },
   {
     q: "Which grades/years does MindSplash cover for IB MYP?",
-    a: "We coach IB MYP Years 4 and 5 students. Year 4 focuses on building foundational concepts and introducing criteria-based assessment. Year 5 is intensive eAssessment preparation with weekly mocks and detailed criteria analysis.",
+    a: "MindSplash lists coaching for IB MYP Years 4 and 5. Lessons can be aligned with the student's current school topics and subject criteria. Ask the academy about current subject availability, schedules and assessment-specific practice.",
   },
   {
     q: "How many hours per week is the IB MYP programme?",
@@ -82,7 +82,7 @@ export default function IBMYPPage() {
       <Breadcrumbs items={[
         { label: "Home", href: "/" },
         { label: "Programs", href: "/programs" },
-        { label: "IB MYP" },
+        { label: "IB MYP", href: "/programs/ib-myp" },
       ]} />
 
       {/* Hero */}
@@ -94,7 +94,7 @@ export default function IBMYPPage() {
           IB MYP Coaching in Hyderabad
         </h1>
         <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl">
-          IB MYP Years 4 and 5 eAssessment preparation with criteria-based worksheets, digital practice, and teacher feedback.
+          IB MYP subject coaching for Years 4 and 5, with optional eAssessment practice where it matches the student's school pathway.
         </p>
         <div className="mt-8 flex flex-wrap gap-4 justify-center">
         </div>
@@ -124,7 +124,7 @@ export default function IBMYPPage() {
           <h2 className="mb-4">
             <Heading content="What is " /><GradientHeading content="IB MYP?" />
           </h2>
-          <Description content="The IB Middle Years Programme (MYP) is a challenging framework for students aged 11-16 that encourages critical thinking and cross-disciplinary connections. Years 4 and 5 culminate in the MYP eAssessment — a computer-based examination that tests deep understanding across criteria A through D." />
+          <Description content="The IB Middle Years Programme (MYP) is a framework for students aged 11–16 that encourages critical thinking and connections across subjects. Schools assess students through subject-group objectives and criteria. The optional MYP eAssessment is one external assessment route for Year 5 students at participating schools; it is not a required endpoint for every MYP student." />
           <br />
           <Description content="At MindSplash Academy, students use criteria-based worksheets, practice tasks on Assessprep, and teacher feedback to develop subject understanding and assessment technique. Contact a centre to discuss current class availability and preparation plans." />
         </div>
@@ -241,7 +241,7 @@ export default function IBMYPPage() {
       {/* JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org", "@type": "Course",
-        name: "IB MYP Coaching Programme", description: "IB MYP Years 4 & 5 eAssessment preparation at MindSplash Academy Hyderabad.",
+        name: "IB MYP Coaching Programme", description: "IB MYP subject coaching for Years 4 and 5 at MindSplash Academy in Hyderabad, with optional eAssessment practice where relevant.",
         provider: { "@type": "EducationalOrganization", name: "MindSplash Academy", url: "https://mindsplash.in" },
         educationalLevel: "Secondary", url: "https://mindsplash.in/programs/ib-myp",
       }) }} />

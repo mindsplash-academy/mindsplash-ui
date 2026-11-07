@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact Us" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact Us", href: "/contact" }]} />
       <section className="mx-3 mt-2 flex h-[250px] items-center justify-center rounded-[50px] bg-gradient-to-r from-gradient-start to-gradient-end sm:mx-5 md:mx-7 md:mt-3 md:h-[400px]">
         <h1 className="text-center text-3xl font-bold md:text-5xl">
           Contact MindSplash Academy

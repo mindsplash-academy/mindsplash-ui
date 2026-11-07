@@ -122,7 +122,7 @@ export default async function IGCSESubjectPage({ params }: { params: Promise<{ s
         { label: "Home", href: "/" },
         { label: "Programs", href: "/programs" },
         { label: "IGCSE", href: "/programs/igcse" },
-        { label: subject.name },
+        { label: subject.name, href: `/programs/igcse/${slug}` },
       ]} />
       <section className="mx-3 mt-2 flex min-h-[300px] flex-col items-center justify-center rounded-[40px] bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center text-white sm:mx-5 md:mx-7 md:mt-3 md:min-h-[360px]">
         <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold"><BookOpen className="h-4 w-4" /> Cambridge IGCSE</div>

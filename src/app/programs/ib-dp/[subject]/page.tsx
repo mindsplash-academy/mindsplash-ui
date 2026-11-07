@@ -67,7 +67,7 @@ export default async function IBDPSubjectPage({ params }: { params: Promise<{ su
     { q: "How do I ask about the current schedule?", a: "Schedules vary. Share the student's level, school topics and preferred centre through the contact form to ask about availability." },
   ];
   return <>
-    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Programs", href: "/programs" }, { label: "IB DP", href: "/programs/ib-dp" }, { label: subject.name }]} />
+    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Programs", href: "/programs" }, { label: "IB DP", href: "/programs/ib-dp" }, { label: subject.name, href: `/programs/ib-dp/${slug}` }]} />
     <header className="mx-3 mt-2 flex min-h-[300px] flex-col items-center justify-center rounded-[40px] bg-gradient-to-r from-gradient-start to-gradient-end px-6 py-12 text-center text-white sm:mx-5 md:mx-7">
       <p className="mb-3 rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold">IB Diploma Programme · HL and SL</p>
       <h1 className="max-w-4xl text-3xl font-bold md:text-5xl">IB DP {subject.short} Tuition in Hyderabad</h1>

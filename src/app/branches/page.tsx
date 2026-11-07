@@ -38,7 +38,7 @@ const branches = [
 export default function BranchesPage() {
   return (
     <>
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Branches" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Branches", href: "/branches" }]} />
       <main className="mx-auto w-[92%] max-w-6xl py-10 md:py-16">
         <header className="mb-10 text-center md:mb-14">
           <h1 className="mb-4 text-2xl font-bold text-secondary md:text-4xl">
