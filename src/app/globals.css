@@ -125,6 +125,16 @@
   }
 }
 
+.video-section-player:fullscreen,
+.video-section-player:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  object-fit: contain;
+  background-color: #000;
+}
+
 @keyframes marquee {
   0% {
     transform: translateX(0%);
