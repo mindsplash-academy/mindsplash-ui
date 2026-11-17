@@ -1,6 +1,6 @@
 ﻿import { MetadataRoute } from 'next';
 
-import { BLOG_POSTS } from './blog/page';
+import { BLOG_POSTS } from './blog/posts';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://mindsplash.in').replace(/\/$/, '');
