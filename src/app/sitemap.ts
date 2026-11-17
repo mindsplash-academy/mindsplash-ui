@@ -1,5 +1,7 @@
 ﻿import { MetadataRoute } from 'next';
 
+import { BLOG_POSTS } from './blog/page';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://mindsplash.in').replace(/\/$/, '');
 
@@ -52,6 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
   ];
 
+  routes.push(...BLOG_POSTS.map((post) => `/blog/${post.slug}`));
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     changeFrequency: route === '' ? 'daily' : 'weekly',
