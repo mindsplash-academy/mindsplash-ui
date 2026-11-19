@@ -316,7 +316,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         <nav aria-label="Related pages" className="mb-12 rounded-3xl border border-card-border bg-secondary-foreground p-6 md:p-8">
           <h2 className="mb-4 text-xl font-bold text-secondary">Explore related learning and locations</h2>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-sans text-sm font-medium leading-6 text-secondary">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-sans text-sm font-medium leading-6 text-secondary [&_a]:underline [&_a]:underline-offset-4">
             <Link href={categoryProgram[post.category].href} className="font-semibold text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">
               {categoryProgram[post.category].label}
             </Link>
