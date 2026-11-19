@@ -19,6 +19,111 @@ const categoryProgram = {
   Parents: { label: "all academic programmes", href: "/programs", value: undefined },
 } as const;
 
+type ContextualTextLink = { text: string; phrase: string; href: string };
+
+function renderArticleText(value: string, contextualLink?: ContextualTextLink) {
+  let articleText = value;
+  if (contextualLink && !articleText.includes("[[")) {
+    const escapedPhrase = contextualLink.phrase
+      .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+      .replace(/\s+/g, "\\s+");
+    const phrasePattern = new RegExp(`\\b${escapedPhrase}\\b`, "i");
+    const match = articleText.match(phrasePattern);
+    if (match) {
+      articleText = articleText.replace(phrasePattern, `[[${match[0]}|${contextualLink.href}]]`);
+    }
+  }
+
+  return articleText.split(/(\*\*[^*]+\*\*|\[\[[^\]]+\]\])/g).map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={`${index}-${part}`}>{part.slice(2, -2)}</strong>;
+    }
+
+    if (part.startsWith("[[") && part.endsWith("]]")) {
+      const [label, href] = part.slice(2, -2).split("|");
+      if (label && href?.startsWith("/")) {
+        return <Link key={`${index}-${part}`} href={href} className="font-medium text-gradient-start underline-offset-4 hover:underline">{label}</Link>;
+      }
+    }
+
+    return part;
+  });
+}
+
+const relatedLinkStopWords = new Set([
+  "a", "an", "and", "are", "as", "at", "by", "for", "from", "how", "in", "is", "of", "on", "or", "the", "to", "vs", "with",
+  "complete", "guide", "students", "student", "preparation", "prepare", "tips", "ways", "learn", "learning",
+]);
+
+function getContextualRelatedPosts(post: (typeof BLOG_POSTS)[number]) {
+  const getTerms = (value: string) => new Set(
+    value.toLowerCase().match(/[a-z0-9]+/g)?.filter((term) => term.length > 2 && !relatedLinkStopWords.has(term)) ?? [],
+  );
+  const titleTerms = getTerms(post.title);
+  const postTerms = getTerms(`${post.keyword ?? ""} ${post.excerpt} ${post.sections[0]?.heading ?? ""}`);
+
+  const rankedPosts = BLOG_POSTS
+    .filter((candidate) => candidate.slug !== post.slug)
+    .map((candidate) => {
+      const candidateTitleTerms = getTerms(candidate.title);
+      const candidateTerms = getTerms(`${candidate.keyword ?? ""} ${candidate.excerpt}`);
+      const titleOverlap = [...titleTerms].filter((term) => candidateTitleTerms.has(term)).length;
+      const topicOverlap = [...postTerms].filter((term) => candidateTerms.has(term)).length;
+      const score = titleOverlap * 4 + topicOverlap * 2 + (candidate.category === post.category ? 1 : 0);
+      return { candidate, score };
+    })
+    .sort((a, b) => b.score - a.score || a.candidate.title.localeCompare(b.candidate.title));
+  const selected = rankedPosts.filter(({ score }) => score > 0).slice(0, 2);
+  if (selected.length < 2) {
+    const selectedSlugs = new Set(selected.map(({ candidate }) => candidate.slug));
+    selected.push(...rankedPosts.filter(({ candidate }) => !selectedSlugs.has(candidate.slug)).slice(0, 2 - selected.length));
+  }
+  return selected.map(({ candidate }) => candidate);
+}
+
+function getContextualInlineLinks(post: (typeof BLOG_POSTS)[number]): ContextualTextLink[] {
+  const paragraphs = post.sections.flatMap((section) => [
+    section.body,
+    ...(section.points ?? []),
+    section.afterPoints ?? "",
+    ...(section.subheadings?.map((subheading) => subheading.body) ?? []),
+  ]).filter(Boolean);
+  const usedParagraphs = new Set<string>();
+  const links: ContextualTextLink[] = [];
+
+  for (const candidate of getContextualRelatedPosts(post)) {
+    const sources = [candidate.keyword ?? "", candidate.title, ...(candidate.secondaryKeywords ?? [])];
+    const phrases = new Set<string>();
+    for (const source of sources) {
+      const words = source.toLowerCase().match(/[a-z0-9]+/g)?.filter((word) => word.length > 2 && !relatedLinkStopWords.has(word)) ?? [];
+      for (let size = Math.min(3, words.length); size >= 2; size -= 1) {
+        for (let start = 0; start <= words.length - size; start += 1) {
+          phrases.add(words.slice(start, start + size).join(" "));
+        }
+      }
+      words.forEach((word) => phrases.add(word));
+    }
+
+    const options = [...phrases].flatMap((phrase) => {
+      const escapedPhrase = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+      const pattern = new RegExp(`\\b${escapedPhrase}\\b`, "i");
+      return paragraphs.flatMap((text) => {
+        const match = text.match(pattern);
+        if (!match || usedParagraphs.has(text)) return [];
+        return [{ text, phrase: match[0], href: `/blog/${candidate.slug}`, words: phrase.split(" ").length }];
+      });
+    }).sort((a, b) => b.words - a.words || a.text.length - b.text.length);
+
+    const selected = options[0];
+    if (selected) {
+      usedParagraphs.add(selected.text);
+      links.push({ text: selected.text, phrase: selected.phrase, href: selected.href });
+    }
+  }
+
+  return links;
+}
+
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({
     slug: post.slug,
@@ -33,12 +138,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.seoTitle ?? `${post.title} | MindSplash Academy Blog`,
     description: post.metaDescription ?? post.excerpt,
-    keywords: post.keyword,
+    keywords: post.secondaryKeywords?.length
+      ? [post.keyword, ...post.secondaryKeywords].filter(Boolean) as string[]
+      : post.keyword,
     openGraph: {
       title: post.seoTitle ?? `${post.title} | MindSplash Academy`,
       description: post.metaDescription ?? post.excerpt,
       type: "article",
-      images: [{ url: "https://mindsplash.in/meticulous.jpg", alt: post.imageAlt ?? post.title }],
+      images: [{ url: post.imageSrc ?? "https://mindsplash.in/meticulous.jpg", alt: post.imageAlt }],
       url: `https://mindsplash.in/blog/${post.slug}`,
     },
     alternates: {
@@ -54,6 +161,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post) {
     notFound();
   }
+
+  const contextualInlineLinks = post.relatedLinks?.length ? [] : getContextualInlineLinks(post);
+  const contextualLinkByText = new Map(contextualInlineLinks.map((contextualLink) => [contextualLink.text, contextualLink]));
+  const renderArticleParagraph = (text: string) => renderArticleText(text, contextualLinkByText.get(text));
 
   return (
     <>
@@ -90,10 +201,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="mb-2 flex h-9 items-center">
           <Image src="/footer_logo.png" alt="MindSplash Academy" width={160} height={58} className="h-7 w-auto object-contain" />
         </div>
-        <div className="relative mb-6 w-full overflow-hidden rounded-2xl border border-card-border/50 bg-white">
+        <div className="group relative mb-6 w-full overflow-hidden rounded-2xl border border-card-border/50 bg-white">
           {(() => {
             const imageBySlug: Record<string, string> = {
-              "best-ib-tuition-hyderabad-parents-guide": "/7.png",
+              "best-ib-tuition-hyderabad": "/7.png",
               "ib-vs-igcse-which-curriculum": "/8.png",
               "improve-ib-maths-grades-study-guide": "/9.png",
               "igcse-exam-preparation-tips": "/10.png",
@@ -137,31 +248,40 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               "mock-examinations-time-management": "/47.png",
               "math-study-techniques-international-curriculum": "/48.png",
             };
-            const image = imageBySlug[post.slug];
+            const image = post.imageSrc ?? imageBySlug[post.slug];
             return image ? (
-              <Image src={image} alt={post.imageAlt ?? post.title} width={image === "/0.png" || image === "/11.png" || image === "/13.png" || image === "/16.png" || image === "/20.png" || ["/36.png", "/37.png", "/38.png", "/39.png"].includes(image) ? 1672 : image === "/12.png" || image === "/18.png" ? 1671 : 1536} height={image === "/0.png" || image === "/11.png" || image === "/12.png" || image === "/13.png" || image === "/16.png" || image === "/18.png" || image === "/20.png" || ["/36.png", "/37.png", "/38.png", "/39.png"].includes(image) ? 941 : 1024} priority sizes="(max-width: 768px) 90vw, 1000px" unoptimized={image === "/0.png" || image === "/9.png" || image === "/11.png" || image === "/12.png" || image === "/13.png" || image === "/15.png" || image === "/16.png" || image === "/18.png" || image === "/20.png" || /^\/(3[6-9]|4[0-8])\.png$/.test(image)} className="block h-auto w-full" />
+              <Image src={image} alt={post.imageAlt} title={post.imageAlt} width={image === "/0.png" || image === "/11.png" || image === "/13.png" || image === "/16.png" || image === "/20.png" || ["/36.png", "/37.png", "/38.png", "/39.png"].includes(image) ? 1672 : image === "/12.png" || image === "/18.png" ? 1671 : 1536} height={image === "/0.png" || image === "/11.png" || image === "/12.png" || image === "/13.png" || image === "/16.png" || image === "/18.png" || image === "/20.png" || ["/36.png", "/37.png", "/38.png", "/39.png"].includes(image) ? 941 : 1024} priority sizes="(max-width: 768px) 90vw, 1000px" unoptimized={image === "/0.png" || image === "/9.png" || image === "/11.png" || image === "/12.png" || image === "/13.png" || image === "/15.png" || image === "/16.png" || image === "/18.png" || image === "/20.png" || /^\/(3[6-9]|4[0-8])\.png$/.test(image)} className="block h-auto w-full transition-transform duration-300 group-hover:scale-[1.03]" />
             ) : (
-              <BlogIllustration title={post.imageAlt ?? post.title} category={post.category} slug={post.slug} className="block h-auto w-full rounded-2xl" />
+              <BlogIllustration title={post.imageAlt} category={post.category} slug={post.slug} className="block h-auto w-full rounded-2xl transition-transform duration-300 group-hover:scale-[1.03]" />
             );
           })()}
         </div>
 
         <div className="mb-10 max-w-none font-sans text-secondary">
-          <p className="mb-6 text-base leading-7 text-slate-700 md:text-lg">
-            {post.excerpt}
-          </p>
+          {(post.introduction ?? [post.excerpt]).map((paragraph) => (
+            <p key={paragraph} className="mb-6 whitespace-pre-line text-base leading-7 text-slate-700 md:text-lg">
+              {renderArticleText(paragraph)}
+            </p>
+          ))}
 
           {post.sections.map((section) => (
             <section key={section.heading} className="mb-6">
               <h2 className="mb-2 text-xl font-bold leading-snug text-gradient-start md:text-2xl">{section.heading}</h2>
-              <p className="text-base leading-7 text-slate-700 md:text-lg">{section.body}</p>
+              {section.body && <p className="whitespace-pre-line text-base leading-7 text-slate-700 md:text-lg">{renderArticleParagraph(section.body)}</p>}
               {section.points && (
                 <ul className="mt-3 list-disc space-y-1 pl-6 text-base leading-7 text-slate-700 md:text-lg">
                   {section.points.map((point) => (
-                    <li key={point}>{point}</li>
+                    <li key={point}>{renderArticleParagraph(point)}</li>
                   ))}
                 </ul>
               )}
+              {section.afterPoints && <p className="mt-3 text-base leading-7 text-slate-700 md:text-lg">{renderArticleParagraph(section.afterPoints)}</p>}
+              {section.subheadings?.map((subheading) => (
+                <div key={subheading.heading} className="mt-4">
+                  <h3 className="mb-1 text-lg font-bold leading-snug text-gradient-start md:text-xl">{subheading.heading}</h3>
+                  <p className="whitespace-pre-line text-base leading-7 text-slate-700 md:text-lg">{renderArticleParagraph(subheading.body)}</p>
+                </div>
+              ))}
             </section>
           ))}
           {post.faqs?.length ? (
@@ -171,12 +291,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 {post.faqs.map((faq) => (
                   <div key={faq.question}>
                     <h3 className="mb-1 text-lg font-bold text-gradient-start">{faq.question}</h3>
-                    <p className="text-base leading-7 text-slate-700">{faq.answer}</p>
+                    <p className="text-base leading-7 text-slate-700">{renderArticleText(faq.answer)}</p>
                   </div>
                 ))}
               </div>
             </section>
           ) : null}
+          {post.conclusion ? (
+            <section className="mt-8 border-t border-card-border pt-5">
+              <h2 className="mb-2 text-xl font-bold leading-snug text-gradient-start md:text-2xl">Conclusion</h2>
+              <p className="text-base leading-7 text-slate-700 md:text-lg">{renderArticleText(post.conclusion)}</p>
+            </section>
+          ) : null}
+          {post.callToAction ? <p className="mt-5 font-semibold leading-7 text-gradient-start">{renderArticleText(post.callToAction)}</p> : null}
           {post.sources?.length ? (
             <section aria-labelledby="article-sources-heading" className="mt-7 border-t border-card-border pt-5">
               <h2 id="article-sources-heading" className="mb-3 text-xl font-bold text-gradient-end">Official curriculum references</h2>
@@ -189,19 +316,126 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         <nav aria-label="Related pages" className="mb-12 rounded-3xl border border-card-border bg-secondary-foreground p-6 md:p-8">
           <h2 className="mb-4 text-xl font-bold text-secondary">Explore related learning and locations</h2>
-          <div className="flex flex-wrap gap-x-6 gap-y-3 text-gradient-start">
-            <Link href={categoryProgram[post.category].href} className="font-semibold hover:underline">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-sans text-sm font-medium leading-6 text-secondary">
+            <Link href={categoryProgram[post.category].href} className="font-semibold text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">
               {categoryProgram[post.category].label}
             </Link>
-            <Link href="/branches/khajaguda" className="hover:underline">Khajaguda centre</Link>
-            <Link href="/branches/kokapet" className="hover:underline">Kokapet centre</Link>
-            <Link href="/branches/financialdistrict" className="hover:underline">Financial District centre</Link>
-            <Link href="/contact" className="font-semibold hover:underline">Ask about {categoryProgram[post.category].label} or book a free demo</Link>
+            {post.relatedLinks?.map((relatedLink) => (
+              <Link key={relatedLink.href} href={relatedLink.href} className="font-medium text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">
+                {relatedLink.label}
+              </Link>
+            ))}
+            {post.slug === "ib-myp-vs-ib-dp-differences" ? <>
+              <Link href="/programs/ib-myp" className="hover:underline">IB MYP programme</Link>
+              <Link href="/programs/ib-dp" className="hover:underline">IB DP programme</Link>
+              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics AA</Link>
+            </> : null}
+            {post.slug === "personalised-ib-coaching-hyderabad" ? <>
+              <Link href="/programs/ib-dp" className="hover:underline">IB coaching</Link>
+              <Link href="/blog/personalised-learning-academic-success" className="hover:underline">Personalised learning guide</Link>
+            </> : null}
+            {post.slug === "how-to-score-7-ib-mathematics" || post.slug === "ib-maths-aa-vs-ai-student-challenges" ? <>
+              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics AA</Link>
+              <Link href="/programs/ib-dp/mathematics-applications-interpretation" className="hover:underline">IB Mathematics AI</Link>
+            </> : null}
+            {post.slug === "ib-exam-preparation-mistakes" ? <>
+              <Link href="/programs/ib-dp" className="hover:underline">IB exam preparation</Link>
+              <Link href="/programs/ib-dp/physics" className="hover:underline">IB Physics</Link>
+              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Chemistry</Link>
+            </> : null}
+            {post.slug === "igcse-maths-vs-cbse-maths" ? <>
+              <Link href="/programs/igcse/mathematics" className="hover:underline">IGCSE Mathematics</Link>
+              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics</Link>
+            </> : null}
+            {post.slug === "cambridge-igcse-readiness-guide" || post.slug === "igcse-coaching-hyderabad-centre-guide" ? <>
+              <Link href="/programs/igcse" className="hover:underline">IGCSE programme</Link>
+              <Link href="/branches/khajaguda" className="hover:underline">Hyderabad centre locations</Link>
+            </> : null}
+            {post.slug === "ib-chemistry-preparation-guide" ? <>
+              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Chemistry</Link>
+              <Link href="/programs/ib-dp/physics" className="hover:underline">IB Science</Link>
+            </> : null}
+            {post.slug === "ib-small-batch-tuition-vs-large-classes" ? <>
+              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics</Link>
+              <Link href="/programs/ib-dp/physics" className="hover:underline">IB Science</Link>
+            </> : null}
+            {post.slug === "olympiad-preparation-start-early" || post.slug === "ioqm-preparation-complete-guide" || post.slug === "amc-8-vs-amc-10-guide" ? <>
+              <Link href="/programs/olympiads" className="hover:underline">Olympiad preparation</Link>
+              <Link href="/programs/exam-prep" className="hover:underline">Mathematics coaching</Link>
+            </> : null}
+            {post.slug === "sat-preparation-beginners-study-plan" ? <>
+              <Link href="/programs/exam-prep" className="hover:underline">SAT preparation</Link>
+              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">Mathematics coaching</Link>
+            </> : null}
+            {post.slug === "maths-science-problem-solving-skills" ? <>
+              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Maths</Link>
+              <Link href="/programs/igcse/mathematics" className="hover:underline">IGCSE Maths</Link>
+              <Link href="/programs/ib-dp/physics" className="hover:underline">Physics</Link>
+              <Link href="/programs/ib-dp/chemistry" className="hover:underline">Science courses</Link>
+            </> : null}
+            {post.slug === "ib-internal-assessment-mistakes" ? <>
+              <Link href="/programs/ib-myp" className="hover:underline">IB MYP</Link>
+              <Link href="/programs/ib-dp" className="hover:underline">IB DP courses</Link>
+              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB subject coaching</Link>
+            </> : null}
+            {post.slug === "ib-biology-preparation-guide" ? <>
+              <Link href="/programs/ib-dp" className="hover:underline">IB DP subject support</Link>
+              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Science courses</Link>
+            </> : null}
+            {post.slug === "signs-child-needs-academic-support" ? <>
+              <Link href="/programs/ib-dp" className="hover:underline">IB academic support</Link>
+              <Link href="/programs/igcse" className="hover:underline">IGCSE academic support</Link>
+            </> : null}
+            {post.slug === "online-vs-offline-ib-tuition" ? <>
+              <Link href="/programs/ib-dp" className="hover:underline">IB DP courses</Link>
+              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics</Link>
+            </> : null}
+            {post.slug === "best-ib-dp-tuition-hyderabad" ? <>
+              <Link href="/programs/ib-dp" className="hover:underline">IB DP programme</Link>
+              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics</Link>
+              <Link href="/programs/ib-dp/physics" className="hover:underline">IB Physics</Link>
+              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Chemistry</Link>
+              <Link href="/branches/khajaguda" className="hover:underline">Hyderabad centres</Link>
+            </> : null}
+            {post.slug === "igcse-physics-numericals-guide" ? <>
+              <Link href="/programs/igcse/physics" className="hover:underline">IGCSE Physics</Link>
+              <Link href="/programs/igcse/mathematics" className="hover:underline">IGCSE Mathematics</Link>
+            </> : null}
+            {post.slug === "personalised-learning-academic-success" ? <>
+              <Link href="/programs/ib-dp" className="hover:underline">IB subject coaching</Link>
+              <Link href="/programs/igcse" className="hover:underline">IGCSE subject coaching</Link>
+            </> : null}
+            {post.slug === "parents-support-ib-igcse-exams" ? <>
+              <Link href="/programs/ib-dp" className="hover:underline">IB exam preparation</Link>
+              <Link href="/programs/igcse" className="hover:underline">IGCSE exam preparation</Link>
+            </> : null}
+            {post.slug === "habits-to-improve-ib-grades" ? <>
+              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics</Link>
+              <Link href="/programs/ib-dp/physics" className="hover:underline">IB Physics</Link>
+              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Science</Link>
+            </> : null}
+            {post.slug === "ib-igcse-academy-hyderabad-comparison" ? <>
+              <Link href="/programs/ib-dp" className="hover:underline">IB courses</Link>
+              <Link href="/programs/igcse" className="hover:underline">IGCSE courses</Link>
+              <Link href="/branches/khajaguda" className="hover:underline">Hyderabad academy locations</Link>
+            </> : null}
+            {post.slug === "best-ib-tuition-hyderabad" ? (
+              <>
+                <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics AA</Link>
+                <Link href="/programs/ib-dp/mathematics-applications-interpretation" className="hover:underline">IB Mathematics AI</Link>
+                <Link href="/programs/ib-dp/physics" className="hover:underline">IB Physics</Link>
+                <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Chemistry</Link>
+              </>
+            ) : null}
+            <Link href="/branches/khajaguda" className="font-medium text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">Khajaguda centre</Link>
+            <Link href="/branches/kokapet" className="font-medium text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">Kokapet centre</Link>
+            <Link href="/branches/financialdistrict" className="font-medium text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">Financial District centre</Link>
+            <Link href="/contact" className="font-semibold text-gradient-start hover:underline underline-offset-4">Ask about {categoryProgram[post.category].label} or book a free demo</Link>
           </div>
         </nav>
 
         <div className="border-t border-card-border pt-8 mb-12 flex items-center justify-between">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-gradient-start font-semibold hover:underline">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">
             <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
         </div>
@@ -228,12 +462,26 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://mindsplash.in/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "https://mindsplash.in/blog" },
+              { "@type": "ListItem", position: 3, name: post.title, item: `https://mindsplash.in/blog/${post.slug}` },
+            ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: post.title,
             description: post.excerpt,
-            keywords: post.keyword,
+            keywords: [post.keyword, ...(post.secondaryKeywords ?? [])].filter(Boolean).join(", "),
             mainEntityOfPage: `https://mindsplash.in/blog/${post.slug}`,
-            image: "https://mindsplash.in/meticulous.jpg",
+            image: post.imageSrc ? `https://mindsplash.in${post.imageSrc}` : "https://mindsplash.in/meticulous.jpg",
             articleSection: post.category,
             datePublished: "2026-11-16",
             dateModified: "2026-11-16",

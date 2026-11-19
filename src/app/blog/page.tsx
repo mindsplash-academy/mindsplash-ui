@@ -106,11 +106,11 @@ export default function BlogHubPage() {
               </div>
             </div>
 
-            <div className="relative lg:col-span-4 flex items-center justify-center overflow-hidden rounded-2xl border border-gradient-start/20 bg-gradient-to-br from-gradient-start/10 to-gradient-end/20 p-3">
+            <div className="group relative lg:col-span-4 flex items-center justify-center overflow-hidden rounded-2xl border border-gradient-start/20 bg-gradient-to-br from-gradient-start/10 to-gradient-end/20 p-3">
               <span className="absolute left-5 top-2 z-10 rounded bg-white px-1.5 py-1">
                 <Image src="/footer_logo.png" alt="MindSplash Academy" width={105} height={38} className="h-5 w-auto object-contain" />
               </span>
-              <Image src="/7.png" alt={featuredPost.imageAlt ?? featuredPost.title} width={1536} height={1024} priority className="block h-auto w-full rounded-xl" />
+              <Image src={featuredPost.imageSrc ?? "/7.png"} alt={featuredPost.imageAlt} title={featuredPost.imageAlt} width={1536} height={1024} priority className="block h-auto w-full rounded-xl transition-transform duration-300 group-hover:scale-[1.03]" />
             </div>
           </div>
         </div>
@@ -133,11 +133,11 @@ export default function BlogHubPage() {
                 <div className="mb-1 flex h-9 items-center">
                   <Image src="/footer_logo.png" alt="MindSplash Academy" width={160} height={58} className="h-7 w-auto object-contain" />
                 </div>
-                <Link href={`/blog/${post.slug}`} aria-label={`Read ${post.title}`} className="relative mb-4 block w-full overflow-hidden rounded-xl border border-card-border/70 bg-white">
+                <Link href={`/blog/${post.slug}`} aria-label={`Read ${post.title}`} className="group relative mb-4 block w-full overflow-hidden rounded-xl border border-card-border/70 bg-white">
                   {index <= 16 || (index >= 17 && index <= 41) ? (
-                    <Image src={`/${index === 16 ? 0 : index < 16 ? index + 8 : index + 7}.png`} alt={post.imageAlt ?? post.title} width={index === 3 || index === 5 || index === 8 || index === 12 || index === 16 || (index >= 29 && index <= 32) ? 1672 : index === 4 || index === 10 ? 1671 : 1536} height={index === 3 || index === 4 || index === 5 || index === 8 || index === 10 || index === 12 || index === 16 || (index >= 29 && index <= 32) ? 941 : 1024} sizes="(max-width: 768px) 90vw, 45vw" unoptimized={index === 1 || index === 3 || index === 4 || index === 5 || index === 7 || index === 8 || index === 10 || index === 12 || index === 16 || (index >= 29 && index <= 41)} className="block h-auto w-full" />
+                    <Image src={post.imageSrc ?? `/${index === 16 ? 0 : index < 16 ? index + 8 : index + 7}.png`} alt={post.imageAlt} title={post.imageAlt} width={index === 3 || index === 5 || index === 8 || index === 12 || index === 16 || (index >= 29 && index <= 32) ? 1672 : index === 4 || index === 10 ? 1671 : 1536} height={index === 3 || index === 4 || index === 5 || index === 8 || index === 10 || index === 12 || index === 16 || (index >= 29 && index <= 32) ? 941 : 1024} sizes="(max-width: 768px) 90vw, 45vw" unoptimized={Boolean(post.imageSrc) || index === 1 || index === 3 || index === 4 || index === 5 || index === 7 || index === 8 || index === 10 || index === 12 || index === 16 || (index >= 29 && index <= 41)} className="block h-auto w-full transition-transform duration-300 group-hover:scale-[1.03]" />
                   ) : (
-                    <BlogIllustration title={post.imageAlt ?? post.title} category={post.category} slug={post.slug} className="block h-auto w-full" />
+                    <BlogIllustration title={post.imageAlt ?? post.title} category={post.category} slug={post.slug} className="block h-auto w-full transition-transform duration-300 group-hover:scale-[1.03]" />
                   )}
                 </Link>
                 <div>

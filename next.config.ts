@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/blog/best-ib-tuition-hyderabad-parents-guide',
+        destination: '/blog/best-ib-tuition-hyderabad',
+        permanent: true,
+      },
+      {
         source: '/our-programs',
         destination: '/programs',
         permanent: true,
