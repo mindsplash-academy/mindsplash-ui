@@ -33,8 +33,17 @@ export const metadata: Metadata = {
 
 export default function BlogHubPage() {
   const calendarPosts = BLOG_POSTS.filter((post) => post.keyword);
-  const featuredPost = calendarPosts[0] ?? BLOG_POSTS.find((p) => p.featured) ?? BLOG_POSTS[0];
-  const regularPosts = [...calendarPosts.filter((post) => post.slug !== featuredPost.slug), ...BLOG_POSTS.filter((post) => !post.keyword && post.slug !== featuredPost.slug)];
+  const featuredPost = BLOG_POSTS.find((post) => post.slug === "best-ib-tuition-hyderabad")
+    ?? calendarPosts[0]
+    ?? BLOG_POSTS.find((post) => post.featured)
+    ?? BLOG_POSTS[0];
+  const regularPosts = [
+    ...calendarPosts.filter((post) => post.slug !== featuredPost.slug),
+    ...BLOG_POSTS.filter((post) => !post.keyword && post.slug !== featuredPost.slug),
+  ].sort((a, b) => {
+    const imageNumber = (imageSrc?: string) => Number(imageSrc?.match(/\/(\d+)\.png$/)?.[1] ?? Number.MAX_SAFE_INTEGER);
+    return imageNumber(a.imageSrc) - imageNumber(b.imageSrc);
+  });
 
   return (
     <>
@@ -50,7 +59,7 @@ export default function BlogHubPage() {
             IB, IGCSE & Olympiad Insights
           </h1>
           <p className="text-lg md:text-xl text-foreground/90 font-medium max-w-2xl mx-auto">
-            Expert academic guides, exam strategies, subject breakdowns, and university preparation roadmaps from Hyderabadâ€™s leading IB/IGCSE faculty.
+            Expert academic guides, exam strategies, subject breakdowns, and university preparation roadmaps from Hyderabad's leading IB/IGCSE faculty.
           </p>
         </div>
       </section>
@@ -125,7 +134,7 @@ export default function BlogHubPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {regularPosts.map((post, index) => (
+            {regularPosts.map((post) => (
               <article
                 key={post.slug}
                 className="flex flex-col rounded-[24px] border border-card-border bg-secondary-foreground p-5 shadow-sm transition-all hover:shadow-md"
@@ -134,8 +143,8 @@ export default function BlogHubPage() {
                   <Image src="/footer_logo.png" alt="MindSplash Academy" width={160} height={58} className="h-7 w-auto object-contain" />
                 </div>
                 <Link href={`/blog/${post.slug}`} aria-label={`Read ${post.title}`} className="group relative mb-4 block w-full overflow-hidden rounded-xl border border-card-border/70 bg-white">
-                  {index <= 16 || (index >= 17 && index <= 41) ? (
-                    <Image src={post.imageSrc ?? `/${index === 16 ? 0 : index < 16 ? index + 8 : index + 7}.png`} alt={post.imageAlt} title={post.imageAlt} width={index === 3 || index === 5 || index === 8 || index === 12 || index === 16 || (index >= 29 && index <= 32) ? 1672 : index === 4 || index === 10 ? 1671 : 1536} height={index === 3 || index === 4 || index === 5 || index === 8 || index === 10 || index === 12 || index === 16 || (index >= 29 && index <= 32) ? 941 : 1024} sizes="(max-width: 768px) 90vw, 45vw" unoptimized={Boolean(post.imageSrc) || index === 1 || index === 3 || index === 4 || index === 5 || index === 7 || index === 8 || index === 10 || index === 12 || index === 16 || (index >= 29 && index <= 41)} className="block h-auto w-full transition-transform duration-300 group-hover:scale-[1.03]" />
+                  {post.imageSrc ? (
+                    <Image src={post.imageSrc} alt={post.imageAlt} title={post.imageAlt} width={1536} height={1024} sizes="(max-width: 768px) 90vw, 45vw" className="block h-auto w-full transition-transform duration-300 group-hover:scale-[1.03]" />
                   ) : (
                     <BlogIllustration title={post.imageAlt ?? post.title} category={post.category} slug={post.slug} className="block h-auto w-full transition-transform duration-300 group-hover:scale-[1.03]" />
                   )}

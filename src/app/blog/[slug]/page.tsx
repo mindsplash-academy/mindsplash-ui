@@ -21,6 +21,14 @@ const categoryProgram = {
 
 type ContextualTextLink = { text: string; phrase: string; href: string };
 
+function getCanonicalBlogHref(href: string) {
+  const match = href.match(/^\/blog\/([^/?#]+)\/?(?:[?#].*)?$/);
+  if (!match) return undefined;
+  const slug = decodeURIComponent(match[1]);
+  const post = BLOG_POSTS.find((candidate) => candidate.slug === slug);
+  return post ? `/blog/${post.slug}` : undefined;
+}
+
 function renderArticleText(value: string, contextualLink?: ContextualTextLink) {
   let articleText = value;
   if (contextualLink && !articleText.includes("[[")) {
@@ -41,8 +49,9 @@ function renderArticleText(value: string, contextualLink?: ContextualTextLink) {
 
     if (part.startsWith("[[") && part.endsWith("]]")) {
       const [label, href] = part.slice(2, -2).split("|");
-      if (label && href?.startsWith("/")) {
-        return <Link key={`${index}-${part}`} href={href} className="font-medium text-gradient-start underline-offset-4 hover:underline">{label}</Link>;
+      const canonicalHref = href?.startsWith("/blog/") ? getCanonicalBlogHref(href) : href?.startsWith("/") ? href : undefined;
+      if (label && canonicalHref) {
+        return <Link key={`${index}-${part}`} href={canonicalHref} className="font-medium text-gradient-start underline-offset-4 hover:underline">{label}</Link>;
       }
     }
 
@@ -79,6 +88,35 @@ function getContextualRelatedPosts(post: (typeof BLOG_POSTS)[number]) {
     selected.push(...rankedPosts.filter(({ candidate }) => !selectedSlugs.has(candidate.slug)).slice(0, 2 - selected.length));
   }
   return selected.map(({ candidate }) => candidate);
+}
+
+function getRelatedArticleLinks(post: (typeof BLOG_POSTS)[number]) {
+  const explicitLinks = (post.relatedLinks ?? []).flatMap((link) => {
+    const href = getCanonicalBlogHref(link.href);
+    return href && href !== `/blog/${post.slug}` ? [{ ...link, href }] : [];
+  });
+  const links = explicitLinks.length
+    ? explicitLinks
+    : getContextualRelatedPosts(post).map((candidate) => ({ label: candidate.title, href: `/blog/${candidate.slug}` }));
+  return links.slice(0, 3);
+}
+
+function getRelevantProgramLinks(post: (typeof BLOG_POSTS)[number]) {
+  const topic = `${post.title} ${post.keyword ?? ""} ${post.excerpt}`.toLowerCase();
+  const links = new Map<string, { label: string; href: string }>();
+  const add = (label: string, href: string) => links.set(href, { label, href });
+
+  const isMypTopic = post.category === "IB MYP" || /\bmyp\b/.test(topic);
+  if (isMypTopic) add("IB MYP tuition", "/programs/ib-myp");
+  if (post.category === "IB DP" || /\bdp\b|diploma programme|mathematics aa|mathematics ai/.test(topic) || (!isMypTopic && /\bib\b/.test(topic))) {
+    add("IB DP tuition", "/programs/ib-dp");
+  }
+  if (post.category === "IGCSE" || /\bigcse\b|cambridge/.test(topic)) add("IGCSE tuition", "/programs/igcse");
+  if (post.category === "Olympiads" || /olympiad|ioqm|\bamc\b/.test(topic)) add("Olympiad preparation", "/programs/olympiads");
+  if (post.category === "SAT & Prep" || /\bsat\b|\bpsat\b/.test(topic)) add("SAT / PSAT preparation", "/programs/exam-prep");
+
+  if (!links.size) add(categoryProgram[post.category].label, categoryProgram[post.category].href);
+  return [...links.values()].slice(0, 2);
 }
 
 function getContextualInlineLinks(post: (typeof BLOG_POSTS)[number]): ContextualTextLink[] {
@@ -165,6 +203,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const contextualInlineLinks = post.relatedLinks?.length ? [] : getContextualInlineLinks(post);
   const contextualLinkByText = new Map(contextualInlineLinks.map((contextualLink) => [contextualLink.text, contextualLink]));
   const renderArticleParagraph = (text: string) => renderArticleText(text, contextualLinkByText.get(text));
+  const relatedArticleLinks = getRelatedArticleLinks(post);
+  const relevantProgramLinks = getRelevantProgramLinks(post);
 
   return (
     <>
@@ -264,6 +304,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </p>
           ))}
 
+          {relatedArticleLinks.length ? (
+            <p className="mb-7 rounded-xl bg-secondary-foreground px-4 py-3 text-base leading-7 text-slate-700 md:text-lg">
+              Related reading: {relatedArticleLinks.map((link, index) => (
+                <span key={link.href}>
+                  {index > 0 ? (index === relatedArticleLinks.length - 1 ? " and " : ", ") : " "}
+                  <Link href={link.href} className="font-medium text-gradient-start underline-offset-4 hover:underline">{link.label}</Link>
+                </span>
+              ))}
+              .
+            </p>
+          ) : null}
+
           {post.sections.map((section) => (
             <section key={section.heading} className="mb-6">
               <h2 className="mb-2 text-xl font-bold leading-snug text-gradient-start md:text-2xl">{section.heading}</h2>
@@ -304,133 +356,38 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </section>
           ) : null}
           {post.callToAction ? <p className="mt-5 font-semibold leading-7 text-gradient-start">{renderArticleText(post.callToAction)}</p> : null}
-          {post.sources?.length ? (
-            <section aria-labelledby="article-sources-heading" className="mt-7 border-t border-card-border pt-5">
-              <h2 id="article-sources-heading" className="mb-3 text-xl font-bold text-gradient-end">Official curriculum references</h2>
-              <ul className="space-y-1 text-base leading-7 text-slate-700 md:text-lg">
-                {post.sources.map((source) => <li key={source.href}><a className="font-semibold text-gradient-start underline-offset-4 hover:underline" href={source.href} target="_blank" rel="noreferrer">{source.label}</a></li>)}
-              </ul>
-            </section>
-          ) : null}
+          <p className="mt-5 border-t border-card-border pt-4 text-base leading-7 text-slate-700 md:text-lg">
+            Learn more about <Link href="/" className="font-medium text-gradient-start underline-offset-4 hover:underline">MindSplash Academy</Link> or find a convenient Hyderabad location:
+            {" "}<Link href="/branches/khajaguda" className="font-medium text-gradient-start underline-offset-4 hover:underline">Khajaguda</Link>,
+            {" "}<Link href="/branches/kokapet" className="font-medium text-gradient-start underline-offset-4 hover:underline">Kokapet</Link> or
+            {" "}<Link href="/branches/financialdistrict" className="font-medium text-gradient-start underline-offset-4 hover:underline">Financial District</Link>.
+          </p>
         </div>
 
         <nav aria-label="Related pages" className="mb-12 rounded-3xl border border-card-border bg-secondary-foreground p-6 md:p-8">
-          <h2 className="mb-4 text-xl font-bold text-secondary">Explore related learning and locations</h2>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-sans text-sm font-medium leading-6 text-secondary [&_a]:underline [&_a]:underline-offset-4">
-            <Link href={categoryProgram[post.category].href} className="font-semibold text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">
-              {categoryProgram[post.category].label}
-            </Link>
-            {post.relatedLinks?.map((relatedLink) => (
-              <Link key={relatedLink.href} href={relatedLink.href} className="font-medium text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">
-                {relatedLink.label}
-              </Link>
-            ))}
-            {post.slug === "ib-myp-vs-ib-dp-differences" ? <>
-              <Link href="/programs/ib-myp" className="hover:underline">IB MYP programme</Link>
-              <Link href="/programs/ib-dp" className="hover:underline">IB DP programme</Link>
-              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics AA</Link>
-            </> : null}
-            {post.slug === "personalised-ib-coaching-hyderabad" ? <>
-              <Link href="/programs/ib-dp" className="hover:underline">IB coaching</Link>
-              <Link href="/blog/personalised-learning-academic-success" className="hover:underline">Personalised learning guide</Link>
-            </> : null}
-            {post.slug === "how-to-score-7-ib-mathematics" || post.slug === "ib-maths-aa-vs-ai-student-challenges" ? <>
-              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics AA</Link>
-              <Link href="/programs/ib-dp/mathematics-applications-interpretation" className="hover:underline">IB Mathematics AI</Link>
-            </> : null}
-            {post.slug === "ib-exam-preparation-mistakes" ? <>
-              <Link href="/programs/ib-dp" className="hover:underline">IB exam preparation</Link>
-              <Link href="/programs/ib-dp/physics" className="hover:underline">IB Physics</Link>
-              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Chemistry</Link>
-            </> : null}
-            {post.slug === "igcse-maths-vs-cbse-maths" ? <>
-              <Link href="/programs/igcse/mathematics" className="hover:underline">IGCSE Mathematics</Link>
-              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics</Link>
-            </> : null}
-            {post.slug === "cambridge-igcse-readiness-guide" || post.slug === "igcse-coaching-hyderabad-centre-guide" ? <>
-              <Link href="/programs/igcse" className="hover:underline">IGCSE programme</Link>
-              <Link href="/branches/khajaguda" className="hover:underline">Hyderabad centre locations</Link>
-            </> : null}
-            {post.slug === "ib-chemistry-preparation-guide" ? <>
-              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Chemistry</Link>
-              <Link href="/programs/ib-dp/physics" className="hover:underline">IB Science</Link>
-            </> : null}
-            {post.slug === "ib-small-batch-tuition-vs-large-classes" ? <>
-              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics</Link>
-              <Link href="/programs/ib-dp/physics" className="hover:underline">IB Science</Link>
-            </> : null}
-            {post.slug === "olympiad-preparation-start-early" || post.slug === "ioqm-preparation-complete-guide" || post.slug === "amc-8-vs-amc-10-guide" ? <>
-              <Link href="/programs/olympiads" className="hover:underline">Olympiad preparation</Link>
-              <Link href="/programs/exam-prep" className="hover:underline">Mathematics coaching</Link>
-            </> : null}
-            {post.slug === "sat-preparation-beginners-study-plan" ? <>
-              <Link href="/programs/exam-prep" className="hover:underline">SAT preparation</Link>
-              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">Mathematics coaching</Link>
-            </> : null}
-            {post.slug === "maths-science-problem-solving-skills" ? <>
-              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Maths</Link>
-              <Link href="/programs/igcse/mathematics" className="hover:underline">IGCSE Maths</Link>
-              <Link href="/programs/ib-dp/physics" className="hover:underline">Physics</Link>
-              <Link href="/programs/ib-dp/chemistry" className="hover:underline">Science courses</Link>
-            </> : null}
-            {post.slug === "ib-internal-assessment-mistakes" ? <>
-              <Link href="/programs/ib-myp" className="hover:underline">IB MYP</Link>
-              <Link href="/programs/ib-dp" className="hover:underline">IB DP courses</Link>
-              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB subject coaching</Link>
-            </> : null}
-            {post.slug === "ib-biology-preparation-guide" ? <>
-              <Link href="/programs/ib-dp" className="hover:underline">IB DP subject support</Link>
-              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Science courses</Link>
-            </> : null}
-            {post.slug === "signs-child-needs-academic-support" ? <>
-              <Link href="/programs/ib-dp" className="hover:underline">IB academic support</Link>
-              <Link href="/programs/igcse" className="hover:underline">IGCSE academic support</Link>
-            </> : null}
-            {post.slug === "online-vs-offline-ib-tuition" ? <>
-              <Link href="/programs/ib-dp" className="hover:underline">IB DP courses</Link>
-              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics</Link>
-            </> : null}
-            {post.slug === "best-ib-dp-tuition-hyderabad" ? <>
-              <Link href="/programs/ib-dp" className="hover:underline">IB DP programme</Link>
-              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics</Link>
-              <Link href="/programs/ib-dp/physics" className="hover:underline">IB Physics</Link>
-              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Chemistry</Link>
-              <Link href="/branches/khajaguda" className="hover:underline">Hyderabad centres</Link>
-            </> : null}
-            {post.slug === "igcse-physics-numericals-guide" ? <>
-              <Link href="/programs/igcse/physics" className="hover:underline">IGCSE Physics</Link>
-              <Link href="/programs/igcse/mathematics" className="hover:underline">IGCSE Mathematics</Link>
-            </> : null}
-            {post.slug === "personalised-learning-academic-success" ? <>
-              <Link href="/programs/ib-dp" className="hover:underline">IB subject coaching</Link>
-              <Link href="/programs/igcse" className="hover:underline">IGCSE subject coaching</Link>
-            </> : null}
-            {post.slug === "parents-support-ib-igcse-exams" ? <>
-              <Link href="/programs/ib-dp" className="hover:underline">IB exam preparation</Link>
-              <Link href="/programs/igcse" className="hover:underline">IGCSE exam preparation</Link>
-            </> : null}
-            {post.slug === "habits-to-improve-ib-grades" ? <>
-              <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics</Link>
-              <Link href="/programs/ib-dp/physics" className="hover:underline">IB Physics</Link>
-              <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Science</Link>
-            </> : null}
-            {post.slug === "ib-igcse-academy-hyderabad-comparison" ? <>
-              <Link href="/programs/ib-dp" className="hover:underline">IB courses</Link>
-              <Link href="/programs/igcse" className="hover:underline">IGCSE courses</Link>
-              <Link href="/branches/khajaguda" className="hover:underline">Hyderabad academy locations</Link>
-            </> : null}
-            {post.slug === "best-ib-tuition-hyderabad" ? (
-              <>
-                <Link href="/programs/ib-dp/mathematics-analysis-approaches" className="hover:underline">IB Mathematics AA</Link>
-                <Link href="/programs/ib-dp/mathematics-applications-interpretation" className="hover:underline">IB Mathematics AI</Link>
-                <Link href="/programs/ib-dp/physics" className="hover:underline">IB Physics</Link>
-                <Link href="/programs/ib-dp/chemistry" className="hover:underline">IB Chemistry</Link>
-              </>
-            ) : null}
-            <Link href="/branches/khajaguda" className="font-medium text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">Khajaguda centre</Link>
-            <Link href="/branches/kokapet" className="font-medium text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">Kokapet centre</Link>
-            <Link href="/branches/financialdistrict" className="font-medium text-secondary transition-colors hover:text-gradient-start hover:underline underline-offset-4">Financial District centre</Link>
-            <Link href="/contact" className="font-semibold text-gradient-start hover:underline underline-offset-4">Ask about {categoryProgram[post.category].label} or book a free demo</Link>
+          <h2 className="mb-5 text-xl font-bold text-secondary">Continue exploring</h2>
+          <div className="space-y-5 font-sans text-sm leading-6 text-secondary">
+            <section aria-labelledby="related-articles-heading">
+              <h3 id="related-articles-heading" className="mb-2 font-bold">Related articles</h3>
+              <ul className="flex flex-wrap gap-x-6 gap-y-2 [&_a]:font-medium [&_a]:underline [&_a]:underline-offset-4">
+                {relatedArticleLinks.map((link) => <li key={link.href}><Link href={link.href} className="hover:text-gradient-start">{link.label}</Link></li>)}
+              </ul>
+            </section>
+            <section aria-labelledby="programmes-heading">
+              <h3 id="programmes-heading" className="mb-2 font-bold">Relevant programmes</h3>
+              <ul className="flex flex-wrap gap-x-6 gap-y-2 [&_a]:font-medium [&_a]:underline [&_a]:underline-offset-4">
+                {relevantProgramLinks.map((link) => <li key={link.href}><Link href={link.href} className="hover:text-gradient-start">{link.label}</Link></li>)}
+              </ul>
+            </section>
+            <section aria-labelledby="academy-links-heading">
+              <h3 id="academy-links-heading" className="mb-2 font-bold">MindSplash Academy</h3>
+              <ul className="flex flex-wrap gap-x-6 gap-y-2 [&_a]:font-medium [&_a]:underline [&_a]:underline-offset-4">
+                <li><Link href="/" className="hover:text-gradient-start">Home</Link></li>
+                <li><Link href="/about" className="hover:text-gradient-start">About Us</Link></li>
+                <li><Link href="/methodology" className="hover:text-gradient-start">Our teaching methodology</Link></li>
+                <li><Link href="/contact" className="hover:text-gradient-start">Contact our academic team / book a free demo</Link></li>
+              </ul>
+            </section>
           </div>
         </nav>
 

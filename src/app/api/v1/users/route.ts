@@ -30,6 +30,16 @@ export async function POST(request: Request) {
     });
     const responseBody = await upstreamResponse.text();
 
+    if (upstreamResponse.status === 404) {
+      return NextResponse.json(
+        {
+          status: "error",
+          message: "The lead service returned 404 for POST /api/v1/users. Verify API_BASE_URL and the backend submission route.",
+        },
+        { status: 502, headers: { "Cache-Control": "no-store" } },
+      );
+    }
+
     return new Response(responseBody, {
       status: upstreamResponse.status,
       headers: {

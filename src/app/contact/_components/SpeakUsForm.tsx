@@ -93,7 +93,14 @@ export default function SpeakUsForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit, () => {
+          toast.error("Please check the form", {
+            description: "Complete the required fields and accept the consent checkbox before submitting.",
+          });
+        })}
+        className="space-y-8"
+      >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <SelectField
             control={form.control}
@@ -161,10 +168,17 @@ export default function SpeakUsForm() {
             options={locationOptions}
           />
         </div>
-        <FormCheckbox control={form.control} name="agreement" />
+        <div>
+          <FormCheckbox control={form.control} name="agreement" />
+          {form.formState.errors.agreement && (
+            <p className="mt-2 text-center text-sm text-destructive" role="alert">
+              {form.formState.errors.agreement.message}
+            </p>
+          )}
+        </div>
         <div className="flex justify-center">
-          <Button type="submit" variant={"secondary"} className={`group`}>
-            Book a Free Demo Class
+          <Button type="submit" variant="secondary" className="group" disabled={form.formState.isSubmitting} aria-busy={form.formState.isSubmitting}>
+            {form.formState.isSubmitting ? "Submitting..." : "Book a Free Demo Class"}
             <div className="self-center group-hover:opacity-100 right-4 h-5 w-5 rounded-full bg-foreground group-hover:bg-secondary flex items-center justify-center transition-all duration-300 ease-out transform group-hover:translate-x-1">
               <ChevronRight className="text-secondary group-hover:text-foreground" />
             </div>
